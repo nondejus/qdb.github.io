@@ -1,0 +1,43 @@
+[
+    [
+        "email",
+        "password",
+        "cognome",
+        "nome",
+        "sesso",
+        "altezza"
+    ],
+    [
+        "hobby",
+        "sito",
+        "link"
+    ],
+    [
+        "prodotti",
+        "camicia",
+        "giacca",
+        "pantalone",
+        "colore",
+        "brand",
+        "prezzo",
+        "taglia",
+        "composizione",
+        "lavaggio",
+        "sconto"
+    
+    ],
+    [
+        "pagamento",
+        "banca",
+        "id",
+        "scadenza"
+    ],
+    [
+        "uuid",
+        "version",
+        "platform",
+        "model"
+    ],
+    [],
+    []
+]

@@ -1,0 +1,25 @@
+{
+    "create":"30 Jul 2016",
+    "command":[
+        "Qin('email','gianlucabottaro@gmail.com')",
+        "Qin('hobby','fare musica')",
+        "Qin('email#hobby','lettura','bot@tim.it')",
+        "Qin('email#hobby','guardare i film','bot@tim.it')",
+        "Qin('email#hobby','fare musica','bot@tim.it')",
+        "Qin('email#sito',array(9,10,11),'gianlucabottaro@gmail.com')",
+        "Qin('email#hobby','moda','gianlucabottaro@gmail.com')",
+        "Qout('email nome')",
+        "Qin('email#email','vicky@alice.it',array('piazzi.raffaele@libero.it','sergiuzzo@libero.it'))",
+        "",
+        "Qin('uuid#email','piazzi.raffaele@libero.it','aa1658748d15799e')",
+        "",
+        "",
+        "",
+        "",
+        "Qin('#prodotti.camicia')",
+        "",
+        "",
+        "",
+        "Qin('#pagamento')"
+    ]
+}

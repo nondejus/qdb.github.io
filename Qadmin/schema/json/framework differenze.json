@@ -1,0 +1,10 @@
+{
+    "keys":{
+        "now":["nome","cognome"],
+        "next":["cippa","lippa"]
+    },
+    "trash":{
+        "now":["altezza"],
+        "next":["sesso"]
+    }
+}

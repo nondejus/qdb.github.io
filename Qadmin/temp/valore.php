@@ -1,0 +1,1 @@
+<?php $val = Qdb::out('email','piazzi.raffaele71@gmail.com'); ?>

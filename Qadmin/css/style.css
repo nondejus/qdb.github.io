@@ -1,0 +1,630 @@
+﻿html,body {
+    color: #333;
+    height:100%;
+    direction: ltr;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    font-size: 12px;
+    line-height: 1.28;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+.cl0{ color: #666; }
+.cl1{ color: #F00; }
+.cl2{ color: #09C; }
+.cl3{ color: #00549C; }
+.cl4{ color: #C00; }
+.cl5{ color: #669; }
+.cl6{ color: #4a5998; }
+.cl7{ color: #FFF; }
+.cl8{ color: #00F; }
+.cl9{ color: #404042; }
+.cl10{ color: #333; }
+.cl11{ color: #DADADA; }
+.cl12{ color: #C0C0C0; }
+.bg0{ background-color: #099; }
+.bg1{ background-color: #FAFAFA; }
+.bg2{ background-color: #0154A0; }
+.bg3{ background-color: #DADADA; }
+.bg4{ background-color: #F8F8F8; }
+.bg5{ background-color: #829AC8; }
+.bg6{ background-color: #808082; }
+.bg7{ background-color: #404042; }
+.bg8{ background-color: #AFBED3; }
+.ft0{
+    margin-left: 6px;
+    padding: 1px 6px 1px 6px;
+    font-family: arial;
+    color: #FFF;
+}
+.ft1{
+    font-family: arial;
+    font-size: 7pt;
+}
+.ft2{
+    margin-left: 6px;
+    font-family: arial;
+    font-size: x-small;
+}
+.ft3{
+    width: 240px;
+    height: 52px; 
+    font-family: arial;
+    font-size: 14px;
+    text-align: center;
+    background-color: #BFBF0B;
+}
+.ft4{
+    width: 240px;
+    height: 76px; 
+    font-family: arial;
+    font-size: 14px;
+    text-align: center;
+    background-color: greenyellow;
+}
+.ft5{
+    width: 240px;
+    height: 76px; 
+    font-family: arial;
+    font-size: 14px;
+    text-align: center;
+    background-color: lavender;
+}
+.wh0{
+    width: 29px;
+    height: 25px;
+}
+.wh1{
+    width: 10px;
+    height: 8px;
+}
+.wh2{
+    width: 9px;
+    height: 8px;
+    text-align: center;
+}
+.wh3{
+    width: 9px;
+    height: 9px;
+    text-align: center;
+}
+.wh4{
+    width: 10px;
+    height: 9px;
+    text-align: left;
+}
+.wh5{
+    width: 10px;
+    height: 9px;
+    text-align: right;
+}
+.wh6{
+    width: 30px;
+    height: 20px;
+}
+.wh7{
+    width: 140px;
+    height: 25px;
+    text-align: center;
+}
+.wh8{
+    width: 30px;
+    height: 25px;
+}
+.td0{
+    height: 50px;
+	background-color: #F8F8F8;
+    border-bottom: 1px solid #F7E6EE;
+    text-align: center;
+    font-family: arial;
+    font-size: xx-large;
+}
+.td1{
+    height: 20px;
+	background-color: #F0F0F0;
+    border-bottom: 1px solid #F0F0F0;
+    text-align: center;
+    font-family: arial;
+    font-size: small;
+}
+.td2{
+    height: 34px;
+	background-color: #F8F8F8;
+    border-bottom: 1px solid #F0F0F0;
+    text-align: center;
+    font-family: arial;
+    font-size: large;
+}
+.td3{
+    height: 18px;
+    border-left: 1px solid #F0F0F0;
+    border-right: 1px solid #F0F0F0;
+    border-bottom: 1px solid #F0F0F0;
+    text-align: center;
+    font-family: arial;
+    font-size: 8pt;
+}
+.td4{
+    height: 24px;
+    vertical-align: top;
+    text-align: center;
+    font-family: arial;
+    font-size: 11pt;
+}
+.td5{
+    height: 34px;
+	background-color: #FFFAFF;
+    border-bottom: 1px solid #F0F0FF;
+    text-align: center;
+    font-family: arial;
+    font-size: large;
+}
+.td6{
+    height: 50px;
+	background-color: #F7E6EE;
+    border-top: 1px solid #E6B5CD;
+    border-bottom: 1px solid #E6B5CD;
+    text-align: center;
+    font-family: arial;
+    font-size: xx-large;
+}
+.td7{
+    height: 40px;
+    border: 1px solid #F7E6EE;
+    text-align: center;
+    font-family: arial;
+    font-size: large;
+}
+.td8{
+    height: 30px;
+    border: 1px solid #F7E6EE;
+    text-align: center;
+    font-family: arial;
+    font-size: small;
+}
+.td9{
+    height: 50px;
+    width: 280px;
+    border-top: 1px solid #F0F0F0;
+    border-left: 1px solid #F0F0F0;
+    border-right: 1px solid #F0F0F0;
+    text-align: center;
+    font-family: arial;
+    font-size: small;
+}
+.td10{
+    height: 20px;
+    width: 120px;
+    border-left: 1px solid #F0F0F0;
+    vertical-align: bottom;
+    text-align: right;
+    font-family: arial;
+    font-size: small;
+}
+.td11{
+    height: 20px;
+    width: 160px;
+    border-right: 1px solid #F0F0F0;
+    vertical-align: bottom;
+    text-align: left;
+    font-family: arial;
+    font-size: small;
+}
+.td12{
+    height: 20px;
+    width: 29px;
+    text-align: left;
+    font-family: arial;
+    font-size: x-small;
+    padding-left: 3px;
+}
+.td13{
+    height: 20px;
+    font-family: arial;
+    font-size: 9pt;
+}
+.td14{
+    width: 40px;
+    text-align: center;
+    vertical-align: top;
+    font-family: arial;
+    font-weight: bold;
+    font-size: 24px;
+    color: red;
+}
+.agg{
+	font-size: 14px;
+	color: #F00;
+}
+.im0{
+    border: 0px;
+    display: none;
+}
+.im1{
+    border: 0px;
+    margin: 3px;
+    float: right;
+    display: none;
+}
+.im2{
+    border: 0px;
+    margin: 3px 1px;
+    float: right;
+    display: none;
+}
+.im3{
+    border: 0px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    float: right;
+    display: none;
+}
+.im4{
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    float: right;
+    display: none;
+}
+.inp{
+	background: #FAFAFA;
+	border: 1px solid #F0F0F0;
+	font-size: 18px;
+	text-align: left;
+	color: #414143;
+	width: 280px;
+	height: 40px;
+	padding: 10px;
+}
+.in7{
+	background: white;
+	border: 1px solid #FFCCCC;
+	font-family: arial;
+	font-size: 14px;
+	color: #FF6666;
+	width: 130px;
+	height: 24px;
+}
+.cmd{
+	background: #FAFAFA;
+	border: 1px solid #F0F0F0;
+	font-size: 14px;
+	text-align: left;
+	color: #414143;
+	width: 600px;
+	height: 34px;
+	padding: 5px;
+}
+.cm7{
+	background: #FAFAFA;
+	border: 1px solid #F0F0F0;
+	font-size: 14px;
+	text-align: left;
+	color: #414143;
+	width: 1000px;
+	height: 34px;
+	padding: 5px;
+}
+.ytc{
+	background: white;
+	border: 1px solid #FFCCCC;
+	font-family: arial;
+	font-size: 18px;
+	color: #FF6666;
+	width: 140px;
+	height: 26px;
+    padding: 5px;
+}
+.yim{
+	background: white;
+	border: 1px solid #FFCCCC;
+	font-family: arial;
+	font-size: 13px;
+	color: #FF6666;
+	width: 150px;
+	height: 20px;
+    padding: 5px;
+}
+.ykc{
+	background: white;
+	border: 1px solid #FFCCCC;
+	font-family: arial;
+	font-size: 10px;
+	color: #FF6666;
+	width: 80px;
+	height: 14px;
+    padding: 5px;
+}
+.ydm{
+	background: white;
+	border: 1px solid #F0F0F0;
+	font-family: arial;
+	font-size: 12px;
+	text-align: center;
+	color: black;
+	width: 38px;
+	height: 18px;
+    padding: 2px;
+}
+#bar{
+	background-color: #5F89D8;
+	height: 40px;
+	left: 0;
+	position: fixed;
+	width: 100%;
+	z-index:1000;
+}
+#rst{
+	margin-top: 5px; 
+	margin-right: 10px; 
+	margin-bottom: 10px;
+	margin-left: 10px;
+	font-family: arial;
+	font-size: 12px; 
+}
+h1{
+    color: #00549C;
+    font-size: 18px;
+    font-family: arial;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+h2{
+    color: #FF0000;
+    font-size: 22px;
+    font-family: arial;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+h3{
+    color: #4a5998;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}
+h4{
+    color: #FFFFFF;
+    font-size: 15px;
+    font-family: arial;
+    font-weight: Bold;
+    margin: 0;
+    padding: 0;
+}
+h5{
+    color: #4a5998;
+    font-size: 12px;
+    font-family: arial;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+h6{
+    color: #0099CC;
+    font-size: 13px;
+    font-family: arial;
+    font-weight: normal;
+    margin: 6px;
+    padding: 0;
+}
+a{
+	color: #0099CC;
+	cursor: pointer;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+	color: blue;
+}
+
+/**
+ * Tooltips!
+ */
+
+/* Base styles for the element that has a tooltip */
+[data-tooltip],
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Base styles for the entire tooltip */
+[data-tooltip]:before,
+[data-tooltip]:after,
+.tooltip:before,
+.tooltip:after {
+  position: absolute;
+  visibility: hidden;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  -webkit-transition: 
+	  opacity 0.2s ease-in-out,
+		visibility 0.2s ease-in-out,
+		-webkit-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+	-moz-transition:    
+		opacity 0.2s ease-in-out,
+		visibility 0.2s ease-in-out,
+		-moz-transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+	transition:         
+		opacity 0.2s ease-in-out,
+		visibility 0.2s ease-in-out,
+		transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform:    translate3d(0, 0, 0);
+  transform:         translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+/* Show the entire tooltip on hover and focus */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after,
+[data-tooltip]:focus:before,
+[data-tooltip]:focus:after,
+.tooltip:hover:before,
+.tooltip:hover:after,
+.tooltip:focus:before,
+.tooltip:focus:after {
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+/* Base styles for the tooltip's directional arrow */
+.tooltip:before,
+[data-tooltip]:before {
+  z-index: 1001;
+  border: 6px solid transparent;
+  background: transparent;
+  content: "";
+}
+
+/* Base styles for the tooltip's content area */
+.tooltip:after,
+[data-tooltip]:after {
+  z-index: 1000;
+  padding: 8px;
+  width: 180px;
+  background-color: #000;
+  background-color: hsla(0, 0%, 20%, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* Directions */
+
+/* Top (default) */
+[data-tooltip]:before,
+[data-tooltip]:after,
+.tooltip:before,
+.tooltip:after,
+.tooltip-top:before,
+.tooltip-top:after {
+  bottom: 100%;
+  left: 50%;
+}
+
+[data-tooltip]:before,
+.tooltip:before,
+.tooltip-top:before {
+  margin-left: -6px;
+  margin-bottom: -14px;
+  border-top-color: #000;
+  border-top-color: hsla(0, 0%, 20%, 0.9);
+}
+
+/* Horizontally align top/bottom tooltips */
+[data-tooltip]:after,
+.tooltip:after,
+.tooltip-top:after {
+  margin-left: -80px;
+}
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after,
+[data-tooltip]:focus:before,
+[data-tooltip]:focus:after,
+.tooltip:hover:before,
+.tooltip:hover:after,
+.tooltip:focus:before,
+.tooltip:focus:after,
+.tooltip-top:hover:before,
+.tooltip-top:hover:after,
+.tooltip-top:focus:before,
+.tooltip-top:focus:after {
+  -webkit-transform: translateY(-12px);
+  -moz-transform:    translateY(-12px);
+  transform:         translateY(-12px); 
+}
+
+/* Left */
+.tooltip-left:before,
+.tooltip-left:after {
+  right: 100%;
+  bottom: 50%;
+  left: auto;
+}
+
+.tooltip-left:before {
+  margin-left: 0;
+  margin-right: -14px;
+  margin-bottom: 0;
+  border-top-color: transparent;
+  border-left-color: #000;
+  border-left-color: hsla(0, 0%, 20%, 0.9);
+}
+
+.tooltip-left:hover:before,
+.tooltip-left:hover:after,
+.tooltip-left:focus:before,
+.tooltip-left:focus:after {
+  -webkit-transform: translateX(-12px);
+  -moz-transform:    translateX(-12px);
+  transform:         translateX(-12px); 
+}
+
+/* Bottom */
+.tooltip-bottom:before,
+.tooltip-bottom:after {
+  top: 100%;
+  bottom: auto;
+  left: 50%;
+}
+
+.tooltip-bottom:before {
+  margin-top: -14px;
+  margin-bottom: 0;
+  border-top-color: transparent;
+  border-bottom-color: #000;
+  border-bottom-color: hsla(0, 0%, 20%, 0.9);
+}
+
+.tooltip-bottom:hover:before,
+.tooltip-bottom:hover:after,
+.tooltip-bottom:focus:before,
+.tooltip-bottom:focus:after {
+  -webkit-transform: translateY(12px);
+  -moz-transform:    translateY(12px);
+  transform:         translateY(12px); 
+}
+
+/* Right */
+.tooltip-right:before,
+.tooltip-right:after {
+  bottom: 50%;
+  left: 100%;
+}
+
+.tooltip-right:before {
+  margin-bottom: 0;
+  margin-left: -14px;
+  border-top-color: transparent;
+  border-right-color: #000;
+  border-right-color: hsla(0, 0%, 20%, 0.9);
+}
+
+.tooltip-right:hover:before,
+.tooltip-right:hover:after,
+.tooltip-right:focus:before,
+.tooltip-right:focus:after {
+  -webkit-transform: translateX(12px);
+  -moz-transform:    translateX(12px);
+  transform:         translateX(12px); 
+}
+
+/* Move directional arrows down a bit for left/right tooltips */
+.tooltip-left:before,
+.tooltip-right:before {
+  top: 3px;
+}
+
+/* Vertically center tooltip content for left/right tooltips */
+.tooltip-left:after,
+.tooltip-right:after {
+  margin-left: 0;
+  margin-bottom: -16px;
+}
