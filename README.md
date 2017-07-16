@@ -1,6 +1,11 @@
 Comandi:
 
-Qdb::in
-Qdb::out
-Qdb::del
-Qdb::ver
+---
+Qdb::in ----> ( inserire i dati )
+---
+Qdb::out --> ( estrarre i dati )
+---
+Qdb::ver --> ( verificare i dati )
+---
+Qdb::del --> ( cancellare i dati )
+---
