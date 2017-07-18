@@ -7,7 +7,6 @@ QuanticoDB is a fast, simple ( 4 command ), extensible NOSQL database + Artifici
 > Qdb::del()&emsp;&emsp;&thinsp;delete data<br>
 > Qdb::ver()&emsp;&emsp; verify data<br>
 <br>
-
 ## Requirements
 QuanticoDB requires PHP 5.4 or greater.
 <br>
