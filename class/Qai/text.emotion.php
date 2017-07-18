@@ -24,12 +24,17 @@
  */
 class Qai extends Qout
 {
-    protected static function query($valass, $opz){ require_once('class/Qurl.php'); $val = false;
+    protected static function query($valass, $opz){ require_once 'class/Qurl.php'; $val = false;
         foreach($valass as $provider) { $provider = strtolower($provider);
             if($provider == 'google') { $val[$provider] = array();
                 if(!isset($opz['text']) || !$opz['text']) $val[$provider]['error'] = 'key <<< text >>> is required';
                 if(!isset($val[$provider]['error'])) { $data = array("document" => array ("type" => "PLAIN_TEXT", "content" => $opz['text']), "encodingType" => "UTF16");
-                    $out = Qurl::query('https://language.googleapis.com/v1beta1/documents:analyzeSentiment?key=AIzaSyDsLFHoWogarw6iNFSm_EDEKt-vVz2vago','https://cloud.google.com/natural-language/',$data);
+                    
+                    $out = Qurl::query(
+                        'https://language.googleapis.com/v1beta1/documents:analyzeSentiment?key=AIzaSyDsLFHoWogarw6iNFSm_EDEKt-vVz2vago',
+                        'https://cloud.google.com/natural-language/', $data
+                    );
+                                                      
                     if(isset($opz['original']) && $opz['original']) $val[$provider]['success'] = $out;
                     else { $out = json_decode($out);
                         if(isset($out->error)) $val[$provider]['error'] = 'language not supported';
@@ -50,7 +55,13 @@ class Qai extends Qout
             }
             if($provider == 'ibm') { $val[$provider] = array();
                 if(!isset($opz['text']) || !$opz['text']) $val[$provider]['error'] = 'key <<< text >>> is required';
-                if(!isset($val[$provider]['error'])) { $out = Qurl::query('https://tone-analyzer-demo.mybluemix.net/api/tone','https://tone-analyzer-demo.mybluemix.net/',$opz['text']);
+                if(!isset($val[$provider]['error'])) { 
+                    
+                    $out = Qurl::query(
+                        'https://tone-analyzer-demo.mybluemix.net/api/tone',
+                        'https://tone-analyzer-demo.mybluemix.net/', $opz['text']
+                    );
+                    
                     if(isset($opz['original']) && $opz['original']) $val[$provider]['success'] = $out;
                     else { $out = json_decode($out);
                         if(isset($out->error)) $val[$provider]['error'] = 'language not supported';
