@@ -1,11 +1,23 @@
-Comandi:
+### What is QuanticoDB ?
 
----
-Qdb::in ----> ( inserire i dati )
----
-Qdb::out --> ( estrarre i dati )
----
-Qdb::ver --> ( verificare i dati )
----
-Qdb::del --> ( cancellare i dati )
----
+Flight is a fast, simple, extensible framework for PHP. Flight enables you to quickly and easily build RESTful web applications.
+
+require 'flight/Flight.php';
+<br>
+<br>
+
+### Requirements
+
+QuanticoDB requires PHP 5.4 or greater.
+<br>
+<br>
+
+### License
+
+QuanticoDB is released under the MIT license.
+<br>
+<br>
+
+### Contributing
+
+Updates and language translations are welcome.
