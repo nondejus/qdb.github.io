@@ -1,9 +1,13 @@
 ## What is QuanticoDB ?
-QuanticoDB is a fast, simple, extensible NOSQL database + Artificial Intelligence for PHP.
+QuanticoDB is a fast, simple ( 4 command ), extensible NOSQL database + Artificial Intelligence for PHP.
 
 > <b>require 'Quantico.php';</b>
-<br>
-<br>
+
+Qdb::in()
+Qdb::out()
+Qdb::del()
+Qdb::ver()
+
 
 ## Requirements
 QuanticoDB requires PHP 5.4 or greater.
