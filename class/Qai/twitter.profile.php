@@ -25,13 +25,19 @@
  */
 class Qai extends Qout
 {
-    protected static function query($valass, $opz){ require_once('class/Qurl.php'); $val = false;
+    protected static function query($valass, $opz){ require_once 'class/Qurl.php'; $val = false;
         foreach($valass as $provider) { $provider = strtolower($provider);
             if($provider == 'ibm') { $data = array('source_type' => 'twitter','include_raw' => false); $val[$provider] = array();
                 if(isset($opz['from']) && $opz['from']) $data['language'] = $opz['from'];
                 if(isset($opz['to']) && $opz['to']) $data['accept_language'] = $opz['to'];
                 if(isset($opz['twitter']) && $opz['twitter']) $data['userId'] = urlencode($opz['twitter']); else $val[$provider]['error'] = 'key <<< twitter >>> is required';
-                if(!isset($val[$provider]['error'])) { $out = Qurl::query('https://personality-insights-livedemo.mybluemix.net/api/profile/twitter','https://personality-insights-livedemo.mybluemix.net/',$data);
+                if(!isset($val[$provider]['error'])) { 
+                    
+                    $out = Qurl::query(
+                        'https://personality-insights-livedemo.mybluemix.net/api/profile/twitter',
+                        'https://personality-insights-livedemo.mybluemix.net/', $data
+                    );
+                    
                     if(isset($opz['original']) && $opz['original']) $val[$provider]['success'] = $out;
                     else { $out = json_decode($out);
                         if(isset($out->error)) $val[$provider]['error'] = $out->error->error;
