@@ -1,23 +1,23 @@
-### What is QuanticoDB ?
+## What is QuanticoDB ?
 
-Flight is a fast, simple, extensible framework for PHP. Flight enables you to quickly and easily build RESTful web applications.
+QuanticoDB is a fast, simple, extensible NOSQL database + AI for PHP.
 
-require 'flight/Flight.php';
+require 'Quantico.php';
 <br>
 <br>
 
-### Requirements
+## Requirements
 
 QuanticoDB requires PHP 5.4 or greater.
 <br>
 <br>
 
-### License
+## License
 
 QuanticoDB is released under the MIT license.
 <br>
 <br>
 
-### Contributing
+## Contributing
 
 Updates and language translations are welcome.
