@@ -23,11 +23,17 @@
  */
 class Qai extends Qout
 {
-    protected static function query($valass, $opz){ require_once('class/Qurl.php'); $val = false;
+    protected static function query($valass, $opz){ require_once 'class/Qurl.php'; $val = false;
         foreach($valass as $provider) { $provider = strtolower($provider);
             if($provider == 'ibm') { $val[$provider] = array();
                 if(!isset($opz['url']) || !$opz['url']) $val[$provider]['error'] = 'key <<< url >>> is required';
-                if(!isset($val[$provider]['error'])) { $out = Qurl::query('https://alchemy-language-demo.mybluemix.net/api/publicationDate','https://alchemy-language-demo.mybluemix.net/',false,$opz['url']);
+                if(!isset($val[$provider]['error'])) { 
+                    
+                    $out = Qurl::query(
+                        'https://alchemy-language-demo.mybluemix.net/api/publicationDate',
+                        'https://alchemy-language-demo.mybluemix.net/', false,$opz['url']
+                    );
+                    
                     if(isset($opz['original']) && $opz['original']) $val[$provider]['success'] = $out;
                     else { $out = json_decode($out);
                         if(isset($out->error)) $val[$provider]['error'] = $out->error->error;
