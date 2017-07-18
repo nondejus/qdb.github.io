@@ -27,7 +27,7 @@
  */
 class Qai extends Qout
 {
-    protected static function query($valass, $opz){ require_once('class/Qurl.php'); $val = false;
+    protected static function query($valass, $opz){ require_once 'class/Qurl.php'; $val = false;
         foreach($valass as $provider) { $provider = strtolower($provider);
             if($provider == 'google') { $val[$provider] = array();
                 if(!isset($opz['image']) || !$opz['image']) $val[$provider]['error'] = 'key <<< image >>> is required';
@@ -46,7 +46,13 @@ class Qai extends Qout
                             ),
                             "image" => array("content" => base64_encode($file))
                         )
-                    ); $out = Qurl::query('https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBzeghi0W7mGczap8SC8AmNudYOlwfU-KE','https://cloud.google.com/vision/',$data);
+                    ); 
+                    
+                    $out = Qurl::query(
+                        'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBzeghi0W7mGczap8SC8AmNudYOlwfU-KE',
+                        'https://cloud.google.com/vision/', $data
+                    );
+                    
                     if(isset($opz['original']) && $opz['original']) $val[$provider]['success'] = $out;
                     else { $out = json_decode($out);
                         if(isset($out->responses[0]->error)) $val[$provider]['error'] = $out->responses[0]->error->message;
