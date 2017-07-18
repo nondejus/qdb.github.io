@@ -12,9 +12,11 @@ QuanticoDB is a fast, simple ( 4 command ), extensible NOSQL database + Artifici
 QuanticoDB requires PHP 5.4 or greater.
 <br>
 <br>
+<br>
 
 ## License
 QuanticoDB is released under the [MIT](https://github.com/QuanticoDB/qdb.github.io/blob/master/LICENSE) license.
+<br>
 <br>
 <br>
 
