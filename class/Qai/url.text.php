@@ -31,7 +31,8 @@ class Qai extends Qout
                     
                     $out = Qurl::query(
                         'https://alchemy-language-demo.mybluemix.net/api/text',
-                        'https://alchemy-language-demo.mybluemix.net/', false,$opz['url']
+                        'https://alchemy-language-demo.mybluemix.net/',
+                        false, $opz['url']
                     );
                     
                     if(isset($opz['original']) && $opz['original']) $val[$provider]['success'] = $out;
