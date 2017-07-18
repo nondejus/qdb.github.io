@@ -1,0 +1,62 @@
+
+Valgono solo per il comando: Qdb::out()
+---------------------------------------
+Sintassi: Numerici Temporali Posizionamento => {}[]()
+Esempio : eta{>30}[25-6-2017=10.53.40:1-7-2017=23.59.59](0:49)
+
+
+
+Numerici {}
+------------
+
+27     |  solo il valore 27
+>27    |  uguale e maggiore di 27  |  ordinati da 27 in su
+<27    |  uguale e minore di 27    |  ordinati da 27 in giu
+27:47  |  compreso fra 27 e 47     |  ordinati da 27 a 47 compresi
+47:27  |  compreso fra 47 e 27     |  ordinati da 47 a 27 compresi
+
+
+
+
+Temporali []
+-------------
+
+30                                  |  ultimi 30 secondi
+5.30                                |  ultimi 5 minuti e 30 secondi
+24.0.0                              |  ultime 24 ore
+15-7-2017                           |  15 luglio 2017 dalle 00.00.00 al 15 luglio 2017 alle 23.59.59
+2017-7-15                           |  15 luglio 2017 dalle 00.00.00 al 15 luglio 2017 alle 23.59.59
+1-1-2017=10                         |  1 gennaio 2017 dalle 10.00.00 alle 10.59.59
+1-1-2017=10.30                      |  1 gennaio 2017 dalle 10.30.00 alle 10.59.59
+1-1-2017=10.30.45                   |  1 gennaio 2017 dalle 10.30.45 alle 10.59.59
+1-1-2017:3-1-2017                   |  1 gennaio 2017 dalle 00.00.00 al 3 gennaio 2017 alle 23.59.59
+1-1-2017=5:3-1-2017=10.30           |  1 gennaio 2017 dalle 05.00.00 al 3 gennaio 2017 alle 10.30.00
+1-1-2017=6.30.15:3-1-2017=12.00.45  |  1 gennaio 2017 dalle 06.30.15 al 3 gennaio 2017 alle 12.00.45
+
+
+
+
+Posizionamento ()
+------------------
+
+niente   |  default min ( 10 risultati ) dal più recente al più vecchio
+(0)      |  default MAX ( 100 risultati ) dal più recente al più vecchio
+(25)     |  i primi 25 risultati dal più recente al più vecchio
+(30:60)  |  dalle posizioni 30 alla posizione 60 dal più recente al più vecchio
+(60:30)  |  dalle posizioni 60 alla posizione 30 dal più vecchio al più recente
+(-)      |  default min ( 10 risultati ) dal più vecchio al più recente
+(-0)     |  default MAX ( 100 risultati ) dal più vecchio al più recente
+(-1:-9)  |  dalle posizioni 1 alla posizione 9 dal più vecchio al più recente
+(-9:-1)  |  dalle posizioni 9 alla posizione 1 dal più recente al più vecchio
+
+
+
+
+Ordinamento !+-!
+------------------
+
++    |  dal più piccolo al più grante ( 0-9 & a-Z ) es. eta+
+-    |  dal più grante al più piccolo ( 9-0 & Z-a ) es. eta-
+!    |  per quantità             es. !citta
+!+!  |  per quantità crescente   es. !citta+!
+!-!  |  per quantità decrescente es. !citta-!
