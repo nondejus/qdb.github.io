@@ -121,5 +121,5 @@ If you want to be sure that your data will never and then never decrypted: Click
 Click Here for the Menu
 Result
 Clean
-All contents of QuanticoDB, unless otherwise indicated, are covered by<a target="_blank" href="http://creativecommons.org/licenses/by-nd/4.0/deed.en">licenza Creative Commons.</a> Reproduction of all or part of the contents will<br>only happen if you made no profit and will have to return the original source with links to <a target="_blank" href="http://www.quanticodb.com">QuanticoDB</a> and/or the original authors if indicated
+All contents of QuanticoDB, unless otherwise indicated, are covered by <a target="_blank" href="https://github.com/QuanticoDB/qdb.github.io/blob/master/LICENSE">MIT license.</a> Reproduction of all or part of the contents will<br>only happen if you made no profit and will have to return the original source with links to <a target="_blank" href="https://quanticodb.github.io/qdb.github.io/">QuanticoDB</a> and/or the original authors if indicated
 Animation

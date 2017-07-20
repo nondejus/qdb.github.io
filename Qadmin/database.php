@@ -296,9 +296,11 @@
 </table>
 <div align="center">
 	<table border="0" width="92%" cellspacing="0" cellpadding="0">
-		<tr><td rowspan="3" width="525">&nbsp;</td><td width="730" align="center" height="93" valign="bottom"><a target="_blank" href="https://www.a2hosting.com/refer/64197"><img border="0" src="images/a2hosting_turbo20x.png" title=" BEST Hosting Solution "></a></td><td rowspan="3" align="right" valign="top"><span id="creato"></span></td></tr>
-		<tr><td width="730" align="center" valign="bottom" height="30"><font face="Arial" size="1"><?php echo $lng[123]; ?></font></td></tr>
-		<tr><td width="730" height="30">&nbsp;</td></tr>
+		<tr>
+            <td rowspan="3" width="525">&nbsp;</td>
+            <td height="100" align="center" valign="top"><font face="Arial" size="1"><?php echo $lng[123]; ?></font></td>
+            <td rowspan="3" align="right" valign="top"><span id="creato"></span></td>
+        </tr>
 	</table>
 </div>
 </div>

@@ -1,10 +1,26 @@
 <?php
-    $qdb = file('config.php'); $lng = file('language/'.rtrim($qdb[4]).'/index.php',FILE_IGNORE_NEW_LINES); if(substr(phpversion(),0,3) < 5.4) exit($lng[24]); $functions = array('date','session','json','curl','hash','openssl','mbstring'); $ok = false; foreach($functions as $function) if(get_extension_funcs($function) === false) { echo "Error: <b>".$function."</b> extension ".$lng[23]." !!!<br>"; $ok = true; } if($ok) exit;
-    $x = explode('/',__DIR__); if(!is_writable(__DIR__.'/schema/1.php')) { $dirqdb = ''; for($a=0; $a<count($x)-1; $a++) $dirqdb .= $x[$a].'/'; echo "<br><font color='#F00' face='Arial'><u>".$lng[3]."</u> [ ".$x[count($x)-2]." ]</font><br><br>"; echo '1) '.$lng[4].': <b><font size="5">'.$dirqdb.'</font></b><br><br>2) '.$lng[5].': <b><font size="5">0777</font></b>'; exit; }
-    $x = explode('/',$_SERVER['SCRIPT_FILENAME']); array_pop($x); array_pop($x); if($x[1] == 'var') { $dirqdb = '/'.$x[1].'/'; $dir = $dirqdb.'qdb/'; if(!isset($x[3])) $x[3] = ''; $y = 3; } else { $dirqdb = '/'.$x[1].'/'.$x[2].'/'; $dir = $dirqdb.'qdb/'; if(!isset($x[4])) $x[4] = ''; $y = 4; } $z = "<?php\ndate_default_timezone_set(\"Europe/London\"); setlocale(LC_ALL,\"en_GB.utf8\");\n".'$Qsito = '."'http://www.quanticodb.com/';\n".'$Qprotezione = "<?php header(\'Location: $Qsito\'); exit; ?>\n<html><head><META HTTP-EQUIV=REFRESH CONTENT=\'0; URL=$Qsito\'><script type=\'text/javascript\'>location.href = \'$Qsito\';</script></head></html>\n";'."\n?>";
-    if(is_dir($dir)) { for($a=$y; $a<count($x); $a++) { $dir .= '-'.$x[$a].'/'; if(!is_dir($dir)) mkdir($dir); } $dir .= 'Qconfig.php'; if(file_exists($dir)) { $ok = file($dir); if(count($ok) > 6) { header('location: register.php'); exit; } else { if(isset($_GET['lng'])) { if($_GET['lng'] != 'en' && $_GET['lng'] != 'it') exit; $qdb[4] = $_GET['lng']."\n"; file_put_contents('config.php',$qdb); $lng = file('language/'.$_GET['lng'].'/index.php',FILE_IGNORE_NEW_LINES); }}
-    } else { file_put_contents($dir,$z); $fx = file('../Quantico.php'); $fx[2] = "require_once('$dir'); if(".'$Qmaintenance'.") { header('location: class/updated.htm'); exit; } require_once('class/Qfx.php');\n"; file_put_contents('../Quantico.php',$fx); }} else { if(mkdir($dir)) { for($a=$y; $a<count($x); $a++) { $dir .= '-'.$x[$a].'/'; if(!is_dir($dir)) mkdir($dir); } $dir .= 'Qconfig.php'; file_put_contents($dir,$z); $fx = file('../Quantico.php'); $fx[2] = "require_once('$dir'); if(".'$Qmaintenance'.") { header('location: class/updated.htm'); exit; } require_once('class/Qfx.php');\n"; file_put_contents('../Quantico.php',$fx); 
-    } else { echo "<br><font color='#F00' face='Arial'><u>".$lng[6]."</u> [ qdb ]</font><br><br>"; echo '1) '.$lng[4].': <b><font size="5">'.$dirqdb.'</font></b><br><br>2) '.$lng[7].': <b><font size="4">0777</font></b><br><br>3) '.$lng[8].': <b><font size="5">'.$dir.'</font></b>'; exit; }}
+
+    $qdb = file('config.php'); $lng = file('language/'.rtrim($qdb[4]).'/index.php',FILE_IGNORE_NEW_LINES); if(substr(phpversion(),0,3) < 5.4) exit($lng[24]); 
+    $functions = array('date','session','json','curl','hash','openssl','mbstring'); $ok = false; foreach($functions as $function) if(get_extension_funcs($function) === false) { echo "<br><font size='4' color='#F00' face='Arial'>&nbsp; Qdb::error &nbsp;=>&nbsp; </font><font size='4' color='#000' face='Arial'><b>".$function."</b> extension ".$lng[23]." !!!</font><br>"; $ok = true; } if($ok) exit;
+    
+    $x = explode('/',__DIR__); if(!is_writable(__DIR__.'/schema/1.php')) { $dirqdb = ''; for($a=0; $a<count($x)-1; $a++) $dirqdb .= $x[$a].'/'; echo "<br><font color='#F00' face='Arial'>&nbsp;<u>".$lng[3]."</u> [ ".$x[count($x)-2]." ]</font><br><br>"; echo '&nbsp;1) &nbsp;'.$lng[4].': <b><font size="5">'.$dirqdb.'</font></b><br><br>&nbsp;2) &nbsp;'.$lng[5].': <b><font size="5">0644</font></b><br><br>&nbsp;3) &nbsp;'.$lng[25].': <b><font size="5">0755</font></b><br><br>&nbsp;4) &nbsp;'.$lng[25].': <b><font size="5">0777</font></b>'; exit; }
+    $x = explode('/',$_SERVER['SCRIPT_FILENAME']); array_pop($x); array_pop($x); if($x[1] == 'var') { $dirqdb = '/'.$x[1].'/'; $dir = $dirqdb.'qdb/'; if(!isset($x[3])) $x[3] = ''; $y = 3; } else { $dirqdb = '/'.$x[1].'/'.$x[2].'/'; $dir = $dirqdb.'qdb/'; if(!isset($x[4])) $x[4] = ''; $y = 4; } 
+    
+    $z = "<?php\ndate_default_timezone_set(\"Europe/London\"); setlocale(LC_ALL,\"en_GB.utf8\");\n".'$Qsito = '."'http://www.quanticodb.com/';\n".'$Qprotezione = "<?php header(\'Location: $Qsito\'); exit; ?>\n<html><head><META HTTP-EQUIV=REFRESH CONTENT=\'0; URL=$Qsito\'><script type=\'text/javascript\'>location.href = \'$Qsito\';</script></head></html>\n";'."\n?>";
+    
+    if(is_dir($dir)) { for($a=$y; $a<count($x); $a++) { $dir .= '-'.$x[$a].'/'; if(!is_dir($dir)) mkdir($dir); } $dir .= 'Qconfig.php'; 
+        if(file_exists($dir)) { $ok = file($dir); 
+            if(count($ok) > 6) { header('location: register.php'); exit; } else { if(isset($_GET['lng'])) { if($_GET['lng'] != 'en' && $_GET['lng'] != 'it') exit; $qdb[4] = $_GET['lng']."\n"; file_put_contents('config.php',$qdb); $lng = file('language/'.$_GET['lng'].'/index.php',FILE_IGNORE_NEW_LINES); }}
+        } else { 
+            file_put_contents($dir,$z); $fx = file('../Quantico.php'); $fx[2] = "require_once('$dir'); if(".'$Qmaintenance'.") { header('location: class/updated.htm'); exit; } require_once('class/Qfx.php');\n"; file_put_contents('../Quantico.php',$fx); 
+        }
+    } else { 
+        if(mkdir($dir)) {
+            for($a=$y; $a<count($x); $a++) { $dir .= '-'.$x[$a].'/'; if(!is_dir($dir)) mkdir($dir); } $dir .= 'Qconfig.php'; file_put_contents($dir,$z); $fx = file('../Quantico.php'); $fx[2] = "require_once('$dir'); if(".'$Qmaintenance'.") { header('location: class/updated.htm'); exit; } require_once('class/Qfx.php');\n"; file_put_contents('../Quantico.php',$fx); 
+        } else { 
+            echo "<br><font color='#F00' face='Arial'>&nbsp;<u>".$lng[6]."</u> [ qdb ]</font><br><br>"; echo '&nbsp;1) &nbsp;'.$lng[4].': <b><font size="5">'.$dirqdb.'</font></b><br><br>&nbsp;2) &nbsp;'.$lng[7].': <b><font size="4">0755</font></b><br><br>&nbsp;3) &nbsp;'.$lng[8].': <b><font size="5">'.$dir.'</font></b>'; exit; 
+        }
+    }
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo rtrim($qdb[4]); ?>">
 <head>
@@ -72,9 +88,6 @@
 					<td width="30" rowspan="3">&nbsp;</td>
 					<td align="center" width="730"><font face="Arial" size="1"><?php echo $lng[22]; ?></font></td>
 					<td width="30" rowspan="3">&nbsp;</td>
-				</tr>
-				<tr>
-					<td align="center" valign="bottom" height="110"><a target="_blank" href="https://www.a2hosting.com/refer/64197"><img border="0" src="images/a2hosting_turbo20x.png" title=" BEST Hosting Solution " width="682" height="84"></a></td>
 				</tr>
 			</table>
 		</td></tr>

@@ -64,7 +64,6 @@
 					<td align="center" width="730"><font face="Arial" size="1"><?php echo $lng[17]; ?></font></td>
 					<td width="30" rowspan="3">&nbsp;</td>
 				</tr>
-				<tr><td align="center" valign="bottom" height="110"><a target="_blank" href="https://www.a2hosting.com/refer/64197"><img border="0" src="images/a2hosting_turbo20x.png" title=" BEST Hosting Solution " width="682" height="84"></a></td></tr>
 			</table>
 		</td></tr>
 	</table>

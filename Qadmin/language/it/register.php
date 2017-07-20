@@ -15,4 +15,4 @@ Problema con i Cookie... Vanno Abilitati !!!
 &nbsp;&nbsp;Conferma la tua password
 &nbsp;&nbsp;Registrarti in QuanticoDB
 Scriviti l&#39; Email e la Password o memorizzale <a target="_blank" href="http://www.quanticodb.com/Qregister.htm">QUI</a>
-Tutti i contenuti di QuanticoDB, ove non diversamente indicato, sono coperti da <a target="_blank" href="http://creativecommons.org/licenses/by-nd/4.0/deed.it">licenza Creative Commons.</a> La riproduzione di tutto o parte dei contenuti potra' avvenire solo se fatta senza scopo di lucro e dovra' riportare la fonte originaria con link a <a target="_blank" href="http://www.quanticodb.com">QuanticoDB</a> e/o quello degli autori originari se indicati
+Tutti i contenuti di QuanticoDB, ove non diversamente indicato, sono coperti da <a target="_blank" href="https://github.com/QuanticoDB/qdb.github.io/blob/master/LICENSE">licenza MIT.</a> La riproduzione di tutto o parte dei contenuti potra' avvenire<br>solo se fatta senza scopo di lucro e dovra' riportare la fonte originaria con link a <a target="_blank" href="https://quanticodb.github.io/qdb.github.io/">QuanticoDB</a> e/o quello degli autori originari se indicati
