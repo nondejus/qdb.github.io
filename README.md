@@ -9,7 +9,7 @@ QuanticoDB is a fast, simple ( 4 command ), Fully Encrypted NoSQL DB + A.I. with
 <br>
 
 ## Requirements
-QuanticoDB requires PHP 5.4 or greater.
+QuanticoDB requires Linux + PHP 5.4 or greater.
 <br>
 <br>
 <br>
