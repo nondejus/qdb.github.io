@@ -22,5 +22,5 @@ Language &nbsp;>>>&nbsp; ITALIAN
 Quantico is AI, programmed to interact with other AI - Example: Google Prediction, IBM Watson, Microsoft Cognitive and other ...
 All contents of QuanticoDB, unless otherwise indicated, are covered by <a target="_blank" href="https://github.com/QuanticoDB/qdb.github.io/blob/master/LICENSE">MIT license.</a> Reproduction of all or part of the contents will<br>only happen if you made no profit and will have to return the original source with links to <a target="_blank" href="https://quanticodb.github.io/qdb.github.io/">QuanticoDB</a> and/or the original authors if indicated
 is NOT loaded
-The minimum version of PHP is 5.4
+The minimum version of PHP is <b>5.4</b>
 if it not work ... use permits
