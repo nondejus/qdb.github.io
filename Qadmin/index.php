@@ -1,7 +1,9 @@
 <?php
 
-    $qdb = file('config.php'); $lng = file('language/'.rtrim($qdb[4]).'/index.php',FILE_IGNORE_NEW_LINES); if(substr(phpversion(),0,3) < 5.4) exit($lng[24]); 
-    $functions = array('date','session','json','curl','hash','openssl','mbstring'); $ok = false; foreach($functions as $function) if(get_extension_funcs($function) === false) { echo "<br><font size='4' color='#F00' face='Arial'>&nbsp; Qdb::error &nbsp;=>&nbsp; </font><font size='4' color='#000' face='Arial'><b>".$function."</b> extension ".$lng[23]." !!!</font><br>"; $ok = true; } if($ok) exit;
+    $qdb = file('config.php'); $lng = file('language/'.rtrim($qdb[4]).'/index.php',FILE_IGNORE_NEW_LINES); $functions = array('date','session','json','curl','hash','openssl','mbstring'); $ok = false; 
+    
+    if(substr(phpversion(),0,3) < 5.4) { echo "<br><font size='4' color='#F00' face='Arial'>&nbsp; Qdb::error &nbsp;=>&nbsp; </font><font size='4' color='#000' face='Arial'>".$lng[24]."</font><br>"; $ok = true; }
+    foreach($functions as $function) if(get_extension_funcs($function) === false) { echo "<br><font size='4' color='#F00' face='Arial'>&nbsp; Qdb::error &nbsp;=>&nbsp; </font><font size='4' color='#000' face='Arial'><b>".$function."</b> extension ".$lng[23]." !!!</font><br>"; $ok = true; } if($ok) exit;
     
     $x = explode('/',__DIR__); if(!is_writable(__DIR__.'/schema/1.php')) { $dirqdb = ''; for($a=0; $a<count($x)-1; $a++) $dirqdb .= $x[$a].'/'; echo "<br><font color='#F00' face='Arial'>&nbsp;<u>".$lng[3]."</u> [ ".$x[count($x)-2]." ]</font><br><br>"; echo '&nbsp;1) &nbsp;'.$lng[4].': <b><font size="5">'.$dirqdb.'</font></b><br><br>&nbsp;2) &nbsp;'.$lng[5].': <b><font size="5">0644</font></b><br><br>&nbsp;3) &nbsp;'.$lng[25].': <b><font size="5">0755</font></b><br><br>&nbsp;4) &nbsp;'.$lng[25].': <b><font size="5">0777</font></b>'; exit; }
     $x = explode('/',$_SERVER['SCRIPT_FILENAME']); array_pop($x); array_pop($x); if($x[1] == 'var') { $dirqdb = '/'.$x[1].'/'; $dir = $dirqdb.'qdb/'; if(!isset($x[3])) $x[3] = ''; $y = 3; } else { $dirqdb = '/'.$x[1].'/'.$x[2].'/'; $dir = $dirqdb.'qdb/'; if(!isset($x[4])) $x[4] = ''; $y = 4; } 
