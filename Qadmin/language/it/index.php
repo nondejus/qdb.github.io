@@ -22,5 +22,5 @@ Lingua &nbsp;>>>&nbsp; ITALIANO
 Quantico e' stato programmato per interagire con le altre AI. Google Prediction, IBM Watson, Microsoft Cognitive ed altre ...
 Tutti i contenuti di QuanticoDB, ove non diversamente indicato, sono coperti da <a target="_blank" href="https://github.com/QuanticoDB/qdb.github.io/blob/master/LICENSE">licenza MIT.</a> La riproduzione di tutto o parte dei contenuti potra' avvenire<br>solo se fatta senza scopo di lucro e dovra' riportare la fonte originaria con link a <a target="_blank" href="https://quanticodb.github.io/qdb.github.io/">QuanticoDB</a> e/o quello degli autori originari se indicati
 NON e' caricata
-La versione minima di PHP è la 5.4
+La versione minima di PHP Ã¨ la <b>5.4</b>
 se non dovesse funzionare ... utilizza i permessi
