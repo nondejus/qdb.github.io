@@ -15,5 +15,5 @@ Problem with Cookie... Must be Enabled !!!
 &nbsp;&nbsp;Enter your password
 &nbsp;&nbsp;Confirm your password
 &nbsp;&nbsp;SignUp on QuanticoDB
-Write email adress and password or store <a target="_blank" href="http://www.quanticodb.com/Qregister.htm">HERE</a>
+Write email adress and password or store <a target="_blank" href="https://yesim.io">HERE</a>
 All contents of QuanticoDB, unless otherwise indicated, are covered by <a target="_blank" href="https://github.com/QuanticoDB/qdb.github.io/blob/master/LICENSE">MIT license.</a> Reproduction of all or part of the contents will<br>only happen if you made no profit and will have to return the original source with links to <a target="_blank" href="https://quanticodb.github.io/qdb.github.io/">QuanticoDB</a> and/or the original authors if indicated
