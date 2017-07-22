@@ -32,6 +32,6 @@ if(!file_exists($file)){ mkdir($db,0755); mkdir($db.$Qpostime,0755); $Qprotezi =
     fwrite($fp, '$Qmaintenance = false;'."\n");
     fwrite($fp, '?>'); fclose($fp); require('clona.php'); clona($db,"$db-test");
     $fp = file('schema/command.php'); $fp[1] = rtrim($fp[1]).time()."\n"; Qw('schema/command.php',$fp);
-} else echo 'http://www.quanticodb.com';
+} else echo 'https://quanticodb.github.io/qdb.github.io/';
 
 ?>
