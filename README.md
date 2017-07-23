@@ -21,7 +21,7 @@ QuanticoDB is released under the [MIT](https://github.com/QuanticoDB/qdb.github.
 <br>
 
 ## Contributing
-Updates and language translations are welcome.
+Artificial Intelligence & language translations are welcome.
 <br>
 <br>
 <br>
