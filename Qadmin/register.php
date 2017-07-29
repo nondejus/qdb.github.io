@@ -54,8 +54,7 @@
                 </tr></form>
 			</table></td>
 		</tr>
-		<tr><td id="tb5" width="790" colspan="2"><table border="0" width="790" cellspacing="0" cellpadding="0" background="images/Q.box.line.jpg" height="20"><tr>
-			<td width="790" height="20" align="right"><h6><?php echo $lng[16]; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h6></td></tr></table></td></tr>
+		<tr><td id="tb5" width="790" colspan="2"><table border="0" width="790" cellspacing="0" cellpadding="0" background="images/Q.box.line.jpg" height="20"><tr><td width="790" height="20" align="right"><h6><?php echo $lng[16]; ?>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;</h6></td></tr></table></td></tr>
 		<tr><td width="790" colspan="2" height="120"><img border="0" src="images/Q.box.footer.jpg" width="790" height="120"></td></tr>
 		<tr><td width="790" colspan="2" align="center">
 			<table border="0" width="100%" cellspacing="0" cellpadding="0">

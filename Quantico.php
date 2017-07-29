@@ -1,6 +1,6 @@
 <?php
 
-if($Qmaintenance) { header('location: class/updated.htm'); exit; } ini_set('display_errors', 1); error_reporting(E_ALL); /* ini_set & error_reporting (can remove) */ require_once 'class/Qfx.php';
+if($Qmaintenance) { header('location: class/updated.htm'); exit; } ini_set('display_errors', 1); error_reporting(E_ALL); /* ini_set & error_reporting (can remove) */ require_once 'class/Qfx.php'; require_once 'class/Qrec.php';
 
 class Qdb
 {      

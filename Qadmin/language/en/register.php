@@ -7,7 +7,6 @@ Email adress is Required !!!
 Email adress is Incorrect !!!
 Password is Required !!!
 The minimum Password length is 6 characters !!!
-
 The Confirmation Password is Required !!!
 The Confirmation Password is Different from the Password !!!
 Problem with Cookie... Must be Enabled !!!

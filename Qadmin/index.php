@@ -14,7 +14,7 @@
         if(file_exists($dir)) { $ok = file($dir); 
             if(count($ok) > 6) { header('location: register.php'); exit; } else { if(isset($_GET['lng'])) { if($_GET['lng'] != 'en' && $_GET['lng'] != 'it') exit; $qdb[4] = $_GET['lng']."\n"; file_put_contents('config.php',$qdb); $lng = file('language/'.$_GET['lng'].'/index.php',FILE_IGNORE_NEW_LINES); }}
         } else { 
-            file_put_contents($dir,$z); $fx = file('../Quantico.php'); $fx[2] = "require_once '$dir'; if(".'$Qmaintenance'.") { header('location: class/updated.htm'); exit; } ini_set('display_errors', 1); error_reporting(E_ALL); /* ini_set & error_reporting (can remove) */ require_once 'class/Qfx.php';\n"; file_put_contents('../Quantico.php',$fx); 
+            file_put_contents($dir,$z); $fx = file('../Quantico.php'); $fx[2] = "require_once '$dir'; if(".'$Qmaintenance'.") { header('location: class/updated.htm'); exit; } ini_set('display_errors', 1); error_reporting(E_ALL); /* ini_set & error_reporting (can remove) */ require_once 'class/Qfx.php'; require_once 'class/Qrec.php';\n"; file_put_contents('../Quantico.php',$fx); 
         }
     } else { 
         if(mkdir($dir)) {
