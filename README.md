@@ -3,12 +3,22 @@ QuanticoDB is a fast, simple ( 4 command ), Fully Encrypted NoSQL DB + A.I. with
 
 ```php
 require 'Quantico.php';
+
+Quantico\DB::in();  // --- insert data
+Quantico\DB::ver(); // --- verify data
+Quantico\DB::del(); // --- delete data
+Quantico\DB::out(); // --- extract data
+
+// *******************
+// ** Best Practice **
+// *******************
+
 use Quantico as Q;
 
-Q\DB::in();  // ------- insert data
-Q\DB::ver(); // ------- verify data
-Q\DB::del(); // ------- delete data
-Q\DB::out(); // ------- extract data
+Q\DB::in();  // ---------- insert data
+Q\DB::ver(); // ---------- verify data
+Q\DB::del(); // ---------- delete data
+Q\DB::out(); // ---------- extract data
 ```
 <br>
 
