@@ -1,12 +1,15 @@
 ## What is QuanticoDB ?
 QuanticoDB is a fast, simple ( 4 command ), Fully Encrypted NoSQL DB + A.I. with auto training, can talk and learn from: Google Prediction - Microsoft Cognitive - IBM Watson with one simple language.
 
-> <b>require 'Quantico.php';</b><br>
-> <b>use Quantico as Q;</b><br><br>
-> Q\DB::in() ------- insert data<br>
-> Q\DB::out() ----- extract data<br>
-> Q\DB::del() ----- delete data<br>
-> Q\DB::ver() ----- verify data<br>
+```php
+require 'Quantico.php';
+use Quantico as Q;
+
+Q\DB::in();  // ------- insert data
+Q\DB::ver(); // ------- verify data
+Q\DB::del(); // ------- delete data
+Q\DB::out(); // ------- extract data
+```
 <br>
 
 ## Requirements
