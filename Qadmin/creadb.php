@@ -11,6 +11,7 @@ if(!file_exists($file)){ mkdir($db,0755); mkdir($db.$Qpostime,0755); $Qprotezi =
     Qw("$db/key.php",$Qprotezione."email\npassword\n");
     Qw("$db/index.php",$Qprotezione);
     Qw("$db/trash.php",$Qprotezione."\n\n");
+    Qw("$db/sync.php",$Qprotezione."*\n");
     Qw("$db/psw.php",$Qprotezi.$psw."\n");
     Qw("$db$Qpostime/index.php",$Qprotezione.'2');
     Qw($file,$Qprotezione); $fp = fopen($dirqdb.'Qconfig.php','w');

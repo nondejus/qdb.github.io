@@ -45,7 +45,7 @@ Rimetti il Database Online
 Stai usando un Database di <b>TEST</b><br> per poterlo richiamare dall\' esterno<br>devi includere <b>Quantico.test.php</b><br>all\' interno dei tuoi files.
 Torna al DB Principale
 Stai usando un Database <b>Clonato</b><br> per poterlo richiamare dall\' esterno<br>devi includere <b>Quantico.clone.php</b><br>all\' interno dei tuoi files.
-Puoi provare tutti i Comandi ... Direttamente da Qui
+Puoi provare tutti i comandi ... ( <b>Q\\DB :: in, out, del, ver</b> ) ... Qui &nbsp;
 CERCA
 Digita il comando e premi invio
 Esegui il comando contrario

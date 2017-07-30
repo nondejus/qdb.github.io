@@ -30,9 +30,11 @@
 </head>
 <body>
 <?php
-    if(array_key_exists("HTTP_REFERER", $_SERVER) and strpos($_SERVER["HTTP_REFERER"], '?id=')) {
+    if(array_key_exists("HTTP_REFERER", $_SERVER) && strpos($_SERVER["HTTP_REFERER"], '?id=')) {
         require_once '../Quantico.php'; $ok = false; $qdb = file($Qdatabase.'/index.php'); if(count($qdb) < 3) dberror();
+        
         function dberror() { exit("<br><br><h2 align='center'>".$lng[11]."</h2><br><h1 align='center'>".$lng[12]."</h1>"); }
+        
         for($a=1; $a<8; $a++) { $fp = file("schema/$a.php"); if(count($fp) > 2) { $ok = true; for($b=2; $b<count($fp); $b++) if(strpos($fp[$b],".0\n")) dberror(); }} if(!$ok) dberror();
     } else exit("<br><br><br><h2 align='center'>".$lng[13]."</h2><br><h1 align='center'>!!!..... ".$lng[14]." .....!!!</h1>");
 ?>

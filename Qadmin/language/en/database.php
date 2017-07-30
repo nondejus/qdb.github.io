@@ -45,7 +45,7 @@ Put the Database Online
 You\'re using a Database <b>TEST</b><br>to be able to call from outside by must include <b>Quantico.test.php</b><br>inside of your files.&nbsp; &nbsp; &nbsp;
 Back to Main Database
 You\'re using a Database <b>Cloned</b><br>to be able to call from outside by must include <b>Quantico.clone.php</b><br>inside of your files.&nbsp; &nbsp; &nbsp;
-You can try all the commands ... Direct from Here
+You can try all commands ... ( <b>Q\\DB :: in, out, del, ver</b> ) ... Here
 SEARCH
 Give the command and press enter
 Execute the reverse command

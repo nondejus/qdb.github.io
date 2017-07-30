@@ -44,7 +44,7 @@
                                         }
                                     } $msg .= ' <tr><td style="height:26; background-color:crimson; text-align:center" colspan="2"><h4 style="color:seashell">Example</h4></td></tr><td style="padding:8px" colspan="2"><h5>';
                                     while(!$e) { $x = trim(substr($fp[$i],2)); $i++;
-                                        if($x[0] == "Q") $msg .= '<b>Qdb::out</b><font color="purple">'.substr($x,8).'</font><br>'; 
+                                        if($x[0] == "Q") $msg .= '<b>Q\DB::out</b><font color="purple">'.substr($x,8).'</font><br>'; 
                                         elseif($x[0] == "a") $msg .= '<span style="padding-left:18px"><b>array</b></span><span style="color:crimson">'.substr($x,5).'</span><br>';
                                         elseif($x[0] == "'") { $y = explode('=>',$x); $msg .= '<span style="padding-left:56px; color:crimson">'.$y[0].'=></span><span style="color:#09C">'.$y[1].'</span><br>'; }
                                         elseif($x[0] == ")") { $msg .= '<span style="padding-left:18px">'.$x.'</span><br>'; $e = true; }
