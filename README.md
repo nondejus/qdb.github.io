@@ -20,11 +20,9 @@ Q\DB::ver(); // ---------- verify data
 Q\DB::del(); // ---------- delete data
 Q\DB::out(); // ---------- extract data
 ```
-<br>
 
 ## Requirements
 QuanticoDB requires Linux + PHP 5.4 or greater.
-<br>
 <br>
 <br>
 
@@ -32,11 +30,9 @@ QuanticoDB requires Linux + PHP 5.4 or greater.
 QuanticoDB is released under the [MIT](https://github.com/QuanticoDB/qdb.github.io/blob/master/LICENSE) license.
 <br>
 <br>
-<br>
 
 ## Contributing
 [Artificial Intelligence](https://github.com/QuanticoDB/qdb.github.io/tree/master/class/Qai) & [language translations](https://github.com/QuanticoDB/qdb.github.io/tree/master/Qadmin/language) are welcome.
-<br>
 <br>
 <br>
 
