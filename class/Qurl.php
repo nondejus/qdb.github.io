@@ -1,5 +1,7 @@
 <?php
 
+namespace Quantico;
+
 class Qurl extends Qai
 {
     protected static function query($url, $ref, $data=false, $type=false)

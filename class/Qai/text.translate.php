@@ -25,6 +25,8 @@
  *    )
  * );
  */
+namespace Quantico;
+
 class Qai extends Qout
 {
     protected static function query($valass, $opz){ $val = false;

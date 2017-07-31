@@ -29,7 +29,7 @@ function Qerror($type, $id, $val=NULL, $valass=NULL, $key=NULL, $keyass=NULL)
     $msg[15] = "$Qdb[$type] <<< '.$val.' >>> Encrypted File Corrupt: Position ('.$valass.') & File: '.$key";
     $msg[20] = "$Qdb[$type] Protect KEY Database is INCORRECT ::: |";
     
-    a(dirname(__DIR__).'/Quantico_errors.log', date('[d-M-Y H:i:s', fx::time()).' UTC] '.$msg[$id].chr(13).chr(10));
+    a(dirname(__DIR__).'/Quantico_errors.log', date('[d-M-Y H:i:s', SYS::time()).' UTC] '.$msg[$id].chr(13).chr(10));
     
     return false;
 }
