@@ -13,12 +13,12 @@
     if(is_dir($dir)) { for($a=$y; $a<count($x); $a++) { $dir .= '-'.$x[$a].'/'; if(!is_dir($dir)) mkdir($dir); } $dir .= 'Qconfig.php'; 
         if(file_exists($dir)) { $ok = file($dir); 
             if(count($ok) > 6) { header('location: register.php'); exit; } else { if(isset($_GET['lng'])) { if($_GET['lng'] != 'en' && $_GET['lng'] != 'it') exit; $qdb[4] = $_GET['lng']."\n"; file_put_contents('config.php',$qdb); $lng = file('language/'.$_GET['lng'].'/index.php',FILE_IGNORE_NEW_LINES); }}
-        } else { 
-            file_put_contents($dir,$z); $fx = file('../Quantico.php'); $fx[2] = "namespace Quantico; require_once '$dir'; if(".'$Qmaintenance'.") { header('location: class/updated.htm'); exit; } ini_set('display_errors', 1); error_reporting(E_ALL); /* ini_set & error_reporting (can remove) */ require_once 'class/Qfx.php'; require_once 'class/Qsys.php';\n"; file_put_contents('../Quantico.php',$fx); 
+        } else { file_put_contents($dir,$z); $fx = file('../Quantico.php');
+            $fx[2] = "namespace Quantico; require_once '$dir'; if(".'$Qmaintenance'.") return array('maintenance' => ".'$Qmaintenance'."); ini_set('display_errors', 1); error_reporting(E_ALL); /* ini_set & error_reporting (can remove) */ require_once 'class/Qsys.php'; require_once 'class/Qfx.php';\n"; file_put_contents('../Quantico.php',$fx); 
         }
     } else { 
-        if(mkdir($dir)) {
-            for($a=$y; $a<count($x); $a++) { $dir .= '-'.$x[$a].'/'; if(!is_dir($dir)) mkdir($dir); } $dir .= 'Qconfig.php'; file_put_contents($dir,$z); $fx = file('../Quantico.php'); $fx[2] = "require_once('$dir'); if(".'$Qmaintenance'.") { header('location: class/updated.htm'); exit; } require_once('class/Qfx.php');\n"; file_put_contents('../Quantico.php',$fx); 
+        if(mkdir($dir)) { for($a=$y; $a<count($x); $a++) { $dir .= '-'.$x[$a].'/'; if(!is_dir($dir)) mkdir($dir); } $dir .= 'Qconfig.php'; file_put_contents($dir,$z); $fx = file('../Quantico.php');
+            $fx[2] = "namespace Quantico; require_once '$dir'; if(".'$Qmaintenance'.") return array('maintenance' => ".'$Qmaintenance'."); ini_set('display_errors', 1); error_reporting(E_ALL); /* ini_set & error_reporting (can remove) */ require_once 'class/Qsys.php'; require_once 'class/Qfx.php';\n"; file_put_contents('../Quantico.php',$fx); 
         } else { 
             echo "<br><font color='#F00' face='Arial'>&nbsp;<u>".$lng[6]."</u> [ qdb ]</font><br><br>"; echo '&nbsp;1) &nbsp;'.$lng[4].': <b><font size="5">'.$dirqdb.'</font></b><br><br>&nbsp;2) &nbsp;'.$lng[7].': <b><font size="4">0755</font></b><br><br>&nbsp;3) &nbsp;'.$lng[8].': <b><font size="5">'.$dir.'</font></b>'; exit; 
         }

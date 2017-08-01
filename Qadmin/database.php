@@ -138,7 +138,7 @@
                 if(msg == 'OK') { $('#rst').load('temp/risultato.php').show(); 
                     if(com == 'in(' || com == 'del' || com == 'ver') $('#gio').html('<a class="agg" href="javascript:aggiorna()"><?php echo $lng[13]; ?></a>'); 
                     else if(com == 'out') $('#gio').html('&emsp;<a class="agg" href="javascript:tabella()"><?php echo $lng[12]; ?></a>'); 
-                    else if(com == ':ti' || com == ':di' || com == ':ma') $('#gio').html(''); 
+                    else if(com == ':ti' || com == ':di') $('#gio').html(''); 
                 }});
         }
         function cerca(x) { if(x) { sito = 'query.php?id='+dbcl; titolo = 'QUERY'; } else { sito = 'cerca.php?id='+dbcl; titolo = '<?php echo $lng[48]; ?>'; }

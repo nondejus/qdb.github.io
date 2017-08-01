@@ -43,6 +43,6 @@ $keybase = file("$Qdatabase/key.php");
 $Qpassword = file("$Qdatabase/psw.php");
 
 if($Qidkey){ @session_start(); $x = hash('ripemd256', substr($Qidkey,0,32)); $y = hash('sha512', substr($Qidkey,32)); if(isset($_SESSION[$x])) $z = Qdecrypt($_SESSION[$x],$y,$Qaes256iv); else { $z = file_get_contents($Qserver.'index.php?TOKEN='.hash('ripemd256',$Qidkey)); $z = Qdecrypt($z,$Qidkey,$Qaes256iv); $_SESSION[$x] = Qcrypt($z,$y,$Qaes256iv); } $Qpassword[2] = Qdecrypt($Qpassword[2],$z,$Qaes256iv); }
-$Qpassword = explode('.',rtrim($Qpassword[2])); if(count($Qpassword) != 258) { header('location: class/updated.htm'); exit; }
+$Qpassword = explode('.',rtrim($Qpassword[2])); if(count($Qpassword) != 258) { include_once 'Qerr.php'; return Qerror(5, 16); }
 
 ?>

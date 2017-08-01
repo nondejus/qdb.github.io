@@ -8,7 +8,10 @@
     
     if($type == 's' and $user == 'c' and $pass == 'r') { // ----------------------------------------------------------------------------------------- Permessi
         if(is_writable($dirqdb.'Qconfig.php')) exit('0'); else exit('1'); 
-    } else { $user = strtolower(filter_var($user, FILTER_SANITIZE_EMAIL)); if(!$user) exit; require($dirqdb.'Qconfig.php'); require('class/Qdb.php'); require('function.php');
+    } else { $user = strtolower(filter_var($user, FILTER_SANITIZE_EMAIL)); if(!$user) exit;
+    
+        require($dirqdb.'Qconfig.php'); require('../class/Qdb.php'); require('function.php');
+        
         if($type == 'Login') { $key_user = Qdb($user,'Quser.ini',$type); if(!$key_user) exit('5'); $key_pass = Qdb($pass,'Qpass.ini',$type);
             if($key_pass) { 
                 if(Qcookie($dirqdb)) {

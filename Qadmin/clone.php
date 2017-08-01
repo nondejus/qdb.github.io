@@ -29,7 +29,7 @@
         if($Qclonatot) { $Qclonatot++; 
         
             $cnf = file('../Quantico.php'); 
-            $cnf[2] = str_replace('exit; }','exit; } $Qdatabase .= \'-clone\';',$cnf[2]); 
+            $cnf[2] = str_replace('Qmaintenance);','Qmaintenance); $Qdatabase .= \'-clone\';',$cnf[2]); 
             $dbtype[3] = "clone\n";
             
             copy('schema/command.php','schema/clone/command.php'); 
