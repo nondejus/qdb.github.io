@@ -23,8 +23,13 @@ function Qrecupero($val)
             }
             else // ========================================= System Files
             {
-                if(copy(substr($val[$a],0,-4).'_SYNC_.php', $val[$a]))
-                    $msg = 'SUCCESS'; else { $msg = 'FAILED'; $ok = false; }
+                $fx = substr($val[$a],0,-4).'_SYNC_.php';
+                
+                if(file_exists($fx))
+                {
+                    if(copy($fx, $val[$a])) $msg = 'SUCCESS';
+                    else { $msg = 'FAILED'; $ok = false; }
+                }
             }
             
             Qerror(5, 17, $msg, $val[$a]);  // ------- System File Corrupt

@@ -29,7 +29,7 @@ Change Database Directory
 Change your Login Password
 Restore
 <b>Empty</b></font></a><font face="Arial" color="#FFF" size="2"> Permanently</font>
-In case of error: to ENABLE the AUTO Database Recovery <<< Click HERE >>>
+To ENABLE Your TOTAL SECURITY - Click HERE
 Put the DB in Maintenance
 Use a Test Database
 Clone the Actual Database
@@ -54,7 +54,7 @@ You really want to move this KEY Base in the trash? -> This will delete all of i
 RESTORE&nbsp; Database
 The Database Full Saving is a very long operation (depending on the size and amount of data). You sure you want execute now?
 <b>Saving Data OK:</b> to download click
-Security&nbsp; + &nbsp;AUTO Database Recovery
+100%&nbsp; TOTAL&nbsp; SECURITY
 You're using the FREE version of Quantico your security is high, but <b> NOT Total !!!&nbsp; <font color='#F00'>Do you want to know more ?</font></b>
 Your subscription to QuanticoDB which guarantees you security: <b>Total 100%<font color='#F00'> IS EXPIRED !!!</font> &nbsp; &nbsp; Update It NOW</b>
 It has been contested a payment !!! &nbsp; &nbsp; &nbsp; &nbsp; the site <font color='#F00'><b>WILL NOT WORK</b></font> if you &nbsp; &nbsp; do not <b>CLOSE THE CONTESTATION</b>

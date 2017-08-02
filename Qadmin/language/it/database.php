@@ -1,5 +1,5 @@
 <?php header('Location: http://www.quanticodb.com/'); exit; ?>
-<html><head><META HTTP-EQUIV=REFRESH CONTENT='0; URL=http://www.quanticodb.com/'><script type='text/javascript'>location.href = 'http://www.quanticodb.com/';</script></head></html>
+<html><head><META HTTP-EQUIV=REFRESH CONTENT='0; URL=http://www.quanticodb.com/'><script type='text/javascript'>location.href = 'http://www.quanticodb.com/';</script></head></html>ripristino
 
 <b>IMPORTA Struttura</b> (Framework)
 <b>Salvataggio OK:</b> per scaricarlo clicca
@@ -29,7 +29,7 @@ Cambia directory al Database
 Cambia la Password di Login
 Ripristina
 <b>Svuota</b></font></a><font face="Arial" color="#FFF" size="2"> Definitivamente</font>
-Per ATTIVARE la funzione di AUTO Ripristino del database in caso di errore - Clicca QUI
+Per ATTIVARE la Massima SICUREZZA -> Clicca QUI
 Metti il DB in Manutenzione
 Usa un Database di Test
 Clona il Database Attuale
@@ -54,7 +54,7 @@ Sei sicuro di voler spostare questa KEY Base nel cestino ? --> Questa operazione
 RIPRISTINA&nbsp; Database
 Il Salvataggio Completo del Database e' una operazione molto lunga (dipende dalla dimensione e dalla quantita' dei dati). Sei sicuro di volerlo eseguire adesso?
 <b>Salvataggio OK:</b> per scaricarlo clicca
-Sicurezza + AUTO Ripristino del database
+100%&nbsp; SICUREZZA&nbsp; TOTALE
 Stai utilizzando la versione FREE di QuanticoDB la tua sicurezza e' Alta ma <b>NON Totale !!!&nbsp; <font color='#F00'>Vuoi saperne di piu' ?</font></b>
 Il tuo abbonamento a QuanticoDB che ti garantisce una sicurezza: <b>Totale 100%<font color='#F00'> E' SCADUTO !!!</font> &nbsp; &nbsp; Aggiornalo SUBITO</b>
 E' stato contestato un Pagamento !!! &nbsp; &nbsp; &nbsp; &nbsp; il sito <font color='#F00'><b>NON FUNZIONERA'</b></font> se prima &nbsp; &nbsp; non <b>CHIUDI LA CONTESTAZIONE</b>
