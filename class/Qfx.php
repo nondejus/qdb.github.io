@@ -29,6 +29,7 @@ if(!isset($fs[2])) // File Error
 
 if($fs[2] != '*' || $fs[count($fs)-1] != '*')
 {
+    require_once 'Qerr.php';
     require_once 'Qrec.php';
     Qrecupero($fs);
 }

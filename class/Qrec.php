@@ -4,7 +4,7 @@ namespace Quantico;
 
 function Qrecupero($val)
 {
-    global $Qpostime; $ok = true; include_once 'Qerr.php';
+    global $Qpostime; $ok = true;
     
     if(is_array($val)) // :::::::::::::::::::::: Recupero di tutti i files
     {

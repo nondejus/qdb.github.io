@@ -18,7 +18,7 @@
     <link type="text/css" rel="stylesheet" href="css/msgbox.css" />
     <link type="text/css" rel="stylesheet" href="css/style.css" />
     <link rel="shortcut icon" href="images/favicon.ico" />
-    <script type='text/javascript'>kbase = new Array(); fi = new Array(0,0,0,0,0,0,0,0); nkey = 0; ok = 0; mk = 1; old = ''; lng = '<?php echo rtrim($dbtype[4]); ?>'; sid = '<?php echo rawurldecode($_GET["id"]); ?>'; dbmn = '<?php echo $Qmaintenance; ?>'; dbty = '<?php echo rtrim($dbtype[3]); ?>'; dbcl = parseInt(<?php echo rtrim($dbtype[5]); ?>); err = <?php echo count(file('../../php/index.php'))-2; ?>; QDBCountDown = 60; QDB_Count_Down = false;
+    <script type='text/javascript'>kbase = new Array(); fi = new Array(0,0,0,0,0,0,0,0); nkey = 0; ok = 0; mk = 1; old = ''; lng = '<?php echo rtrim($dbtype[4]); ?>'; sid = '<?php echo rawurldecode($_GET["id"]); ?>'; dbmn = '<?php echo $Qmaintenance; ?>'; dbty = '<?php echo rtrim($dbtype[3]); ?>'; dbcl = parseInt(<?php echo rtrim($dbtype[5]); ?>); QDBCountDown = 60; QDB_Count_Down = false;
         function simporta(x) {
 	    	if(x == 0) $('#simp').attr('src','images/' + lng + '/is_off.bmp'); 
             if(x == 1) $('#simp').attr('src','images/' + lng + '/is_on.bmp');

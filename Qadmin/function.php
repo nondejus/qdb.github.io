@@ -2,9 +2,9 @@
 
     function Qh($val){ return hash('sha512', $val); }
     function Qcancella($arr, $v){ if(isset($arr[$v])) unset($arr[$v]); return array_merge($arr); }
-    function Qw($file, $fx, $sync=false){ if($sync) Qsync($file); return file_put_contents($file, $fx); }
-    function Qa($file, $fx, $sync=false){ if($sync) Qsync($file); return file_put_contents($file, $fx, FILE_APPEND); }
-    function Qsync($val){ $f = fopen(FILESYNC,'a+'); if(file_exists($val)) copy($val, substr($val,0,-4).'_SYNC_.php'); fwrite($f, $val."\n"); fclose($f); }
+    function Qw($file, $fx, $sync=false){ if($sync) Qsync(__DIR__.'/'.$file); return file_put_contents($file, $fx); }
+    function Qa($file, $fx, $sync=false){ if($sync) Qsync(__DIR__.'/'.$file); return file_put_contents($file, $fx, FILE_APPEND); }
+    function Qsync($val, $opz=0){ global $filesync; if($opz) $f = fopen($filesync,'w+'); else { $f = fopen($filesync,'a+'); if(file_exists($val)) copy($val, substr($val,0,-4).'_SYNC_.php'); } fwrite($f, $val."\n"); fclose($f); }
     function Qscuro($keycomb, $key_user=false, $key_pass=false){ $key = substr(Qrawdec($_POST['sid']),0,64); if($key_user) $key = $key_user.substr($key,32); if($key_pass) $key = substr($key,0,32).$key_pass; $iv = substr($key,16,32); if(is_array($keycomb)) { for($a=2; $a<count($keycomb); $a++) $keycomb[$a] = Qcrypt(Qh($keycomb[$a]).$keycomb[$a], $key, $iv)."\n"; return $keycomb; } else return Qcrypt(Qh($keycomb).$keycomb, $key, $iv)."\n"; }
     function Qchiaro($keycomb){ $key = substr(Qrawdec($_POST['sid']),0,64); $iv = substr($key,16,32); if(is_array($keycomb)) { for($a=2; $a<count($keycomb); $a++) { $r = Qdecrypt(rtrim($keycomb[$a]), $key, $iv); if($r && substr($r,0,128) == Qh(substr($r,128))) $keycomb[$a] = substr($r,128); } return $keycomb; } else { $r = Qdecrypt($keycomb, $key, $iv); if($r && substr($r,0,128) == Qh(substr($r,128))) return substr($r,128); else return false; }}
     function Qcookie($dirqdb) { $key = Qgp(32,'0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'); if(setcookie('Qdb#admin',$key)) { $cnf = file($dirqdb.'Qconfig.php'); $cnf[12] = '$Qckadm = "'.$key.'";'."\n"; Qw($dirqdb.'Qconfig.php',$cnf); return true; } return false; }
