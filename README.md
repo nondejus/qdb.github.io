@@ -1,19 +1,3 @@
-```html
-        @@@@                                                                   
-           .@@#                                                                
-             @@@                                                               
- #@           @@@   @#  .@.    @@@     @@    @@ @@@@@# @@   @@@@@@@    @@@@@@% 
-@@@           @@@   @#  .@.   %@,@@    @@@%  @@   @@   @@  @@     ,  %@%     @@
-@@@           @@@   @#  .@.   @& *@#   @@ @@ @@   @@   @@ @@         @@      #@
-@@@%          @@@   @#  /@.  @@@@@@@   @@  @@@@   @@   @@  @@     #  #@#     @@
- @@@         %@@    &@@@@&  @@     @@  @@   &@@   @@   @@   @@@@@@@    @@@@@@* 
-  @@@       %@@                                                                
-    @@@(@@&                                                                  
-   @@@@#                                                                       
-         @@&                                                                   
-          .@@@@#/% &&/&&                                                       
-            ,@@@@@@   /.#
-```
 ## What is QuanticoDB ?
 QuanticoDB is a fast, simple ( 4 command ), Fully Encrypted NoSQL DB + A.I. with auto training, can talk and learn from: Google Prediction - Microsoft Cognitive - IBM Watson with one simple language.
 
