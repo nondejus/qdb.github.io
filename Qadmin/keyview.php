@@ -5,14 +5,10 @@ if(isset($_POST['key'])) $key = $_POST['key'];
 if(isset($_POST['pos'])) $pos = $_POST['pos'];
 if(isset($_POST['val'])) $val = $_POST['val'];
 
-require_once 'cookie.php'; $tmp = '';
-if($dbtype[3] == "test\n") $tmp = '.test'; elseif($dbtype[3] == "clone\n") $tmp = '.clone'; require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
+require_once 'cookie.php'; require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
 
 $ke = explode('@',$key);
 
-function Qh($val){ return hash('sha512', $val); }
-function Qdec($str){ global $dirqdb; if(!file_exists($dirqdb.'Qsession.php')) exit; $key = file($dirqdb.'Qsession.php'); return Qdecrypt(rawurldecode($str), $key[2]); }
-function Qchiaro($keycomb){ global $Qdatabase; $key = substr(Qdec($_POST['sid']),0,64); $iv = substr($key,16,32); if(is_array($keycomb)) { for($a=2; $a<count($keycomb); $a++) { $r = Qdecrypt(rtrim($keycomb[$a]), $key, $iv); if($r && substr($r,0,128) == Qh(substr($r,128))) $keycomb[$a] = substr($r,128); } return $keycomb; } else { $r = Qdecrypt($keycomb, $key, $iv); if($r && substr($r,0,128) == Qh(substr($r,128))) return substr($r,128); else return false; }}
 function Qdettagli($dati){ if(is_array($dati)) { if(isset($dati['K'])) { $msg = array(); // JSON ---> Costruzione del Q\DB::out() completo della KEY Primaria
     foreach($dati['K'] as $keys) {
         if($keys[0] == '#' or $keys[0] == '@') { if($keys[0] == '#') $val = 'multiple'; else $val = 'cloned';

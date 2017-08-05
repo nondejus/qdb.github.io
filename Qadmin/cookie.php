@@ -1,7 +1,5 @@
 <?php
 
-    ini_set('display_errors', 1); error_reporting(E_ALL);
-    
     if(!isset($_COOKIE['Qdb#admin'])) { header('location: login.php'); exit; } 
     
     require_once 'dirqdb.php'; if(!file_exists($dirqdb.'Qconfig.php')) exit;
@@ -13,10 +11,10 @@
             exit('<center><font face="Verdana" size="7"><br><b>REFRESH this page!</b></font></center>');
     }
     
-    $dbtype = file('config.php'); $dirschema = 'schema';
+    $dbtype = file('config.php'); $dirschema = 'schema'; $tmp = '';
     
-    if($dbtype[3] == "test\n") { $dirschema .= '/test'; $Qdatabase .= '-test'; }
-    elseif($dbtype[3] == "clone\n") { $dirschema .= '/clone'; $Qdatabase .= '-clone'; }
+    if($dbtype[3] == "test\n") { $Qdatabase .= '-test'; $dirschema .= '/test'; $tmp = '.test'; }
+    elseif($dbtype[3] == "clone\n") { $Qdatabase .= '-clone'; $dirschema .= '/clone'; $tmp = '.clone'; }
     
     require_once 'function.php';
     

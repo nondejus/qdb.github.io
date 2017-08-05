@@ -1,6 +1,6 @@
 <?php 
     require_once 'cookie.php'; if($dbtype[3] == "test\n") $tmp = '.test'; elseif($dbtype[3] == "clone\n") $tmp = '.clone'; else $tmp = ''; require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
-    require 'temp/valore.php'; $key = file($Qdatabase.'/link.php'); $fp = file('temp/valore.php'); $v = substr($fp[0],23,strlen($fp[0])-25); $k = explode(' ',$v); $link = false;
+    require 'temp/valore.php'; $key = file($Qdatabase.'/link.php'); $fp = file('temp/valore.php'); $v = substr($fp[0], 31, strlen($fp[0])-37); $k = explode(' ',$v); $link = false;
     
     for($a=0; $a<2; $a++) { 
         if(isset($k[$a])) { $b = strpos($k[$a],'{'); if($b > 1) $k[$a] = substr($k[$a],0,$b); }
@@ -47,7 +47,7 @@
                     } echo '</tr></table>';
                 }
             }
-        } echo'<br><p align="center"><font face="Arial" size="3">'.$lng[5].' <font color="#F00"><b>'.$k[0].'</font> : '.$val['T'].'</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>'; $val = substr($fp[0],21,strlen($fp[0])-25); echo '<font face="Arial" size="5"><font color="#9C0">Qdb<font color="#00f">::<font color="#9C0">out</font><font color="#333">'.$val.'</p><br>';
+        } echo'<br><p align="center"><font face="Arial" size="3">'.$lng[5].' <font color="#F00"><b>'.$k[0].'</font> : '.$val['T'].'</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>'; $val = substr($fp[0], 29, strlen($fp[0])-33); echo '<font face="Arial" size="5"><font color="#9C0">Q\DB<font color="#00f">::<font color="#9C0">out</font><font color="#333">'.$val.'</p><br>';
     } elseif(isset($val['p.0'])) { echo '<table width="100%" cellspacing="0" cellpadding="0" class="td0"><tr><td class="td7 cl1">Array</td><td class="td7 cl1">'.$k[0].'</td><td class="td7 cl1">'.$k[1].'</td></tr>';
         for($a=0; $a<$val['N']; $a++) { if($val['-.'.$a]) $v = '<font color="#F00" title="'.$lng[6].'">'.$val[$a].'</font>'; else $v = '<h6>'.$val[$a].'</h6>'; echo '<tr><td class="td8">'.$a.'</td><td class="td8">'.$val['p.'.$a].'</td><td class="td8">'.$v.'</td></tr>'; }
         echo '<tr><td class="td8"></td><td class="td8">'.$lng[5].': '.$val['N'].'</td><td class="td8">'.$lng[5].': '.$val['N'].'</td></tr></table><br><p align="center"><font face="Arial" size="3">'.$lng[5].' <font color="#F00"><b>'.$k[0].'</font> : '.$val['T'].'</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font>'; 

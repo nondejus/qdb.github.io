@@ -1,10 +1,14 @@
 <?php
-    if(isset($_GET['i']) and isset($_GET['k'])) $k = $_GET['k']; else exit; require_once 'cookie.php';
-    if($dbtype[3] == "test\n") $tmp = '.test'; elseif($dbtype[3] == "clone\n") $tmp = '.clone'; else $tmp = ''; require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
+
+    if(isset($_GET['i']) and isset($_GET['k'])) $k = $_GET['k']; else exit; 
+    
+    require_once 'cookie.php'; require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
+    
     $ke = explode('@', $k); $ke[1] = substr($ke[1],0,-2); $ke[0] = str_replace(' ','@',$ke[0]); $ogg = explode('@',$ke[0]);
     
     if($ke[4] == 0) { $ora = strtotime(gmdate("M d Y H:i:s", time())) + $Qgmt; $y[0] = date("d", $ora); $y[1] = date("m", $ora); $y[2] = date("Y", $ora); $z[0] = $y[0]; $z[1] = $y[1]; $z[2] = $y[2]; $inizio = 0; $fine = $Qposmax - 1; $dat = 0; } else { $x = explode(':', $ke[2]); $y = explode('-', $x[0]); $z = explode('-', $x[1]); $inizio = $ke[3]; $fine = $ke[4]; $dat = 1; }
     if($ke[2] == '0-0-0:0-0-0') { $ora = strtotime(gmdate("M d Y H:i:s", time())) + $Qgmt; $y[0] = date("d", $ora); $y[1] = date("m", $ora); $y[2] = date("Y", $ora); $z[0] = $y[0]; $z[1] = $y[1]; $z[2] = $y[2]; $dat = 0; } $k = $ke[0].'@'.$ke[1]; $lng = file('language/'.rtrim($dbtype[4]).'/details.php', FILE_IGNORE_NEW_LINES);
+
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo rtrim($dbtype[4]); ?>">
 <head>

@@ -1,10 +1,14 @@
 <?php
-    if(isset($_GET['id'])) $id = $_GET['id']; else exit; require_once 'cookie.php';
-    if($dbtype[3] == "test\n") $tmp = '.test'; elseif($dbtype[3] == "clone\n") $tmp = '.clone'; else $tmp = ''; require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
+
+    if(isset($_GET['id'])) $id = $_GET['id']; else exit; 
+    
+    require_once 'cookie.php'; require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
+    
     $key = file($Qdatabase.'/link.php'); $link = false;
     
     for($a=2; $a<count($key); $a++) { $k = explode('#',$key[$a]); if($k[0][strlen($k[0])-1] != '@') $link[$a-2] = $k[0]; } $lng = file('language/'.rtrim($dbtype[4]).'/cerca.php', FILE_IGNORE_NEW_LINES);
     if($link) { $lk = array_unique($link); sort($lk); } else exit('<br><h1 align="center">'.$lng[3].'</h1>');
+
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo rtrim($dbtype[4]); ?>">
 <head>
