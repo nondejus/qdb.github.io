@@ -18,8 +18,8 @@ Clicca Qui per passare da 7 a 4 colonne
 Clicca Qui e cambia lingua
 Ora Server:&nbsp;
 SALVA
-Se non viene specificato nella chiamata Qdb::out( ) -> questo e\' il numero di risultati che verranno restituiti
-Numero Massimo di risultati che puo\' restituire una chiamata Qdb::out( )
+Se non viene specificato nella chiamata Q\\DB::out( ) -> questo e\' il numero di risultati che verranno restituiti
+Numero Massimo di risultati che puo\' restituire una chiamata Q\\DB::out( )
 Descrizione di tutti i servizi delle Intelligienze Artificiali
 Le tue Intelligienze Artificiali con i loro Token Autorizzativi
 Se sbagli la Password di Login riceverai una Email
@@ -105,11 +105,11 @@ In questo momento NON e' possibile aggiungere la KEY Base che hai scelto alle KE
 In questo momento NON e' possibile spostare la KEY Combinata che hai scelto
 In questo momento NON e' possibile eseguire l'operazione richiesta !!!
 La prima lettera della KEY Base deve essere Obbligatoriamente una lettera Maiuscola o minuscola !!!
-Questa funzione e' valida solo per i comandi: <b>Qdb::in()</b> e <b>Qdb::del()</b>
+Questa funzione e' valida solo per i comandi: <b>Q\\DB::in()</b> e <b>Q\\DB::del()</b>
 Questo comando NON funziona se usi: <font size='4' color='#F00'><b>@</b></font>
 Questo comando NON funziona se usi: <font size='4' color='#F00'><b>#</b></font>
 Questo comando NON funziona se usi uno <font color='#F00'><b>(spazio)</b></font> come carattere di assegnazione.
-Il comando <font color='#F00'><b>Qdb::del(</b> key , array() , valore <b>)</b></font> <b>NON e' ripristinabile !!!</b>
+Il comando <font color='#F00'><b>Q\\DB::del(</b> key , array() , valore <b>)</b></font> <b>NON e' ripristinabile !!!</b>
 Comando eseguito correttamente !!!
 Questa nota NON esiste !!!
 Il valore minimo di Default e': <b>10</b>

@@ -18,8 +18,8 @@ Click Here to go from 7 to 4 columns
 Change Language
 Server Time&nbsp;
 &nbsp;SAVE&nbsp;
-If not specified in the call Qdb::out( ) -> This is the number of results that will be returned
-Maximum number of results that can return a call Qdb::out( )
+If not specified in the call Q\\DB::out( ) -> This is the number of results that will be returned
+Maximum number of results that can return a call Q\\DB::out( )
 Description all the services of Artificial Intelligienze
 Your Artificial Intelligienze with Token Authorisation
 If you fail the Password Login -> Receive an Email
@@ -105,11 +105,11 @@ Right now it is NOT possible to add the KEY Base you have chosen to KEY Combine
 Right now it is NOT possible to move the KEY Combine you have chosen
 Right now you can NOT perform the required operation !!!
 The first letter of the KEY Base must be Mandatory Uppercase or lower case !!!
-This function is only valid for the commands: <b>Qdb::in()</b> e <b>Qdb::del()</b>
+This function is only valid for the commands: <b>Q\\DB::in()</b> e <b>Q\\DB::del()</b>
 This command NOT work if you use: <font size='4' color='#F00'><b>@</b></font>
 This command NOT work if you use: <font size='4' color='#F00'><b>#</b></font>
 This command NOT work if one <font color='#F00'><b>(space)</b></font> as an assignment character.
-The command <font color='#F00'><b>Qdb::del(</b> key , array() , value <b>)</b></font> <b>NOT resettable !!!</b>
+The command <font color='#F00'><b>Q\\DB::del(</b> key , array() , value <b>)</b></font> <b>NOT resettable !!!</b>
 Command executed successfully !!!
 This note NOT exist !!!
 The minimum Default value is: <b>10</b>
