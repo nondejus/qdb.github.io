@@ -1,5 +1,6 @@
-<?php 
-    require_once 'cookie.php'; if($dbtype[3] == "test\n") $tmp = '.test'; elseif($dbtype[3] == "clone\n") $tmp = '.clone'; else $tmp = ''; require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
+<?php
+
+    require_once 'cookie.php'; require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
     require 'temp/valore.php'; $key = file($Qdatabase.'/link.php'); $fp = file('temp/valore.php'); $v = substr($fp[0], 31, strlen($fp[0])-37); $k = explode(' ',$v); $link = false;
     
     for($a=0; $a<2; $a++) { 
@@ -12,6 +13,7 @@
     
     for($a=2; $a<count($key); $a++) { $b = explode('#',$key[$a]); if($b[0][strlen($b[0])-1] != '@') $link[$a-2] = $b[0]; } $lng = file('language/'.rtrim($dbtype[4]).'/tabella.php',FILE_IGNORE_NEW_LINES);
     if($link) { $lk = array_unique($link); sort($lk); } else exit('<br><h1 align="center">'.$lng[3].'</h1>');
+
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo rtrim($dbtype[4]); ?>">
 <head>

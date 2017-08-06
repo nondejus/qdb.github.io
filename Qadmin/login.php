@@ -1,7 +1,10 @@
 <?php
+
     require 'dirqdb.php'; $dirqdb .= 'Qconfig.php'; if(!file_exists($dirqdb)) { header('location: index.php'); exit; } require_once $dirqdb; 
+    
     $qdb = file($Qdatabase.'/index.php'); if(count($qdb) < 3) { header('location: index.php'); exit; } else setcookie('Qdb#admin','',time()-99999);
     $cnf = file('config.php'); $lng = file('language/'.rtrim($cnf[4]).'/login.php', FILE_IGNORE_NEW_LINES);
+    
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo rtrim($cnf[4]); ?>">
 <head>

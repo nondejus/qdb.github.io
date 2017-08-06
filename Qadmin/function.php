@@ -1,5 +1,5 @@
 <?php 
-
+    
     function Qh($val){ return hash('sha512', $val); }
     function Qcancella($arr, $v){ if(isset($arr[$v])) unset($arr[$v]); return array_merge($arr); }
     function Qw($file, $fx, $sync=false){ if($sync) Qsync(__DIR__.'/'.$file); return file_put_contents($file, $fx); }
@@ -26,5 +26,23 @@
             }
         } return false;
     }
-
+    
+    /** ----------------- Altre Funzioni -----------------
+     *
+     * Qerror()         ../class/Qerr.php
+     * Qrecupero()      ../class/Qrec.php
+     * Qdettagli()      keyview.php
+     * Qdirectory()     keyline.php, importa.php, ripristina.php, ai.php
+     * dberror()        email.php, password.php
+     * login_error()    error.php
+     * clonaflush()     clona.php
+     * clonatot()       clona.php
+     * clona()          clona.php
+     * keyb()           keycomb.php
+     * note()           keycomb.php
+     * tabella()        keycomb.php
+     * keypos()         keybase.php
+     * keybase()        keybase.php
+     * keycheck()       keybase.php
+     */
 ?>

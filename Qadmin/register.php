@@ -1,7 +1,10 @@
 <?php
+
     require 'dirqdb.php'; $dirqdb .= 'Qconfig.php'; if(!file_exists($dirqdb)) { header('location: index.php'); exit; } if(file_exists('creadb.php')) unlink('creadb.php');
     require_once $dirqdb; $qdb = file($Qdatabase.'/index.php'); if(count($qdb) > 2) { header('location: login.php'); exit; }
+    
     $cnf = file('config.php'); $lng = file('language/'.rtrim($cnf[4]).'/register.php', FILE_IGNORE_NEW_LINES);
+    
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo rtrim($cnf[4]); ?>">
 <head>

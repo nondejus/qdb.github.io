@@ -1,4 +1,10 @@
-<?php if(!isset($_GET['type'])) exit; require_once 'cookie.php'; $lng = file('language/'.rtrim($dbtype[4]).'/clone.php', FILE_IGNORE_NEW_LINES); ?>
+<?php
+
+    if(!isset($_GET['type'])) exit; require_once 'cookie.php';
+    
+    $lng = file('language/'.rtrim($dbtype[4]).'/clone.php', FILE_IGNORE_NEW_LINES);
+    
+?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo rtrim($dbtype[4]); ?>">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>

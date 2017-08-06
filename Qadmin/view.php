@@ -78,7 +78,7 @@
             else if(y == 5) { if(x == 'piu') location.href = 'view.php?k=<?php echo $k; ?>.w@' + opz; else if(x == 'meno') location.href = 'view.php?k=<?php echo $k; ?>.x@' + opz; else if(x == 'piuq') location.href = 'view.php?k=<?php echo $k; ?>.y@' + opz; else if(x == 'menoq') location.href = 'view.php?k=<?php echo $k; ?>.z@' + opz; }
         }
         function aggiungi(x,y) {
-	    	if(y == 0) { $("#ag" + x).attr("src","images/ru_off.bmp"); } else if(y == 1) { $("#ag" + x).attr("src","images/ru_on.bmp"); } else if(y == 2) { u = x.split('-'); k = sjout('ak',x); kp = sjout('k',u[0]); kv = $("#av" + x).val(); kc = <?php echo "'$ke[0] '"; ?>; kc = kc + k; $.post('keyview.php', { type: 2, key: kc, val: kv, pos: kp }, function(msg){ alert(msg); if(msg == 'OK') $("#ar" + x).remove(); else error(); }); }
+	    	if(y == 0) { $("#ag" + x).attr("src","images/ru_off.bmp"); } else if(y == 1) { $("#ag" + x).attr("src","images/ru_on.bmp"); } else if(y == 2) { u = x.split('-'); k = sjout('ak',x); kp = sjout('k',u[0]); kv = $("#av" + x).val(); kc = <?php echo "'$ke[0] '"; ?>; kc = kc + k; $.post('keyview.php', { type: 2, key: kc, val: kv, pos: kp }, function(msg){ if(msg == 'OK') $("#ar" + x).remove(); else error(); }); }
         }
         function view(x,y,z) {
             if(z == 0) { $("#" + x).attr("src","images/occhio_off.bmp"); } else if(z == 1) { $("#" + x).attr("src","images/occhio_on.bmp"); } else if(z == 2) { location.href = 'details.php?k=' + y + '@<?php echo $ke[1]; ?>@0-0-0:0-0-0@0@0&i=' + sid; }
