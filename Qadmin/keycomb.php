@@ -61,7 +61,7 @@
                     }
                 }
             } exit(json_encode($val));
-        } else { for($a=2; $a<count($keybase); $a++) { if(rtrim($keybase[$a]) == $key) { for($x=1; $x<$pos; $x++) { $keycomb = Qchiaro(file("$dirschema/$x.php")); for($c=2; $c<count($keycomb); $c++) { $str = explode('.', $keycomb[$c]); if($keybase[$str[0]] == $key) exit('7'); }} Qa("$dirschema/1.php", Qscuro("$a.0\n"), true); Qsync('*'); exit('1'); }} exit('8'); }
+        } else { for($a=2; $a<count($keybase); $a++) { if(rtrim($keybase[$a]) == $key) { for($x=1; $x<$pos; $x++) { $keycomb = Qchiaro(file("$dirschema/$x.php")); for($c=2; $c<count($keycomb); $c++) { $str = explode('.', $keycomb[$c]); if(rtrim($keybase[$str[0]]) == $key) exit('7'); }} Qa("$dirschema/1.php", Qscuro("$a.0\n"), true); Qsync('*'); exit('1'); }} exit('8'); }
     } else { $par = "$dirschema/$par.php"; $arr = "$dirschema/$arr.php";
         if($par != $arr) {
             for($a=2; $a<count($keybase); $a++) { if(rtrim($keybase[$a]) == $key) { $keypar = Qchiaro(file($par)); $keyarr = Qchiaro(file($arr)); $k = count($keyarr); $p = 0; for($b=2; $b<count($keypar); $b++) { $str = explode('.', $keypar[$b]); if($a == $str[0]) { $keyarr[$k] = $keypar[$b]; $k++; } else { $kpar[$p] = $keypar[$b]; $p++; }} Qw($par, $Qprotezione); for($d=0; $d<$p; $d++) Qa($par, Qscuro($kpar[$d]), true); Qw($arr, Qscuro($keyarr), true); Qsync('*'); exit('1'); }} exit('9');
