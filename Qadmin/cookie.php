@@ -25,7 +25,7 @@
     $filesync = $dirschema.'/sync.php'; // sincronismo del pannello admin
     if(!file_exists($filesync)) file_put_contents($filesync, $Qprotezione."*\n");
     $fs = file($filesync, FILE_IGNORE_NEW_LINES);
-
+            
     if(!isset($fs[2])) // File Error
     {
         require_once '../class/Qerr.php';
