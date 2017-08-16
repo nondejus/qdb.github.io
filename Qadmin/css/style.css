@@ -9,6 +9,9 @@
     margin: 0;
     padding: 0;
 }
+
+a.cl1:link, a.cl1:visited, a.cl1:hover, a.cl1:active { color: #F00; }
+
 .cl0{ color: #666; }
 .cl1{ color: #F00; }
 .cl2{ color: #09C; }
@@ -31,6 +34,7 @@
 .bg6{ background-color: #808082; }
 .bg7{ background-color: #404042; }
 .bg8{ background-color: #AFBED3; }
+
 .ft0{
     margin-left: 6px;
     padding: 1px 6px 1px 6px;
