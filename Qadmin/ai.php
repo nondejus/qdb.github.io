@@ -1,4 +1,4 @@
-<?php  require_once('cookie.php'); ?>
+<?php  require_once('cookie.php')?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -34,12 +34,12 @@
 									   $msg .= '<tr><td style="height:26px; padding-left:8px"><h5>License:</h5></td><td style="height:26px; text-align:center"><h6><a target="_blank" href="'.$z.'">'.$x[0].'</a></h6></td></tr>';
                                     } $msg .= '<tr><td style="height:26; background-color:lavender; text-align:center" colspan="2"><h4 style="color:indigo">Provider</h4></td></tr>';	
 									$pos = strpos($fp[7],'@provider'); if($pos) { $x = explode(',',substr($fp[7],$pos+10)); 
-                                        for($a=0; $a<count($x); $a++) { $i++; $y = explode('--> ',rtrim($fp[$i])); if(isset($y[1])) $z = $y[1]; else $z = '';
+                                        for($a=0, $u=count($x); $a<$u; $a++) { $i++; $y = explode('--> ',rtrim($fp[$i])); if(isset($y[1])) $z = $y[1]; else $z = '';
                                             $msg .= '<tr><td style="height:26px; padding-left:8px"><h5>'.trim(strtolower($x[$a])).'</h5></td><td style="height:26px; text-align:center"><a target="_blank" href="'.$z.'"><img src="images/doc.png" width="26px" height="26px"></a></td></tr>';
                                         } $i += 4;
                                     } $msg .= '<tr><td style="height:26; background-color:plum; text-align:center" colspan="2"><h4 style="color:purple">KEY</h4></td></tr>';
 									$pos = strpos($fp[8],'@key'); if($pos) { $x = explode(',',substr($fp[8],$pos+5));
-                                        for($a=0; $a<count($x); $a++) { $x[$a] = trim(strtolower($x[$a])); $y = explode(' ',$x[$a]); if(isset($y[1])) $z = $y[1]; else $z = '';
+                                        for($a=0, $u=count($x); $a<$u; $a++) { $x[$a] = trim(strtolower($x[$a])); $y = explode(' ',$x[$a]); if(isset($y[1])) $z = $y[1]; else $z = '';
                                             $msg .= '<tr><td style="height:26px; padding-left:8px"><h5>'.$y[0].'</h5></td><td style="height:26px; text-align:center"><h6>'.$z.'</h6></td></tr>';
                                         }
                                     } $msg .= ' <tr><td style="height:26; background-color:crimson; text-align:center" colspan="2"><h4 style="color:seashell">Example</h4></td></tr><td style="padding:8px" colspan="2"><h5>';

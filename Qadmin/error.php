@@ -1,6 +1,6 @@
 <?php
 
-function login_error($email) { $cnf = file('config.php'); $lng = file('language/'.rtrim($cnf[4]).'/error.php',FILE_IGNORE_NEW_LINES); $link = $_SERVER['SERVER_NAME']; $u = explode('/',$_SERVER['REQUEST_URI']); for($a=0; $a<count($u)-1; $a++) $link .= $u[$a].'/';
+function login_error($email) { $cnf = file('config.php'); $lng = file('language/'.rtrim($cnf[4]).'/error.php',FILE_IGNORE_NEW_LINES); $link = $_SERVER['SERVER_NAME']; $x = explode('/',$_SERVER['REQUEST_URI']); for($a=0, $u=count($x)-1; $a<$u; $a++) $link .= $x[$a].'/';
     
     $messaggio = '<html><head><title>QuanticoDB | Alert</title></head><body>
     <div align="center"><br><table border="0" cellspacing="0" cellpadding="0" width="500" height="200"><tr><td width="200" align="left" style="border-right: 2px solid #F00">

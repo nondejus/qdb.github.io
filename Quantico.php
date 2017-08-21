@@ -1,6 +1,6 @@
 <?php
 
-namespace Quantico; if($Qmaintenance) return array('maintenance' => $Qmaintenance); ini_set('display_errors', 1); error_reporting(E_ALL); /* ini_set & error_reporting (can remove) */ require_once 'class/Qsys.php'; require_once 'class/Qfx.php';
+namespace Quantico; if($Qmaintenance) return array('maintenance' => $Qmaintenance); ini_set('display_errors', 1); error_reporting(E_ALL); /* ini_set & error_reporting (can remove) */ mb_internal_encoding('UTF-8'); mb_http_output('UTF-8'); require_once 'class/Qsys.php'; require_once 'class/Qfx.php';
 
 class DB
 {      

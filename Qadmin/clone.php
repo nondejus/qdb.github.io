@@ -5,10 +5,10 @@
     $lng = file('language/'.rtrim($dbtype[4]).'/clone.php', FILE_IGNORE_NEW_LINES);
     
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo rtrim($dbtype[4]); ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?=rtrim($dbtype[4])?>">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="Content-Language" content="<?php echo rtrim($dbtype[4]); ?>">
+    <meta http-equiv="Content-Language" content="<?=rtrim($dbtype[4])?>">
     <meta name="author" content="Piazzi Raffaele">
     <title>QuanticoDB</title>
     <link type="text/css" rel="stylesheet" href="css/style.css" />

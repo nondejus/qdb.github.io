@@ -13,7 +13,7 @@ function Qdettagli($dati){ if(is_array($dati)) { if(isset($dati['K'])) { $msg = 
     foreach($dati['K'] as $keys) {
         if($keys[0] == '#' or $keys[0] == '@') { if($keys[0] == '#') $val = 'multiple'; else $val = 'cloned';
             $msg[$val][] = array('K' => substr($keys,1), 'N' => (int)$dati["N.$keys"], 'T' => (int)$dati["T.$keys"], 'value' => array(), 'time' => array()); $b = count($msg[$val])-1;
-            for($a=0; $a<$dati['N.'.$keys]; $a++) { $msg[$val][$b]['value'][$a] = mb_convert_encoding($dati[$keys][$a], 'UTF-8'); $msg[$val][$b]['time'][$a] = date('d M y - H:i:s',$dati[$keys]["t.$a"]); }
+            for($a=0; $a<$dati["N.$keys"]; $a++) { $msg[$val][$b]['value'][$a] = mb_convert_encoding($dati[$keys][$a], 'UTF-8'); $msg[$val][$b]['time'][$a] = date('d M y - H:i:s',$dati[$keys]["t.$a"]); }
         } else $msg['associated'][] = array('K' => $keys, 'value' => mb_convert_encoding($dati[$keys], 'UTF-8'), 'time' => date('d M y - H:i:s',$dati["t.$keys"]));
     } global $Qposmax; $msg['posmax'] = $Qposmax; return json_encode($msg); }} return 0;
 }
@@ -21,8 +21,8 @@ function Qdettagli($dati){ if(is_array($dati)) { if(isset($dati['K'])) { $msg = 
 if($type == 1) { $dati = Q\DB::out("$ke[0]", rtrim($val), -1); exit(Qdettagli($dati)); }
 elseif($type == 2) { if(Q\DB::in($key, rtrim($val), rtrim($pos)) !== false) exit('OK'); }
 elseif($type == 3) { if(Q\DB::del($key, rtrim($pos), rtrim($val)) !== false) exit('OK'); }
-elseif($type == 4) { $dati = Q\DB::out($key, rtrim($val)); $kc = explode('.', $key); $val = array(); for($a=2; $a<count($keybase); $a++) { $kb = rtrim($keybase[$a]); $ok = false; if(is_array($dati)) { if(isset($dati['K'])) { foreach($dati['K'] as $keys) if($kb == '' || $kb == $keys) { $ok = true; break; }} else { if($kb == '') $ok = true; }} else { if($kb == '') $ok = true; } if(!$ok) $val[] = rtrim($keybase[$a]); }
-    for($c=1; $c<8; $c++) { $keycomb = Qchiaro(file("$dirschema/$c.php")); for($d=2; $d<count($keycomb); $d++) { $kc = explode('.', $keycomb[$d]); if(isset($keybase[$kc[0]])) { $tmp = rtrim($keybase[$kc[0]]); if(count($kc) > 2) { for($e=1; $e<(count($kc)-1); $e++) { if(isset($keybase[$kc[$e]])) $tmp .= '.'.rtrim($keybase[$kc[$e]]); } if($key != $tmp) $val[] = $tmp; }}}} exit(json_encode($val)); }
+elseif($type == 4) { $dati = Q\DB::out($key, rtrim($val)); $kc = explode('.', $key); $val = array(); for($a=2, $u=count($keybase); $a<$u; $a++) { $kb = rtrim($keybase[$a]); $ok = false; if(is_array($dati)) { if(isset($dati['K'])) { foreach($dati['K'] as $keys) if($kb == '' || $kb == $keys) { $ok = true; break; }} else { if($kb == '') $ok = true; }} else { if($kb == '') $ok = true; } if(!$ok) $val[] = rtrim($keybase[$a]); }
+    for($c=1; $c<8; $c++) { $keycomb = Qchiaro(file("$dirschema/$c.php")); for($d=2, $u=count($keycomb); $d<$u; $d++) { $kc = explode('.', $keycomb[$d]); if(isset($keybase[$kc[0]])) { $tmp = rtrim($keybase[$kc[0]]); $uc = count($kc); if($uc > 2) { for($e=1; $e<($uc-1); $e++) { if(isset($keybase[$kc[$e]])) $tmp .= '.'.rtrim($keybase[$kc[$e]]); } if($key != $tmp) $val[] = $tmp; }}}} exit(json_encode($val)); }
 elseif($type == 6) { $dati = Q\DB::out($val, -1); exit(Qdettagli($dati)); }
 else { $lng = file('language/'.rtrim($dbtype[4]).'/keyview.php', FILE_IGNORE_NEW_LINES);
     if($type == 7) { $dati = Q\DB::out("-$ke[0]", $val, -1);
