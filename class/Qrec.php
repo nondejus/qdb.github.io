@@ -4,13 +4,13 @@ namespace Quantico;
 
 function Qrecupero($val)
 {
-    global $Qpostime; $ok = true;
+    $ok = true;
     
-    if(is_array($val)) // :::::::::::::::::::::: Recupero di tutti i files
+    if(is_array($val)) // :::::::::::::::::::::::::::: Recupero di tutti i files
     {
         for($a=count($val)-1; $a>2; $a--)
         {
-            if(strpos($val[$a],"$Qpostime/")) // ========= Encrypted Files
+            if(strpos($val[$a],$GLOBALS['Qpostime'].'/')) // === Encrypted Files
             {
                 $fx = file(substr($val[$a],0,-6).'sync.php');
                 
@@ -21,7 +21,7 @@ function Qrecupero($val)
                         
                 } else { $msg = 'FAILED'; $ok = false; }
             }
-            else // ========================================= System Files
+            else // =============================================== System Files
             {
                 $fx = substr($val[$a],0,-4).'_SYNC_.php';
                 
@@ -32,23 +32,23 @@ function Qrecupero($val)
                 }
             }
             
-            Qerror(5, 17, $msg, $val[$a]);  // ------- System File Corrupt
+            Qerror(5, 17, $msg, $val[$a]);  // ------------- System File Corrupt
         }
         
-        if(!$ok) { Qerror(5, 18); exit; } // ------- QuanticoDB is Blocked
+        if(!$ok) { Qerror(5, 18); exit; } // ------------- QuanticoDB is Blocked
     }
-    else // :::::::::::::::::::::::::::::: Recupero della stringa criptata
+    else // :::::::::::::::::::::::::::::::::::: Recupero della stringa criptata
     {
-        global $Qdatabase; global $Qpassword; $ok = false;
+        $ok = false;
         
-        $keyper = "$Qdatabase$Qpostime/".substr($val, 0, 3).'/'.substr($val, 3, $val[12]);
+        $keyper = $GLOBALS['Qdatabase'].$GLOBALS['Qpostime'].'/'.substr($val, 0, 3).'/'.substr($val, 3, $val[12]);
         $keyperindex = "$keyper/index.php"; $keyper .= '/sync.php';
         
         $fp = file($keyperindex);
         $fx = file($keyper);
         
         $pos = substr(rtrim($val), 13);
-        $key = $Qpassword[hexdec(substr($val, 10, 2))];
+        $key = $GLOBALS['Qpassword'][hexdec(substr($val, 10, 2))];
         $orapsw = substr($val, 0, 12);
         
         $iv = Qiv($orapsw, $key);
@@ -62,7 +62,7 @@ function Qrecupero($val)
             
         } else $msg = 'FAILED';
         
-        Qerror(5, 15, $msg, $pos, $keyperindex); // Encrypted File Corrupt
+        Qerror(5, 15, $msg, $pos, $keyperindex); // ----- Encrypted File Corrupt
         
         if($ok) return $v; else return false;
     }
