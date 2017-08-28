@@ -36,5 +36,3 @@ class Qurl extends Qai
         return $out;
     }
 }
-
-?>

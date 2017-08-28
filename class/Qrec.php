@@ -67,5 +67,3 @@ function Qrecupero($val)
         if($ok) return $v; else return false;
     }
 }
-
-?>

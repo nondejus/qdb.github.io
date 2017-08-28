@@ -113,5 +113,3 @@ class Qai extends Qout
         } if($val) return $val; else return false;
     }        
 }
-
-?>

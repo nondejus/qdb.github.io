@@ -37,5 +37,3 @@ function Qerror($type, $id, $val=NULL, $valass=NULL, $key=NULL, $keyass=NULL)
     
     return false;
 }
-
-?>

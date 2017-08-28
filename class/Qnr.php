@@ -30,5 +30,3 @@ class Qnr extends Qout
          } return false;
     }
 }
-
-?>
