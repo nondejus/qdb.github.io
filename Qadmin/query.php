@@ -46,8 +46,8 @@
 	<tr><td width="470" height="50" valign="bottom"><h6><i><?=$lng[6]?>&nbsp;&nbsp;--&gt;&nbsp;&nbsp;<a href="javascript:pls()"><?=$lng[7]?></a></i></h6></td><td width="30" rowspan="2">&nbsp;</td><td rowspan="2" valign="top">
 	<table border="0" cellspacing="0" cellpadding="0"><tr><td height="50" valign="bottom" width="280"></td></tr><tr><td width="280" align="center" style="border:1px solid #F0F0F0"><h6><font color="#F00"><?=$lng[8]?></font><br><br>
         <?php
-            for($a=0, $ua=count($lk); $a<$ua; $a++) { $k = explode('.',$lk[$a]); $key = rtrim($keybase[$k[0]]); 
-            for($b=1, $ub=count($k); $b<$ub; $b++) $key .= '.'.rtrim($keybase[$k[$b]]); echo '<a href="javascript:key('.$a.')"><span id="kp'.$a.'">'.$key.'</span></a><br>'; }
+            for($a=0, $ua=count($lk); $a<$ua; $a++) { $k = explode('.',$lk[$a]); $key = rtrim($Qkeybase[$k[0]]); 
+            for($b=1, $ub=count($k); $b<$ub; $b++) $key .= '.'.rtrim($Qkeybase[$k[$b]]); echo '<a href="javascript:key('.$a.')"><span id="kp'.$a.'">'.$key.'</span></a><br>'; }
         ?>
         &nbsp;</h6></td></tr></table><div id="kpo" width="280"></div></td></tr><tr><td width="470" valign="top" bgcolor="#FAFAFA" style="border: 1px solid #F0F0F0" height="600"><div id="rst"></div></td></tr>
     </table><br><br><br>

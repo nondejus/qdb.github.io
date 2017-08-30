@@ -51,8 +51,8 @@
 	<table border="0" cellspacing="0" cellpadding="0"><tr><td height="50" valign="bottom" width="280" colspan="3"><h6><font color="#666"><i><?=$lng[10]?></i></font></h6></td></tr>
 		<tr><td width="280" colspan="3"><input class="inp" id="par" type="text"></td></tr><tr><td width="280" colspan="3" class="td9"><h6><font color="#F00"><?=$lng[11]?></font><br><br>
         <?php
-            for($a=0, $ua=count($lk); $a<$ua; $a++) { $k = explode('.',$lk[$a]); $key = rtrim($keybase[$k[0]]); 
-            for($b=1, $ub=count($k); $b<$ub; $b++) $key .= '.'.rtrim($keybase[$k[$b]]); echo '<a href="javascript:key('.$a.')"><span id="kp'.$a.'">'.$key.'</span></a><br>'; }
+            for($a=0, $ua=count($lk); $a<$ua; $a++) { $k = explode('.',$lk[$a]); $key = rtrim($Qkeybase[$k[0]]); 
+            for($b=1, $ub=count($k); $b<$ub; $b++) $key .= '.'.rtrim($Qkeybase[$k[$b]]); echo '<a href="javascript:key('.$a.')"><span id="kp'.$a.'">'.$key.'</span></a><br>'; }
         ?>
         &nbsp;</td></tr></table><div id="kpo" width="280"></div></td></tr><tr><td width="470" valign="top" bgcolor="#FAFAFA" style="border: 1px solid #F0F0F0" height="600"><div id="rst"></div></td></tr>
     </table><br><br><br>
