@@ -4,13 +4,13 @@ namespace Quantico;
 
 function Qrecupero($val)
 {
-    $ok = true;
+    global $Qpostime; $ok = true;
     
     if(is_array($val)) // :::::::::::::::::::::::::::: Recupero di tutti i files
     {
         for($a=count($val)-1; $a>2; $a--)
         {
-            if(strpos($val[$a],$GLOBALS['Qpostime'].'/')) // === Encrypted Files
+            if(strpos($val[$a],$Qpostime.'/')) // === Encrypted Files
             {
                 $fx = file(substr($val[$a],0,-6).'sync.php');
                 
@@ -39,16 +39,16 @@ function Qrecupero($val)
     }
     else // :::::::::::::::::::::::::::::::::::: Recupero della stringa criptata
     {
-        $ok = false;
+        global $Qdatabase; global $Qpassword; $ok = false;
         
-        $keyper = $GLOBALS['Qdatabase'].$GLOBALS['Qpostime'].'/'.substr($val, 0, 3).'/'.substr($val, 3, $val[12]);
+        $keyper = $Qdatabase.$Qpostime.'/'.substr($val, 0, 3).'/'.substr($val, 3, $val[12]);
         $keyperindex = "$keyper/index.php"; $keyper .= '/sync.php';
         
         $fp = file($keyperindex);
         $fx = file($keyper);
         
         $pos = substr(rtrim($val), 13);
-        $key = $GLOBALS['Qpassword'][hexdec(substr($val, 10, 2))];
+        $key = $Qpassword[hexdec(substr($val, 10, 2))];
         $orapsw = substr($val, 0, 12);
         
         $iv = Qiv($orapsw, $key);
