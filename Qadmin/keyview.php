@@ -5,7 +5,12 @@ if(isset($_POST['key'])) $key = $_POST['key'];
 if(isset($_POST['pos'])) $pos = $_POST['pos'];
 if(isset($_POST['val'])) $val = $_POST['val'];
 
-require_once 'cookie.php'; require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
+require_once 'cookie.php';
+
+if($dbtype[3] == "test\n") $Qdatabase = substr($Qdatabase, 0, -5);
+elseif($dbtype[3] == "clone\n") $Qdatabase = substr($Qdatabase, 0, -6);
+
+require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
 
 $ke = explode('@',$key);
 

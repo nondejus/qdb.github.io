@@ -2,7 +2,12 @@
 
     if(isset($_GET['id'])) $id = $_GET['id']; else exit; 
     
-    require_once 'cookie.php'; require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
+    require_once 'cookie.php'; 
+    
+    if($dbtype[3] == "test\n") $Qdatabase = substr($Qdatabase, 0, -5);
+    elseif($dbtype[3] == "clone\n") $Qdatabase = substr($Qdatabase, 0, -6);
+    
+    require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
     
     $key = file($Qdatabase.'/link.php'); $link = false;
     

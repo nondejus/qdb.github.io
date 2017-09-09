@@ -2,7 +2,12 @@
 
     if(isset($_GET['i']) and isset($_GET['k'])) $k = $_GET['k']; else exit; 
     
-    require_once 'cookie.php'; require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
+    require_once 'cookie.php'; 
+    
+    if($dbtype[3] == "test\n") $Qdatabase = substr($Qdatabase, 0, -5);
+    elseif($dbtype[3] == "clone\n") $Qdatabase = substr($Qdatabase, 0, -6);
+    
+    require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
     
     $ke = explode('@', $k); $ke[1] = substr($ke[1],0,-2); $ke[0] = str_replace(' ','@',$ke[0]); $ogg = explode('@',$ke[0]);
     

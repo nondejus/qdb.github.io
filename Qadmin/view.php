@@ -3,7 +3,12 @@
     if(isset($_GET['k'])) $k = $_GET['k']; else exit;
     if(isset($_GET['i'])) $i = $_GET['i']; else $i = 0;
     
-    require_once 'cookie.php'; require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
+    require_once 'cookie.php'; 
+    
+    if($dbtype[3] == "test\n") $Qdatabase = substr($Qdatabase, 0, -5);
+    elseif($dbtype[3] == "clone\n") $Qdatabase = substr($Qdatabase, 0, -6);
+    
+    require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
     
     $ke = explode('@', $k); $ord = substr($ke[1],-2); if($ord != '.3' && $ord != '.4' && $ord != '.5' && $ord != '.6' && $ord != '.7' && $ord != '.8' && $ord != '.9' && $ord != '.p' && $ord != '.m' && $ord != '.q' && $ord != '.w' && $ord != '.x' && $ord != '.y' && $ord != '.z') $ord = false; else $ke[1] = substr($ke[1],0,-2); $v = str_replace('.2', '@0.0', $ke[1]);
     if(isset($ke[5]) && $ke[5]) { $single = $ke[5]; for($a=6, $u=count($ke); $a<$u; $a++) $single .= '@'.$ke[$a]; } else { $single = false; if($ke[4] == 0) { $ora = strtotime(gmdate("M d Y H:i:s", time())) + $Qgmt; $y[0] = date("d", $ora); $y[1] = date("m", $ora); $y[2] = date("Y", $ora); $z[0] = $y[0]; $z[1] = $y[1]; $z[2] = $y[2]; $inizio = 0; $fine = $Qposmax - 1; $dat = 0; } else { $x = explode(':', $ke[2]); $y = explode('-', $x[0]); $z = explode('-', $x[1]); $inizio = $ke[3]; $fine = $ke[4]; $dat = 1; } if($ke[2] == '0-0-0:0-0-0') { $ora = strtotime(gmdate("M d Y H:i:s", time())) + $Qgmt; $y[0] = date("d", $ora); $y[1] = date("m", $ora); $y[2] = date("Y", $ora); $z[0] = $y[0]; $z[1] = $y[1]; $z[2] = $y[2]; $dat = 0; }} $k = $ke[0].'@'.$ke[1]; $lng = file('language/'.rtrim($dbtype[4]).'/view.php',FILE_IGNORE_NEW_LINES);

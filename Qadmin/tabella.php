@@ -1,7 +1,14 @@
 <?php
 
-    require_once 'cookie.php'; require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
-    require 'temp/valore.php'; $key = file($Qdatabase.'/link.php'); $fp = file('temp/valore.php'); $v = substr($fp[0], 31, strlen($fp[0])-37); $k = explode(' ',$v); $link = false;
+    require_once 'cookie.php';
+    
+    if($dbtype[3] == "test\n") $Qdatabase = substr($Qdatabase, 0, -5);
+    elseif($dbtype[3] == "clone\n") $Qdatabase = substr($Qdatabase, 0, -6);
+    
+    require_once '../Quantico'.$tmp.'.php'; use Quantico as Q;
+    require 'temp/valore.php'; $key = file($Qdatabase.'/link.php'); $fp = file('temp/valore.php');
+    
+    $v = substr($fp[0], 31, strlen($fp[0])-37); $k = explode(' ',$v); $link = false;
     
     for($a=0; $a<2; $a++) { 
         if(isset($k[$a])) { $b = strpos($k[$a],'{'); if($b > 1) $k[$a] = substr($k[$a],0,$b); }
