@@ -131,7 +131,7 @@
             else if(x == 1) $("#alr").attr("src","images/alert_on.jpg");
             else if(x == 2) { $lb.launch({ url: 'security.php', options: "afterEnd:aggiorna width:480 navTop:true titleTop:true", title: "<h2 align='center'><?=$lng[56]?></h2>" });}
             else { $.post("keyline.php", { id: 's', pos: 'i', key: 'c' }, function(msg){
-                if(msg == 1) { $.msgBox({ title: "QuanticoDB", content: "<?=$lng[57]?>", buttons: [{ value: "<?=$lng[9]?>" }, { value: "<?=$lng[10]?>" }], success: function (result) { if(result == "<?=$lng[9]?>") { $lb.launch({ url: 'security', options: "afterEnd:aggiorna width:480 navTop:true titleTop:true", title: "<h2 align='center'><?=$lng[56]?></h2>" });}}});}
+                if(msg == 1) { $.msgBox({ title: "QuanticoDB", content: "<?=$lng[57]?>", buttons: [{ value: "<?=$lng[9]?>" }, { value: "<?=$lng[10]?>" }], success: function (result) { if(result == "<?=$lng[9]?>") { $lb.launch({ url: 'security.php', options: "afterEnd:aggiorna width:480 navTop:true titleTop:true", title: "<h2 align='center'><?=$lng[56]?></h2>" });}}});}
                 else if(msg == 2) { $.msgBox({ title: "QuanticoDB", type: "error", content: "<?=$lng[58]?>", success: function (result) { login(); }});}
                 else if(msg == 3) { $.msgBox({ title: "QuanticoDB", type: "error", content: "<?=$lng[59]?>", success: function (result) { login(); }});}
                 else if(msg == 4) { $.msgBox({ title: "QuanticoDB", type: "error", content: "<?=$lng[60]?>", success: function (result) { login(); }});}
