@@ -53,7 +53,14 @@ class Qai extends Qout
             }
             if($provider == 'ibm') { $val[$provider] = array();
                 if(!isset($opz['text']) || !$opz['text']) $val[$provider]['error'] = 'key <<< text >>> is required';
-                if(!isset($val[$provider]['error'])) { $out = Qurl::query('https://alchemy-language-demo.mybluemix.net/api/entities','https://alchemy-language-demo.mybluemix.net/',$opz['text'].'&sentiment=1&linkedData=1&relevance=1&emotion=1&subType=1');
+                if(!isset($val[$provider]['error'])) {
+                    
+                    $out = Qurl::query(
+                        'https://alchemy-language-demo.mybluemix.net/api/entities',
+                        'https://alchemy-language-demo.mybluemix.net/',
+                        $opz['text'].'&sentiment=1&linkedData=1&relevance=1&emotion=1&subType=1'
+                    );
+                    
                     if(isset($opz['original']) && $opz['original']) $val[$provider]['success'] = $out;
                     else { $out = json_decode($out);
                         if(isset($out->error)) $val[$provider]['error'] = $out->error->error;
