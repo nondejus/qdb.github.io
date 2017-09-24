@@ -8,7 +8,7 @@ class SYS extends DB
     protected $orapsw = false, $pospsw = false;
         
     public static function time(){ global $Qgmt; return strtotime(gmdate("M d Y H:i:s", time())) + $Qgmt; }
-    public static function dir($key=NULL, $val=NULL){ if($key && $val) { $val = SYS::hashpos(Qhash($val), SYS::combina($key)); if(file_exists("$val/index.php")) return $val; } return false; }
+    public static function dir($key=NULL, $val=NULL){ if($key && $val !== NULL) { $val = SYS::hashpos(Qhash($val), SYS::combina($key)); if(file_exists("$val/index.php")) return $val; } return false; }
     
     protected function orapos($ora) { $this->pospsw = mt_rand(0,255); if($this->pospsw < 16) $this->orapsw = $ora.'0'; else $this->orapsw = $ora; $this->orapsw .= dechex($this->pospsw); }
     protected function _scrivi($keyper=NULL, $orapsw=NULL, $posold=0, $opz=0, $type=0, $pos=0, $mod=0, $etc=0, $db=0) { return Qdel::scrivi($keyper, $orapsw, $posold, $opz, $type, $pos, $mod, $etc, $db); }
