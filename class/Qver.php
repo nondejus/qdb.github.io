@@ -24,15 +24,104 @@ class Qver extends SYS
         } else { $key = $keys; $keyass = 0;
             if($key[0] == '#') { if(is_array($val)) return SYS::error(4,3,$keys); $key = substr($key, 1); if(!$key) return false; $per = SYS::combina($key); if($per) { if($val == NULL) { $key = $Qdatabase.'/'.$per[0]; for($a=1, $ua=count($per); $a<$ua; $a++) $key .= '/'.$per[$a]; if(file_exists("$key/keyp.php")) return true; } else { if($valass == NULL) { $hashpos = SYS::hashpos(Qhash($val), $per).'/index.php'; if(file_exists($hashpos)) return true; }}} return false; }
             if($key[0] == '@') { if(is_array($val)) return SYS::error(4,3,$keys); $key = substr($key, 1); if(!$key) return false; $per = SYS::combina($key); if($per) { if($val == NULL) { $key = $Qdatabase.'/'.$per[0]; for($a=1, $ua=count($per); $a<$ua; $a++) $key .= '/'.$per[$a]; if(file_exists("$key/keyc.php")) return true; } else { if($valass == NULL) { $hashpos = SYS::hashpos(Qhash($val), $per).'/index.php'; if(file_exists($hashpos)) return true; }}} return false; }
-            if(strpos($keys, '#') > 1) { $ky = explode('#', $keys, 2); $key = $ky[1]; $keyass = $ky[0]; if(!$key) return false; $per = SYS::combina($key); if($per) { $tmp = $per; $per[] = 0; 
-                if($valass == NULL) { if(is_array($val)) return SYS::error(4,3,$keys);
-                    if($val == NULL) return self::Qdbvertot($keyass,$per); else { $keys = SYS::keyvalass($keyass, $val, $per); if(strlen($keys) > 64) return SYS::tot("$Qdatabase/$keys"); }
-                } else { $keys = SYS::keyvalass($keyass, $valass, $per);
-                    if(strlen($keys) > 64) { if(is_array($val)) { $v = array_unique($val); $ok = true; } else { $v = array($val); $ok = false; } $ak = []; $al = []; $s = [];
-                        foreach($v as $val) { if(SYS::isnumber($val)) { if($opz != -1 && $opz != -2) { if(SYS::leggi("$Qdatabase/$keys", $val."\n")) $al[] = $val; else $ak[] = $val; } else { $per = SYS::leggi($Qdatabase.'/'.$keys, $val."\n", 1); if($per) { $s[] = $per; $ak[] = $val; }}} else { $hash = SYS::hashpos(Qhash($val), $tmp).'/index.php'; if(file_exists($hash)) { $fp = file($hash); if($opz != -1 && $opz != -2) { if(SYS::leggi($Qdatabase.'/'.$keys, '#'.$fp[count($fp)-1], 0, 1)) $al[] = $val; else $ak[] = $val; } else { $per = SYS::leggi($Qdatabase.'/'.$keys, '#'.$fp[count($fp)-1], 1, 1); if($per) { $s[] = $per; $ak[] = $val; }}}}} 
-                        if($ok) { if($opz == 1 || $opz == 'del') { if($al) { if($opz == 'del') { require_once 'Qdel.php'; if(!$Qdb->_del("$keyass#$key",$al,$valass)) return false; } $al['N'] = count($al); $al['T'] = SYS::tot("$Qdatabase/$keys"); return $al; }} else { if($ak) { if($opz == -1) { for($a=0, $ua=count($s); $a<$ua; $a++) $ak["t.$a"] = $s[$a]; $ak['N'] = count($ak)/2; } elseif($opz == -2) { for($a=0, $ua=count($s); $a<$ua; $a++) $ak["t.$a"] = $ora-$s[$a]; $ak['N'] = count($ak)/2; } else { if($opz == 'in') { require_once 'Qin.php'; if(!$Qdb->_in($keyass.'#'.$key,$ak,$valass)) return false; } $ak['N'] = count($ak); } $ak['T'] = SYS::tot("$Qdatabase/$keys"); return $ak; }}} else { if($al) return true; else { if($s) { if($opz == -1) return $s[0]; elseif($opz == -2) return $ora-$s[0]; }}}
-                    } else { if(is_array($val)) { $val = array_values(array_unique($val)); if($opz == 'in') { require_once 'Qin.php'; if(!$Qdb->_in("$keyass#$key",$val,$valass)) return false; } elseif($opz == 'del' || $opz == 1 || $opz < 0) return false; $val['N'] = count($val); $val['T'] = $val['N']; return $val; }}
-                }} return false; }
+            if(strpos($keys, '#') > 1) { $ky = explode('#', $keys, 2); $key = $ky[1]; $keyass = $ky[0]; if(!$key) return false; $per = SYS::combina($key); 
+                if($per) { $tmp = $per; $per[] = 0; 
+                    if($valass == NULL) { 
+                        if(is_array($val)) return SYS::error(4,3,$keys);
+                        if($val == NULL) return self::Qdbvertot($keyass,$per); 
+                        else { 
+                            $keys = SYS::keyvalass($keyass, $val, $per); 
+                            if(strlen($keys) > 64) return SYS::tot("$Qdatabase/$keys"); 
+                        }
+                    } else { 
+                        $keys = SYS::keyvalass($keyass, $valass, $per);
+                        if(strlen($keys) > 64) { 
+                            if(is_array($val)) { 
+                                $v = array_unique($val); $ok = true; 
+                            } else { 
+                                $v = array($val); $ok = false; 
+                            } 
+                            $ak = []; $al = []; $s = [];
+                            foreach($v as $val) { 
+                                if(SYS::isnumber($val)) { 
+                                    if($opz != -1 && $opz != -2) { 
+                                        if(SYS::leggi("$Qdatabase/$keys", $val."\n")) $al[] = $val; else $ak[] = $val; 
+                                    } else { 
+                                        $per = SYS::leggi($Qdatabase.'/'.$keys, $val."\n", 1); 
+                                        if($per) { 
+                                            $s[] = $per; $ak[] = $val; 
+                                        }
+                                    }
+                                } else { 
+                                    $hash = SYS::hashpos(Qhash($val), $tmp).'/index.php'; 
+                                    if(file_exists($hash)) { 
+                                        $fp = file($hash); 
+                                        if($opz != -1 && $opz != -2) { 
+                                            if(SYS::leggi($Qdatabase.'/'.$keys, '#'.$fp[count($fp)-1], 0, 1)) $al[] = $val; else $ak[] = $val; 
+                                        } else { 
+                                            $per = SYS::leggi($Qdatabase.'/'.$keys, '#'.$fp[count($fp)-1], 1, 1); 
+                                            if($per) { $s[] = $per; $ak[] = $val; }
+                                        }
+                                    }
+                                }
+                            } 
+                            if($ok) { 
+                                if($opz == 1 || $opz == 'del') { 
+                                    if($al) { 
+                                        if($opz == 'del') { 
+                                            require_once 'Qdel.php'; 
+                                            if(!$Qdb->_del("$keyass#$key",$al,$valass)) return false; 
+                                        } 
+                                        $al['N'] = count($al); 
+                                        $al['T'] = SYS::tot("$Qdatabase/$keys"); 
+                                        return $al; 
+                                    }
+                                } else { 
+                                    if($ak) { 
+                                        if($opz == -1) { 
+                                            for($a=0, $ua=count($s); $a<$ua; $a++) $ak["t.$a"] = $s[$a]; 
+                                            $ak['N'] = count($ak)/2; 
+                                        } 
+                                        elseif($opz == -2) { 
+                                            for($a=0, $ua=count($s); $a<$ua; $a++) $ak["t.$a"] = $ora-$s[$a]; 
+                                            $ak['N'] = count($ak)/2; 
+                                        } 
+                                        else { 
+                                            if($opz == 'in') {
+                                                require_once 'Qin.php'; 
+                                                if(!$Qdb->_in($keyass.'#'.$key,$ak,$valass)) return false; 
+                                            } 
+                                            $ak['N'] = count($ak); 
+                                        } 
+                                        $ak['T'] = SYS::tot("$Qdatabase/$keys"); 
+                                        return $ak; 
+                                    }
+                                }
+                            } else { 
+                                if($al) return true; 
+                                else { 
+                                    if($s) { 
+                                        if($opz == -1) return $s[0]; 
+                                        elseif($opz == -2) return $ora-$s[0]; 
+                                    }
+                                }
+                            }
+                        } else { 
+                            if(is_array($val)) { 
+                                $val = array_values(array_unique($val)); 
+                                if($opz == 'in') { 
+                                    require_once 'Qin.php'; 
+                                    if(!$Qdb->_in("$keyass#$key",$val,$valass)) return false; 
+                                } 
+                                elseif($opz == 'del' || $opz == 1 || $opz < 0) return false; 
+                                $val['N'] = count($val); 
+                                $val['T'] = $val['N']; 
+                                return $val; 
+                            }
+                        }
+                    }
+                } return false; 
+            }
             if(strpos($keys, '@') > 0) { if(is_array($val)) return SYS::error(4,3,$keys); $ky = explode('@', $keys, 2); $key = $ky[1]; $keyass = $ky[0]; if(!$key) return false; $per = SYS::combina($key);
                 if($per) { if($val == NULL && $valass == NULL){ $ok = false; $m = explode('.',$keyass); for($a=0, $ua=count($m); $a<$ua; $a++) if(!is_numeric($m[$a])) { $ok = true; break; } if($ok) { $per[] = 1; return self::Qdbvertot($keyass,$per); } else { $str = $Qdatabase.'/@'; foreach($per as $a) $str .= '/'.$a; $s = $str; $str .= '/@'; $str = SYS::lh($str,Qhash($keyass)).'/index.php'; if(file_exists($str)) { $fp = file($str); $hashpos = SYS::hashpos(Qhash(rtrim($fp[3])), $per); $fl = file($hashpos.'/link.php'); $s = SYS::lh($s,Qhash($m[0])).'/link.php'; $ml = file($s); for($a=2, $ua=count($ml); $a<$ua; $a++) if(strlen($ml[$a]) < 64) { if($ml[$a] != $fl[$a]) return false; } return (int)$fp[3]; } else return false; }}
                 if($valass == NULL) { $per[] = 1; $per = SYS::keyvalass($keyass, $val, $per); if($per) return SYS::tot($Qdatabase.'/'.$per); } else { $str = "$Qdatabase/@/"; foreach($per as $a) $str .= $a.'/'; $str .= '@'; $hash = Qhash($val); $str = SYS::lh($str,$hash); $s = $str.'/link.php'; $str .= '/keys.php'; if(file_exists($str)) { $perass = SYS::combina($keyass,1); if($perass) { $fp = file($str); $j = array_search(rtrim($perass).".0\n",$fp); if($j > 1) { $fp = file($s); $keyper = $Qdatabase.'/'.str_replace('.','/',rtrim($perass)); $hash = Qhash($valass); $keyper = SYS::lh($keyper,$hash); $keyper .= '/index.php'; if(file_exists($keyper)) { $fi = file($keyper); return SYS::leggi($Qdatabase.'/'.rtrim($fp[$j]),'#'.$fi[count($fi)-1],0,1,1); }}}}}} return false; }
