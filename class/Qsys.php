@@ -2,6 +2,10 @@
 
 namespace Quantico;
 
+define('_T1_', 'QuanticoDB => Time -1');
+define('_T2_', 'QuanticoDB => Time -2');
+define('_T3_', 'QuanticoDB => Time -3');
+
 class SYS extends DB
 {
     protected static $dataval = false;
@@ -26,7 +30,7 @@ class SYS extends DB
     protected static function ix($keyper, $opz=false){ global $Qprotezione; $k = "$keyper/index.php"; $p = $Qprotezione; if(!file_exists($k)){ if($opz) $p .= '0'; if(!is_dir($keyper)) mkdir($keyper,0755); file_put_contents($k,$p); } return $k; }
     protected static function lh($keyper, $hash){ global $Qlivtime; for($a=0; $a<$Qlivtime; $a++) { $keyper .= '/'.substr($hash, $a*2, 2); $per = "$keyper/$hash"; if(is_dir($per)) return $per; } return $per; }
     protected static function countchars($val){ $l = mb_strlen($val, 'UTF-8'); $x = []; for($a=0; $a<$l; $a++) { $y = mb_substr($val, $a, 1, 'UTF-8'); if(!isset($x[$y])) $x[$y] = 0; $x[$y]++; } $x = array_keys($x); rsort($x); return implode('',$x); }
-    protected static function combina($key, $opz=0){ global $Qdatabase; if(!$key) return false; $verper = $Qdatabase; if($key[0] == '_') { $key = substr($key,1); self::$dataval = $key; } $key = explode('.', $key); $x = ''; $per = []; $id = "\n"; if($key[0][0] == '#') { $key[0] = substr($key[0],1); $id = ".0\n"; } elseif($key[0][0] == '@') { $key[0] = substr($key[0],1); $id = ".1\n"; } for($a=0,$u=count($key); $a<$u; $a++) { $per[$a] = 0; $j = array_search($key[$a]."\n",QKEYBASE); if($j > 1) { $x .= $j.'.'; $verper .= '/'.$j; if(is_dir($verper)) $per[$a] = $j; else return self::error(0,0,$verper); } else return self::error(0,1,$key[$a]); } if($opz == 1) return substr($x, 0, -1).$id; elseif($opz == 2) return $verper; else return $per; }
+    protected static function combina($key, $opz=0){ global $Qdatabase; if(!$key || is_array($key)) return false; $verper = $Qdatabase; if($key[0] == '_') { $key = substr($key,1); self::$dataval = $key; } $key = explode('.', $key); $x = ''; $per = []; $id = "\n"; if($key[0][0] == '#') { $key[0] = substr($key[0],1); $id = ".0\n"; } elseif($key[0][0] == '@') { $key[0] = substr($key[0],1); $id = ".1\n"; } for($a=0,$u=count($key); $a<$u; $a++) { $per[$a] = 0; $j = array_search($key[$a]."\n",QKEYBASE); if($j > 1) { $x .= $j.'.'; $verper .= '/'.$j; if(is_dir($verper)) $per[$a] = $j; else return self::error(0,0,$verper); } else return self::error(0,1,$key[$a]); } if($opz == 1) return substr($x, 0, -1).$id; elseif($opz == 2) return $verper; else return $per; }
     protected static function trak($chiaro, $opz=0){ $chiaro = str_replace(array('?','!',';',',','"','(',')','[',']','{','}',"'","\n","\r"), ' ', $chiaro); $f = array_unique(explode(' ', $chiaro)); $a = 0; $x = false; foreach($f as $s) if(mb_strlen($s,'UTF-8') > 2 || is_numeric($s)) { $y = mb_substr($s,-1,1,'UTF-8'); if($y == '.' || $y == ':') $s = mb_substr($s,0,-1,'UTF-8'); if(mb_strpos($s,'@',0,'UTF-8') > 2) { $e = explode('@',$s); if($opz) { $x[$a] = $e[0]; $a++; $x[$a] = $e[1]; $a++; } else { $x[$a] = SYS::countchars($e[0]); $a++; $x[$a] = SYS::countchars($e[1]); $a++; }} if(mb_strpos($s,'/',0,'UTF-8') !== false) { $e = explode('/',$s); foreach($e as $z) if(strlen($z) > 0) { if($opz) $x[$a] = $z; else $x[$a] = SYS::countchars($z); $a++; }} if($opz) $x[$a] = $s; else $x[$a] = SYS::countchars($s); $a++; } if($x) { $f = array_unique($x); sort($f); return $f; } else return false; }
     protected static function sort($val) { if(is_array($val)) { $w = []; $x = []; $y = []; $z = []; $s = []; foreach($val as $v) { if($v[0] == '#') $y[] = $v; elseif($v[0] == '@') $z[] = $v; elseif($v[0] == '_') $w[] = $v; elseif(strpos($v,' ') > 1) $s[] = $v; elseif(strpos($v,'{') > 1) $x[] = substr($v,0,strpos($v,'{')); else $x[] = $v; } return array_merge($w,$x,$y,$z,$s); } else return $val; }
     protected static function ordina($key, $array, $opz, $type){ $high = count($array)-1; $low = 2; if($opz) { while ($low <= $high) { $mid = floor(($low + $high) / 2); if($type) $val = substr($array[$mid],0,10); else $val = rtrim($array[$mid]); if($val <= $key) $low = $mid + 1; else $high = $mid - 1; } return $high; } else { while ($low <= $high) { $mid = floor(($low + $high) / 2); if($type) $val = substr($array[$mid],0,10); else $val = rtrim($array[$mid]); if($val >= $key) $high = $mid - 1; else $low = $mid + 1; } return $low; }}
@@ -34,9 +38,9 @@ class SYS extends DB
     protected static function protezione($file1, $file2=false, $opz=false){ if(!file_exists($file1)) { if(!$opz) { global $Qprotezione; $opz = $Qprotezione; } file_put_contents($file1,$opz); if($file2) file_put_contents($file2,$opz); }}
     protected static function hashpos($hash, $per, $opz=0){ global $Qdatabase; $keyper = $Qdatabase; if($opz > 1000) $keyper .= '/@'; foreach($per as $corso) $keyper .= '/'.$corso; return SYS::lh($keyper,$hash); }
     protected static function isnumber($val){ if(strstr($val,'.')){ if(filter_var($val, FILTER_VALIDATE_IP)) return true; } else { if(is_numeric($val) && $val > 0) return true; } return false; }
+    protected static function tempo($opz, $time, $ora){ if($opz === _T1_) return (int)substr($time,0,10); elseif($opz === _T2_) return ($ora - (int)substr($time,0,10)); else return false; }
     protected static function keyval($orapsw, $keyval, $val){ if($orapsw == substr($keyval,-12)) return substr($keyval,0,-12); else { require_once 'Qrec.php'; return Qrecupero($val); }}
     protected static function error($type, $id, $val=NULL, $valass=NULL, $key=NULL, $keyass=NULL){ include_once 'Qerr.php'; return Qerror($type, $id, $val, $valass, $key, $keyass); }
-    protected static function tempo($opz, $time, $ora){ $time = (int)substr($time,0,10); if($opz == -1) return $time; elseif($opz == -2) return ($ora - $time); else return false; }
     protected static function prcnumber(){ global $QprcNumber; global $Qlivtime; if($QprcNumber[0]) return $QprcNumber[0]; else return $QprcNumber[$Qlivtime]; }
     protected static function cancella($array, $item){ if(isset($array[$item])) unset($array[$item]); return array_merge($array); }
     protected static function tot($per){ $l = r("$per/in.php"); if(!$l) return 0; $l = explode('.',$l); return (int)$l[2]; }
