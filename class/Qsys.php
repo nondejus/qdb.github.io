@@ -24,7 +24,6 @@ class SYS extends DB
     protected function _in($keys=NULL, $val=NULL, $valass=NULL, $opz=0) { return Qin::Qdbin($keys, $val, $valass, $opz); }
     
     protected static function c($per, $key) { $per .= '/.'.$key[0]; for($a=1,$u=count($key); $a<$u; $a++) $per .= '/'.$key[$a]; return $per; }
-    protected static function m($keyper, $hash){ global $Qlivtime; for($a=0; $a<$Qlivtime; $a++) { $keyper .= '/'.substr($hash, $a*2, 2); SYS::ix($keyper); } return "$keyper/$hash"; }
     protected static function u($val, $opz=false){ $val = array_values(array_unique(array_filter($val,'strlen'))); if($opz) { $ok = []; for($a=0,$u=count($val); $a<$u; $a++) { if($val[$a][0] == '_' || $val[$a][1] == '_'){ $ok[] = $val[$a]; unset($val[$a]); }} sort($val); $val = implode(',',array_merge($ok,$val)); } return $val; }
     protected static function kb($key, $type='', $dif=0, $opz=false){ $k = explode('.', rtrim($key)); if($opz){ if($opz == 'Qout') $key = ''; else $key = rtrim(QKEYBASE[$opz]).' '; foreach($k as $f) $key .= rtrim(QKEYBASE[$f]).'.'; $key = substr($key, 0, -1); } else { $key = $type.rtrim(QKEYBASE[$k[0]]); for($a=1,$u=count($k)-$dif; $a<$u; $a++) $key .= '.'.rtrim(QKEYBASE[$k[$a]]); } return $key; }
     protected static function ix($keyper, $opz=false){ global $Qprotezione; $k = "$keyper/index.php"; $p = $Qprotezione; if(!file_exists($k)){ if($opz) $p .= '0'; if(!is_dir($keyper)) mkdir($keyper,0755); file_put_contents($k,$p); } return $k; }

@@ -2,7 +2,7 @@
 
 namespace Quantico;
 
-class Qnr extends Qout
+class Qnr extends Qmix
 {
     protected static function numerico($keyass,$num,$numass,$valass=0) { if(is_array($num[1])) return false; $e = explode(' ',$num[1],2); $per = SYS::combina($e[0]); if(!is_array($per)) return false; $val = array($num[1]); if(is_array($num[13])) { foreach($num[13] as $a) if(strpos($a,'{') > 1) $val[] = $a; } if(count($val) > 1 || $numass[7] == '#') { global $QprcPersonal; $Qmol = $QprcPersonal; } else $Qmol = 1; $keys = $keyass; $keyval = false; $tmp = []; $x = 0; $y = 0;
         for($v=0, $uv=count($val); $v<$uv; $v++) { $e = false; SYS::$dataval = false; if($val[$v][0] == '_' || $val[$v][1] == '_') SYS::$dataval = true; if($v) { $num = Qout::analisi($val[$v]); $e = explode(' ',$num[1],2); $per = SYS::combina($e[0]); if(!is_array($per)) return false; } else { if(isset($numass[0]) && $numass[0] != '' && $num[0] == '' && $numass[7] == '') { $num[0] = $numass[0]; $num[2] = $numass[2]; $num[6] = $numass[6]; }} if($numass[8] == '#') $num[14] = ''; $keyass = SYS::c($keys,$per); if(isset($e[1])) $keyass = SYS::c($keyass,$e[1]); $flist = "$keyass/list.php";
