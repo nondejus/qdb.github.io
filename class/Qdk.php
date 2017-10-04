@@ -5,11 +5,11 @@ namespace Quantico;
 class Qdk extends Qout
 {
     protected static function keymix($key, $keyval, $valass, $opz, $ora) { 
-        if(strpos($key,'@') > 1) return false; elseif(strpos($key,'#') > 1) return self::Qdbout(str_replace('#',' #',$key),$valass,$opz); else { $key = substr($key, 1); $per = SYS::combina($key); if($per) { $hashpos = SYS::hashpos(Qhash($valass), $per).'/index.php'; if(file_exists($hashpos)){ $fp = file($hashpos); $cfp = count($fp); for($a=2; $a<$cfp; $a++) { $b = $a-2; $keyval[$b] = SYS::val($fp[$a]); if($qt=SYS::tempo($opz,$fp[$a],$ora)) $keyval["t.$b"] = $qt; } $cfp -= 2; if($cfp) { $keyval['N'] = $cfp; $keyval['T'] = $cfp; unset($keyval['K']); return $keyval; }}} return false; }
+        if(strpos($key,'@') > 1) return false; elseif(strpos($key,'#') > 1) return Qout::Qdbout(str_replace('#',' #',$key),$valass,$opz); else { $key = substr($key, 1); $per = SYS::combina($key); if($per) { $hashpos = SYS::hashpos(Qhash($valass), $per).'/index.php'; if(file_exists($hashpos)){ $fp = file($hashpos); $cfp = count($fp); for($a=2; $a<$cfp; $a++) { $b = $a-2; $keyval[$b] = SYS::val($fp[$a]); if($qt=SYS::tempo($opz,$fp[$a],$ora)) $keyval["t.$b"] = $qt; } $cfp -= 2; if($cfp) { $keyval['N'] = $cfp; $keyval['T'] = $cfp; unset($keyval['K']); return $keyval; }}} return false; }
     }
     protected static function space($key, $keyass, $valass, $opz, $type) { $keyass = substr($keyass,1); 
         if($opz > 0) { if($keyass[0] == '$') $per = SYS::combina(substr($keyass,1),2).'/-0/'; else $per = SYS::combina($keyass,2).'/-0/'; $keyperindex = $per.'index.php'; if(!file_exists($keyperindex)) return false; $fk = file($keyperindex); for($a=2, $u=count($fk); $a<$u; $a++) { $n = explode('.', $fk[$a]); if(count($n) > 2) { if($opz >= $n[0] && $opz <= $n[1]) { $pert = $per.$a.'.php'; break; }} elseif(count($n) == 2) $pert = $per.$a.'.php'; } if(!file_exists($pert)) return false;
-            $fp = file($pert); $j = array_search($opz."\n",$fp); if($j > 1) { $fp = file($per.'v2.php'); $id = $opz.rtrim($fp[$j]); $per .= substr($id,0,4).'/'.substr($id,4,4).'/'.substr($id,8,4).'/'.substr($id,12); return self::Qdbout("$keyass $key", $valass, $type, $per); }
+            $fp = file($pert); $j = array_search($opz."\n",$fp); if($j > 1) { $fp = file($per.'v2.php'); $id = $opz.rtrim($fp[$j]); $per .= substr($id,0,4).'/'.substr($id,4,4).'/'.substr($id,8,4).'/'.substr($id,12); return Qout::Qdbout("$keyass $key", $valass, $type, $per); }
         } return false; 
     }
     protected static function key($key, $keyass, $valass, $opz, $type, $ora) { $numkeyass = Qout::analisi(substr($keyass,1)); $per = SYS::combina($numkeyass[1]);
