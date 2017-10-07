@@ -2,7 +2,7 @@
 
 namespace Quantico;
 
-function Qerror($type, $id, $val=NULL, $valass=NULL, $key=NULL, $keyass=NULL)
+function Qerr($type, $id, $val=null, $valass=null, $key=null, $keyass=null)
 {
     $Qdb[0] = 'Q\DB::key -> ERROR | :::';
     $Qdb[1] = 'Q\DB::in -> ERROR | :::';

@@ -12,8 +12,10 @@ function Qord($val){ $ord0 = ord($val); if($ord0 >= 0 && $ord0 <= 127) return $o
 function Qsync($val, $opz=0){ if($opz) $f = fopen(QFILESYNC,'w+'); else { $f = fopen(QFILESYNC,'a+'); if(file_exists($val)) copy($val, substr($val,0,-4).'_SYNC_.php'); } fwrite($f, $val."\n"); fclose($f); }
 function Qcrypt($str, $key, $iv=false){ if(!$iv) $iv = Qiv(substr($str, -12), $key); if(strlen($str) != mb_strlen($str)) $str = utf8_encode($str); return base64_encode(@openssl_encrypt($str, 'aes-256-ctr', $key, OPENSSL_RAW_DATA, $iv)); }
 function Qdecrypt($str, $key, $iv=false){ if(!$iv) { global $Qaes256iv; $iv = $Qaes256iv; } return @openssl_decrypt(base64_decode($str), 'aes-256-ctr', $key, OPENSSL_RAW_DATA, $iv); }
+function Qerror($type, $id, $val=null, $valass=null, $key=null, $keyass=null){ include_once 'Qerr.php'; return Qerr($type, $id, $val, $valass, $key, $keyass); }
 function Qiv($str, $key){ global $Qaes256iv; return substr(openssl_encrypt(md5((string)$str), 'aes-256-ctr', $key, OPENSSL_RAW_DATA, $Qaes256iv), 0, 16); }
 function Qhash($val){ global $Qpassword; return hash('ripemd256', $Qpassword[256].$val.$Qpassword[257]); }
+
 
 // ******************************************
 // **** Controllo se ha completato tutto ****
@@ -24,13 +26,11 @@ $fs = file(QFILESYNC, FILE_IGNORE_NEW_LINES);
 
 if(!isset($fs[2])) // File Error
 {
-    require_once 'Qerr.php';
     Qerror(5, 14, QFILESYNC);
 }
 
 if($fs[2] != '*' || $fs[count($fs)-1] != '*')
 {
-    require_once 'Qerr.php';
     require_once 'Qrec.php';
     Qrecupero($fs);
 }
