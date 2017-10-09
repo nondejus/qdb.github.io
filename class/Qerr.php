@@ -30,6 +30,7 @@ function Qerr($type, $id, $val=null, $valass=null, $key=null, $keyass=null)
     $msg[16] = "$Qdb[$type] 258 Secrets KEY are Corrupt ::: |";
     $msg[17] = "$Qdb[$type] $val ::: | $valass";
     $msg[18] = "$Qdb[$type] FAILED ::: | QuanticoDB is !!! BLOCKED !!!";
+    $msg[19] = "$Qdb[$type] $val ::: | The Value of this Primary KEY can Only be Alhanumeric ::: |";
     $msg[20] = "$Qdb[$type] Protect KEY Database is INCORRECT ::: |";
     $msg[30] = "$Qdb[$type] This Syntax is Incorrect ::: | $val";
     
