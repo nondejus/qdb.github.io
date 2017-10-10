@@ -5,51 +5,17 @@ require_once 'Qmix.php';
 
 class Qcl extends Qmix
 {
-    protected static function keys($per, $ky, $keyass, $valass, $numkey){ global $Qdatabase; if($per) { $perass = SYS::combina($keyass,1); if($perass) { $keyper = $Qdatabase.'/@/'.str_replace('.','/',rtrim($perass)).'/@'; $keyper = SYS::lh($keyper,Qhash($ky)); $fkeys = "$keyper/keys.php"; $flink = "$keyper/link.php"; $per = rtrim($per).".0\n"; $val = false; if(file_exists($fkeys)) { $fk = file($fkeys); $j = array_search($per,$fk);
-        if($j > 1) { $fl = file($flink); 
-            if($valass === _T1_ || $valass === _T2_) { $fx = SYS::leggi($Qdatabase.'/'.rtrim($fl[$j]),0,$numkey,2); 
-                for($a=2, $ua=count($fx); $a<$ua; $a++) { 
-                    $f = explode('.',$fx[$a]); 
-                    $ft[$a-2] = rtrim($f[1]); 
-                    if($f[0][0] == '-') { 
-                        $val[$a-2] = substr($f[0],12)."\n"; 
-                        $del[$a-2] = base64_encode($val[$a-2]); 
-                        $ft[$a-2] = substr($f[0],2,10); 
-                    } else { 
-                        $val[$a-2] = substr($f[0],1)."\n"; 
-                        $del[$a-2] = 0; 
-                    }
-                }
-            } else { $fx = SYS::leggi($Qdatabase.'/'.rtrim($fl[$j]),0,$numkey,1); 
-                for($a=2, $ua=count($fx); $a<$ua; $a++) { 
-                    if($fx[$a][0] == '-') { 
-                        $val[$a-2] = substr($fx[$a],12); 
-                        $del[$a-2] = base64_encode($val[$a-2]); 
-                    } else { 
-                        $val[$a-2] = substr($fx[$a],1); 
-                        $del[$a-2] = 0; 
-                    }
-                }
-            }
-            if($val) { $keyval = SYS::val(Qout::adesso($val)); 
-                for($a=0, $ua=count($val); $a<$ua; $a++) { 
-                    $keyval["-.$a"] = $del[$a]; 
-                    if($valass === _T1_) $keyval["t.$a"] = (int)$ft[$a]; 
-                    elseif($valass === _T2_) $keyval["t.$a"] = $ora - (int)$ft[$a]; 
-                } 
-                $keyval['N'] = (int)$fx[1]; 
-                $keyval['T'] = (int)$fx[0]; 
-                return $keyval; 
-            }
-        }}}} return false;
+    protected static function keys($per, $ky, $keyass, $valass, $numkey, $ora){ global $Qdatabase; if($per) { $perass = SYS::combina($keyass,1); if($perass) { $keyper = $Qdatabase.'/@/'.str_replace('.','/',rtrim($perass)).'/@'; $keyper = SYS::lh($keyper,Qhash($ky)); $fkeys = "$keyper/keys.php"; $flink = "$keyper/link.php"; $per = rtrim($per).".0\n"; $val = false; if(file_exists($fkeys)) { $fk = file($fkeys); $j = array_search($per,$fk);
+        if($j > 1) { $fl = file($flink); if($valass === _T1_ || $valass === _T2_) { $fx = SYS::leggi($Qdatabase.'/'.rtrim($fl[$j]),0,$numkey,2); for($a=2, $ua=count($fx); $a<$ua; $a++) { $f = explode('.',$fx[$a]); $ft[$a-2] = rtrim($f[1]); if($f[0][0] == '-') { $val[$a-2] = substr($f[0],12)."\n"; $del[$a-2] = base64_encode($val[$a-2]); $ft[$a-2] = substr($f[0],2,10); } else { $val[$a-2] = substr($f[0],1)."\n"; $del[$a-2] = 0; }}} else { $fx = SYS::leggi($Qdatabase.'/'.rtrim($fl[$j]),0,$numkey,1); for($a=2, $ua=count($fx); $a<$ua; $a++) { if($fx[$a][0] == '-') { $val[$a-2] = substr($fx[$a],12); $del[$a-2] = base64_encode($val[$a-2]); } else { $val[$a-2] = substr($fx[$a],1); $del[$a-2] = 0; }}}
+        if($val) { $keyval = SYS::val(Qout::adesso($val)); for($a=0, $ua=count($val); $a<$ua; $a++) { $keyval["-.$a"] = $del[$a]; if($valass === _T1_) $keyval["t.$a"] = (int)$ft[$a]; elseif($valass === _T2_) $keyval["t.$a"] = $ora - (int)$ft[$a]; } $keyval['N'] = (int)$fx[1]; $keyval['T'] = (int)$fx[0]; return $keyval; }}}}} return false;
     }
     protected static function key($key,$keyass,$valass,$opz,$ora){ $ky = explode('@',$keyass,2); $numkey = Qout::analisi($ky[1]);
-        if($key) { if($ky[0]) { $keyass = $numkey[1]; $per = SYS::combina($key,1); return Qcl::keys($per, $ky[0], $keyass, $valass, $numkey); } $numkeyass = Qout::analisi($key); $arr = Qout::Qdbout($keyass,$valass,$opz); $ok = false; if($valass != null) { $tmp = array_unique($arr); unset($tmp['N']); unset($tmp['T']); $valass = $opz; if($opz === _T1_ || $opz === _T2_) $numkeyass[0] = '@2'; else  $numkeyass[0] = '@1'; $ok = true; } else { $tmp = $arr["@$numkey[1].0"]; for($a = 1; $a < $arr["N.@$numkey[1]"]; $a++) $tmp = array_unique(array_merge($tmp,$arr["@$numkey[1].$a"])); }
+        if($key) { if($ky[0]) { $keyass = $numkey[1]; $per = SYS::combina($key,1); return Qcl::keys($per, $ky[0], $keyass, $valass, $numkey, $ora); } $numkeyass = Qout::analisi($key); $arr = Qout::Qdbout($keyass,$valass,$opz); $ok = false; if($valass != null) { $tmp = array_unique($arr); unset($tmp['N']); unset($tmp['T']); $valass = $opz; if($opz === _T1_ || $opz === _T2_) $numkeyass[0] = '@2'; else  $numkeyass[0] = '@1'; $ok = true; } else { $tmp = $arr["@$numkey[1].0"]; for($a = 1; $a < $arr["N.@$numkey[1]"]; $a++) $tmp = array_unique(array_merge($tmp,$arr["@$numkey[1].$a"])); }
             if(is_array($numkeyass[1])) $x = $numkeyass[1]; else  $x = array($numkeyass[1]); $k = []; $kk = []; if($tmp) { foreach($tmp as $v) { $avl[$v] = Qout::Qdbout("$v@$numkey[1]",$valass); unset($avl[$v]['K']); unset($avl[$v]['N']); unset($avl[$v]['T']); foreach($x as $y) if($avl[$v][$y]) { $k[$v][$y] = $avl[$v][$y]; if(isset($avl[$v]["t.$y"])) $k[$v]["t.$y"] = $avl[$v]["t.$y"]; if(!in_array($y,$kk)) $kk[] = $y; }}}
             if($k) { $keyval = []; if($ok) { $keyval['K'] = $kk; foreach($kk as $c) { $n = 0; for($b = 0; $b < $arr['N']; $b++) { $x = $k[$arr[$b]]; if(isset($x[$c])) { $keyval[$c][$b] = $x[$c]; if(isset($x["t.$c"])) $keyval["t.$c"][$b] = $x["t.$c"]; $n++; } else { $keyval[$c][$b] = ''; if(isset($x["t.$c"])) $keyval["t.$c"][$b] = ''; } $keyval["N.$c"] = $n; }} $keyval['N'] = $arr['N']; $keyval['T'] = $arr['T'];
                 } else { for($a = 0; $a < $arr['N']; $a++) $keyval[$a] = $arr[$a]; $keyval['K'] = $kk; foreach($kk as $c) { for($a = 0; $a < $arr['N']; $a++) { $n = 0; for($b = 0; $b < $arr["N.@$numkey[1].$a"]; $b++) { $x = $k[$arr["@$numkey[1].$a"][$b]]; if(isset($x[$c])) { $keyval["$c.$a"][$b] = $x[$c]; if(isset($x["t.$c"])) $keyval["t.$c.$a"][$b] = $x["t.$c"]; $n++; } else { $keyval["$c.$a"][$b] = ''; if(isset($x["t.$c"])) $keyval["t.$c.$a"][$b] = ''; }} $keyval["N.$c.$a"] = $n; }} $keyval['N'] = $arr['N']; $keyval['T'] = $arr['T']; } $numkeyass[18] = explode(',',$key); if($numkeyass[14]) $numkeyass[1] = $numkeyass[14]; return Qmix::flusso($numkeyass,$keyval,$keyval['T'],$keyval['N']);
             } return false;
-        } else { $keyass = $numkey[1]; $per = SYS::combina($key,1); return Qcl::keys($per, $ky[0], $keyass, $valass, $numkey); }
+        } else { $keyass = $numkey[1]; $per = SYS::combina($key,1); return Qcl::keys($per, $ky[0], $keyass, $valass, $numkey, $ora); }
     }
     protected static function mix($keys, $valass, $opz, $type, $all, $ora, $ccl) { global $Qdatabase; $ky = explode('@', $keys, 2); $key = $ky[1]; $keyass = $ky[0]; if($j = Qout::parentesi($key,$keyass,$valass,$opz,$type,'@')) return $j; if($type == 999) { $per = SYS::combina($keyass); if($per) { $hashpos = SYS::hashpos(Qhash($opz), $per); $keyperindex = "$hashpos/link.php"; if(file_exists($keyperindex)){ $fp = file($keyperindex); for($a=2, $ua=count($fp); $a<$ua; $a++) { if(strlen($fp[$a]) > 64) { $k = explode('/', $fp[$a]); if($key == rtrim(QKEYBASE[$k[1]])) return SYS::leggi($Qdatabase.'/'.rtrim($fp[$a]), $valass); }}}} return false; }
         //-------------------------------------------------------------------------------------------->>>>>>> INIZIO Query  --->  Qout::Qdbout('user.email(20)#foto',2)
