@@ -12,13 +12,15 @@ function Qrecupero($val)
         {
             if(strpos($val[$a],$Qpostime.'/')) // === Encrypted Files
             {
-                $fx = file(substr($val[$a],0,-6).'sync.php');
+                $file = substr($val[$a],0,-6).'sync.php';
                 
-                if(file_put_contents($val[$a], count($fx)))
-                {
-                    if(file_put_contents(substr($val[$a],0,-6).'index.php', $fx))
-                        $msg = 'SUCCESS'; else { $msg = 'FAILED'; $ok = false; }
-                        
+                if(file_exists($file)) { $fx = file($file);
+                    if(file_put_contents($val[$a], count($fx)))
+                    {
+                        if(file_put_contents(substr($val[$a],0,-6).'index.php', $fx))
+                            $msg = 'SUCCESS'; else { $msg = 'FAILED'; $ok = false; }
+                            
+                    } else { $msg = 'FAILED'; $ok = false; }
                 } else { $msg = 'FAILED'; $ok = false; }
             }
             else // =============================================== System Files

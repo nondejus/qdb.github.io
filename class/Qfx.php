@@ -3,7 +3,13 @@
 namespace Quantico;
 
 define ('QFILESYNC', $Qdatabase.'/sync.php');
-define ('QKEYBASE',  file($Qdatabase.'/key.php'));
+define ('QKEYBASE', file($Qdatabase.'/key.php'));
+define('_DEL_', 'QuanticoDB => Value Deleted');
+define('_IN_', 'QuanticoDB => Value Insert');
+define('_1_', 'QuanticoDB => Value Present');
+define('_T1_', 'QuanticoDB => Time -1');
+define('_T2_', 'QuanticoDB => Time -2');
+define('_T3_', 'QuanticoDB => Time -3');
 
 function r($per=false){ if($per && file_exists($per)){ $l = filesize($per); if($l){ $f = fopen($per,'r'); if($f){ $h = fread($f,$l); fclose($f); return $h; }}} return false; }
 function a($file=false, $val=false){ if($file && $val){ Qsync($file); if(is_array($val)) $val = implode('',$val); $f = fopen($file,'a+'); if($f){ fwrite($f,$val); fclose($f); return true; }} return false; }
@@ -15,31 +21,33 @@ function Qdecrypt($str, $key, $iv=false){ if(!$iv) { global $Qaes256iv; $iv = $Q
 function Qerror($type, $id, $val=null, $valass=null, $key=null, $keyass=null){ include_once 'Qerr.php'; return Qerr($type, $id, $val, $valass, $key, $keyass); }
 function Qiv($str, $key){ global $Qaes256iv; return substr(openssl_encrypt(md5((string)$str), 'aes-256-ctr', $key, OPENSSL_RAW_DATA, $Qaes256iv), 0, 16); }
 function Qhash($val){ global $Qpassword; return hash('ripemd256', $Qpassword[256].$val.$Qpassword[257]); }
+function Qcheck(){ global $Qprotezione;
 
-
-// ******************************************
-// **** Controllo se ha completato tutto ****
-// ******************************************
-
-if(!file_exists(QFILESYNC)) Qsync($Qprotezione.'*', true);
-$fs = file(QFILESYNC, FILE_IGNORE_NEW_LINES);
-
-if(!isset($fs[2])) // File Error
-{
-    Qerror(5, 14, QFILESYNC);
+    // ******************************************
+    // **** Controllo se ha completato tutto ****
+    // ******************************************
+    
+    if(!file_exists(QFILESYNC)) Qsync($Qprotezione.'*', true);
+    $fs = file(QFILESYNC, FILE_IGNORE_NEW_LINES);
+    
+    if(!isset($fs[2])) // File Error
+    {
+        Qerror(5, 14, QFILESYNC);
+    }
+    
+    if($fs[2] != '*' || $fs[count($fs)-1] != '*')
+    {
+        require_once 'Qrec.php';
+        Qrecupero($fs);
+    }
+    
+    // ******************************************
+    // ****** Tutto OK si puo' proseguire *******
+    // ******************************************
+    
+    Qsync($Qprotezione.'*', true); // -- New Call
 }
 
-if($fs[2] != '*' || $fs[count($fs)-1] != '*')
-{
-    require_once 'Qrec.php';
-    Qrecupero($fs);
-}
-
-// ******************************************
-// ****** Tutto OK si puo' proseguire *******
-// ******************************************
-
-Qsync($Qprotezione.'*', true); // -- New Call
 $Qpassword = file( $Qdatabase.'/psw.php' );
 
 if($Qidkey){ @session_start(); $x = hash('ripemd256', substr($Qidkey,0,32)); $y = hash('sha512', substr($Qidkey,32)); if(isset($_SESSION[$x])) $z = Qdecrypt($_SESSION[$x],$y,$Qaes256iv); else { $z = file_get_contents($Qserver.'index.php?TOKEN='.hash('ripemd256',$Qidkey)); $z = Qdecrypt($z,$Qidkey,$Qaes256iv); $_SESSION[$x] = Qcrypt($z,$y,$Qaes256iv); } $Qpassword[2] = Qdecrypt($Qpassword[2],$z,$Qaes256iv); }

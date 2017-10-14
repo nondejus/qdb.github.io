@@ -2,13 +2,6 @@
 
 namespace Quantico;
 
-define('_T1_'  , 'QuanticoDB => Time -1');
-define('_T2_'  , 'QuanticoDB => Time -2');
-define('_T3_'  , 'QuanticoDB => Time -3');
-define('_1_'   , 'QuanticoDB => Value Present');
-define('_IN_'  , 'QuanticoDB => Value Insert');
-define('_DEL_' , 'QuanticoDB => Value Deleted');
-
 class SYS extends DB
 {
     protected static $dataval = false;
@@ -18,8 +11,8 @@ class SYS extends DB
     public static function dir($key=null, $val=null){ if($key && $val !== null) { $val = SYS::hashpos(Qhash($val), SYS::combina($key)); if(file_exists("$val/index.php")) return $val; } return false; }
     
     protected function orapos($ora) { $this->pospsw = mt_rand(0,255); if($this->pospsw < 16) $this->orapsw = $ora.'0'; else $this->orapsw = $ora; $this->orapsw .= dechex($this->pospsw); }
-    protected function _ver($keys=null, $val=null, $valass=null, $opz=null) { SYS::$dataval = false; return Qver::Qdbver($keys, $val, $valass, $opz); }
     protected function _out($keys=null, $valass=null, $opz=null, $type=0, $all=null) { return Qout::Qdbout($keys, $valass, $opz, $type, $all); }
+    protected function _ver($keys=null, $val=null, $valass=null, $opz=null) { return Qver::Qdbver($keys, $val, $valass, $opz); }
     protected function _del($keys=null, $valass=null, $opz=null, $type=0) { return Qdel::Qdbdel($keys, $valass, $opz, $type); }
     protected function _in($keys=null, $val=null, $valass=null, $opz=0) { return Qin::Qdbin($keys, $val, $valass, $opz); }
     
