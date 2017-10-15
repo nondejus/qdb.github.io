@@ -25,12 +25,24 @@ function Qrecupero($val)
             }
             else // =============================================== System Files
             {
-                $fx = substr($val[$a],0,-4).'_SYNC_.php';
-                
-                if(file_exists($fx))
+                if($val[$a][0] == '-')
                 {
-                    if(copy($fx, $val[$a])) $msg = 'SUCCESS';
-                    else { $msg = 'FAILED'; $ok = false; }
+                    $file = rtrim(substr($val[$a],1));
+                    
+                    if(file_exists($file)) { $fx = file($file); array_pop($fx);
+                        if(file_put_contents($file, $fx))
+                            $msg = 'APPEND'; else { $msg = 'FAILED'; $ok = false; }      
+                    } else { $msg = 'FAILED'; $ok = false; }
+                }
+                else
+                {
+                    $fx = substr($val[$a],0,-4).'_SYNC_.php';
+                    
+                    if(file_exists($fx))
+                    {
+                        if(copy($fx, $val[$a])) $msg = 'SUCCESS';
+                        else { $msg = 'FAILED'; $ok = false; }
+                    }
                 }
             }
             

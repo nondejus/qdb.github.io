@@ -12,11 +12,12 @@ class Qup extends Qin
                     for($b=2, $ub=count($fl); $b<$ub; $b++) {
                         if(strlen($fl[$b]) > 64) { $f = explode('/',$fl[$b]);
                             if($f[0] == 0) { $f1 = file($Qdatabase.'/'.rtrim($fl[$b]).'/keyp.php'); $g = explode('.',$f1[2]); $z = count($g) - 1;
-                                $npos = $Qdatabase.'/'.$g[0].'/'; for($x=1; $x<$z; $x++) $npos .= $g[$x].'/'; $npos .= $pr.$f[0];
-                                $r4 = $npos.'/v'.rtrim($g[$z]).'.php'; $f4 = file($r4); $j = array_search($fi[2],$f4);
-                                if($j > 1) { global $Qprotezione; $r5 = $npos.'/'.rtrim($g[$z]).'.php'; $f5 = file($r5); $f4 = SYS::cancella($f4,$j); $f5 = SYS::cancella($f5,$j);
-                                    w($r4,$f4); w($r5,$f5); $f6 = Qdel::scrivi($npos,$ora,"\n",0,$i[2],0,0,1); w($Qdatabase.'/'.rtrim($fl[$b]).'/keyp.php',$Qprotezione.$f[1].'.'.$f6."\n");
-                                    $npos .= '/in.php'; $g = r($npos); $g = explode('.',$g); $g[1]--; $g[2]--; w($npos,$g[0].'.'.$g[1].'.'.$g[2].'.'.rtrim($g[3])."\n");
+                                $npos = $Qdatabase.'/'.$g[0].'/'; for($x=1; $x<$z; $x++) $npos .= $g[$x].'/'; $npos .= $pr.$f[0]; $r4 = $npos.'/v'.rtrim($g[$z]).'.php';
+                                if(file_exists(($r4))) { $f4 = file($r4); $j = array_search($fi[2],$f4);
+                                    if($j > 1) { global $Qprotezione; $r5 = $npos.'/'.rtrim($g[$z]).'.php'; $f5 = file($r5); $f4 = SYS::cancella($f4,$j); $f5 = SYS::cancella($f5,$j);
+                                        w($r4,$f4); w($r5,$f5); $f6 = Qdel::scrivi($npos,$ora,"\n",0,$i[2],0,0,1); w($Qdatabase.'/'.rtrim($fl[$b]).'/keyp.php',$Qprotezione.$f[1].'.'.$f6."\n");
+                                        $npos .= '/in.php'; $g = r($npos); $g = explode('.',$g); $g[1]--; $g[2]--; w($npos,$g[0].'.'.$g[1].'.'.$g[2].'.'.rtrim($g[3])."\n");
+                                    }
                                 }
                             } elseif($f[0] == 1) { $f1 = file($Qdatabase.'/'.rtrim($fl[$b]).'/keyc.php'); $f2[0] = $fi[2];
                                 for($x=2, $ux=count($f1); $x<$ux; $x++) { $msg = $Qdatabase; $g = explode('.',$f1[$x]); $z = count($g) - 1;
