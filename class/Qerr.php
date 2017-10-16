@@ -16,10 +16,10 @@ function Qerr($type, $id, $val=null, $valass=null, $key=null, $keyass=null)
     $msg[2] = "$Qdb[$type] Not be Entered because it is Lower than the Other Values ::: | $val";
     $msg[3] = "$Qdb[$type] The Value is an Array ::: | $val";
     $msg[4] = "$Qdb[$type] This KEY is an Array ::: |";
-    $msg[5] = "$Qdb[$type] The Value KEY Not Exist ::: | $val";
+    $msg[5] = "$Qdb[$type] The Value of KEY Not Exist ::: | $val";
     $msg[6] = "$Qdb[$type] $val ::: | The Value of this Multiple KEY can Only be Numeric or Alhanumeric !!! NO MIX !!!";
     $msg[7] = "$Qdb[$type] The Primary KEY ---> $keyass: $valass ---> already has the associated table ---> $key: $val ::: |";
-    $msg[8] = "$Qdb[$type] has two possible solutions: NOTHING or an Array (KEY => value) ::: | #$val";
+    $msg[8] = "$Qdb[$type] Has 2 possible solutions: NOTHING or an Array (KEY => value) ::: | #$val";
     $msg[9] = "$Qdb[$type] The Value of KEY is Not Entered ::: | $val";
     $msg[10] = "$Qdb[$type] KEY in the Array can Not be Numeric ::: |";
     $msg[11] = "$Qdb[$type] The Value of KEY is Not Correctly ::: | $val";
@@ -31,8 +31,10 @@ function Qerr($type, $id, $val=null, $valass=null, $key=null, $keyass=null)
     $msg[17] = "$Qdb[$type] $val ::: | $valass";
     $msg[18] = "$Qdb[$type] FAILED ::: | QuanticoDB is !!! BLOCKED !!!";
     $msg[19] = "$Qdb[$type] $val ::: | The Value of this Primary KEY can Only be Alhanumeric ::: |";
-    $msg[20] = "$Qdb[$type] Protect KEY Database is INCORRECT ::: |";
+    $msg[20] = "$Qdb[$type] The Value of KEY is EMPTY ::: | $val";
+    $msg[21] = "$Qdb[$type] The Primary KEY ---> $key: $val ---> NOT have Association KEY ::: |";
     $msg[30] = "$Qdb[$type] This Syntax is Incorrect ::: | $val";
+    $msg[99] = "$Qdb[$type] Protect KEY Database is INCORRECT ::: |";
     
     file_put_contents(dirname(__DIR__).'/Quantico_errors.log', date('[d-M-Y H:i:s', SYS::time()).' UTC] '.$msg[$id].chr(13).chr(10), FILE_APPEND);
     
