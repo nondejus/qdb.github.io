@@ -4,10 +4,10 @@ namespace Quantico;
 
 class Qdk extends Qout
 {
-    protected static function keymix($key, $keyval, $valass, $opz, $ora) { 
+    protected static function keymix($key, $keyval, $valass, $opz, $ora) {
         if(strpos($key,'@') > 1) return false; elseif(strpos($key,'#') > 1) return Qout::Qdbout(str_replace('#',' #',$key),$valass,$opz); else { $key = substr($key, 1); $per = SYS::combina($key); if($per) { $hashpos = SYS::hashpos(Qhash($valass), $per).'/index.php'; if(file_exists($hashpos)){ $fp = file($hashpos); $cfp = count($fp); for($a=2; $a<$cfp; $a++) { $b = $a-2; $keyval[$b] = SYS::val($fp[$a]); if($qt=SYS::tempo($opz,$fp[$a],$ora)) $keyval["t.$b"] = $qt; } $cfp -= 2; if($cfp) { $keyval['N'] = $cfp; $keyval['T'] = $cfp; unset($keyval['K']); return $keyval; }}} return false; }
     }
-    protected static function space($key, $keyass, $valass, $opz, $type) { $keyass = substr($keyass,1); 
+    protected static function space($key, $keyass, $valass, $opz, $type) { $keyass = substr($keyass,1);
         if($opz > 0) { if($keyass[0] == '$') $per = SYS::combina(substr($keyass,1),2).'/-0/'; else $per = SYS::combina($keyass,2).'/-0/'; $keyperindex = $per.'index.php'; if(!file_exists($keyperindex)) return false; $fk = file($keyperindex); for($a=2, $u=count($fk); $a<$u; $a++) { $n = explode('.', $fk[$a]); if(count($n) > 2) { if($opz >= $n[0] && $opz <= $n[1]) { $pert = $per.$a.'.php'; break; }} elseif(count($n) == 2) $pert = $per.$a.'.php'; } if(!file_exists($pert)) return false;
             $fp = file($pert); $j = array_search($opz."\n",$fp); if($j > 1) { $fp = file($per.'v2.php'); $id = $opz.rtrim($fp[$j]); $per .= substr($id,0,4).'/'.substr($id,4,4).'/'.substr($id,8,4).'/'.substr($id,12); return Qout::Qdbout("$keyass $key", $valass, $type, $per); }
         } return false; 
@@ -16,7 +16,7 @@ class Qdk extends Qout
         if($per) { if(strlen($type) > 4) $hashpos = $type.'/'; else $hashpos = SYS::hashpos(Qhash($valass), $per).'/';
             if($key[0] == '#') { $numkeyass = Qout::analisi($key); $key = substr($numkeyass[1],1); $ok = true; $tempo = false; if(strpos($key,':') > 1) { $x = explode(':',$key); $key = $x[0]; $tempo = $x[1]; } $ky = SYS::isKey($key); if(!$ky) return false;
                 if($tempo) $hashpos .= $tempo.'-'.$ky.'.0.php'; else { if(file_exists($hashpos.'keys.php')){ $fp = file($hashpos.'keys.php'); $b = array_search($ky.".0\n",$fp); if($b > 1) { global $Qdatabase; $fp = file($hashpos.'link.php'); $hashpos = $Qdatabase.'/'.rtrim($fp[$b]).'/log.php'; } else return false; } else return false; }
-            } else { $ok = false; if($key[0] == '_') $key = substr($key,1); $ky = SYS::isKey($key); if(!$ky) return false; $hashpos .= $ky.'.php'; } if(file_exists($hashpos)){ $fp = file($hashpos); if($numkeyass[3]) { $low = SYS::ordina($numkeyass[3], $fp, 0, 1); $high = SYS::ordina($numkeyass[4], $fp, 1, 1); $fp = array_slice($fp,$low,$high-$low+1); } else $fp = array_slice($fp,2); if(!$fp) return false; $tot = count($fp); if($tot < 1) return false; $fp = Qout::selezione(array_reverse($fp),$numkeyass); $keyval = [];
+            } else { $ok = false; if($key[0] == '_') $key = substr($key,1); $ky = SYS::isKey($key); if(!$ky) return false; $hashpos .= $ky.'.php'; } if(file_exists($hashpos)){ $fp = file($hashpos); if($numkeyass[3]) { $low = SYS::ordina($numkeyass[3], $fp, 0, 1); $high = SYS::ordina($numkeyass[4], $fp, 1, 1); $fp = array_slice($fp,$low,$high-$low+1); } else $fp = array_slice($fp,2); if(!$fp) return false; $tot = count($fp); if($tot < 1) return false; if(!$fp = SYS::selezione(array_reverse($fp),$numkeyass)) return false; $keyval = [];
                 for($a=0, $u=count($fp); $a<$u; $a++) { if(strlen($fp[$a]) == 11) $keyval[$a] = null; else { if($ok) { if($fp[$a][10] == '#') $keyval[$a] = SYS::val(substr($fp[$a],11)); elseif($fp[$a][11] == '#') $keyval[$a] = '-'.SYS::val(substr($fp[$a],12)); else $keyval[$a] = rtrim(substr($fp[$a],10)); } else $keyval[$a] = SYS::val($fp[$a]); } if($qt=SYS::tempo($opz,$fp[$a],$ora)) $keyval["t.$a"] = $qt; } if($keyval) { if($opz === _T1_ || $opz === _T2_) $keyval['N'] = count($keyval)/2; else $keyval['N'] = count($keyval); $keyval['T'] = $tot; return $keyval; }
             }
         } return false;
