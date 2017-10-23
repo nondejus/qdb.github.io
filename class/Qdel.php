@@ -31,12 +31,12 @@ class Qdel extends SYS
         } else { $key = $keys; $keyass = 0; if($valass == null && $opz == null) { if($key[0] == '#') { $per = SYS::combina($key,2).'/id.php'; $keys = (int)r($per); if($keys){ if($keys > 0) { $key = substr($key, 1); if(Qdel::Qdbdel($key, $keys)) return $keys; }} return false; } else return Qerror(3,9,$key); } if($key[0] == '#') { $key = substr($key, 1); return Qdel::Qdbdel($key, $valass); }
             if(strpos($keys, '#') > 1) { $ky = explode('#', $keys, 2); $key = $ky[1]; $keyass = $ky[0]; if($type > 1000) { $per = substr($key,0,-2)."\n"; $valass = base64_decode($valass); } else $per = SYS::combina($key,1);
                 if($per) { if($type == 1971) $perass = explode('.',$keyass); else $perass = SYS::combina($keyass);
-                    if($perass) { if($opz) $hash = Qhash($opz); else $hash = Qhash($valass); $hashpos = SYS::hashpos($hash, $perass); $keypery = $hashpos.'/keys.php'; $keyperl = $hashpos.'/link.php';
+                    if($perass) { if($opz !== null) $hash = Qhash($opz); else $hash = Qhash($valass); $hashpos = SYS::hashpos($hash, $perass); $keypery = $hashpos.'/keys.php'; $keyperl = $hashpos.'/link.php';
                         if(file_exists($keypery)){ $fp = file($keypery); $per = rtrim($per); $x = array_search($per.".0\n", $fp); 
                             if($x > 1) { $fl = file($keyperl); $p = $Qdatabase.'/'.rtrim($fl[$x]); $keyper = $Qdatabase; $pr = ''; foreach($perass as $b) { $keyper .= '/'.$b; $pr .= $b.'.'; } $keypers = $keyper.'/keys.php'; $keypern = $keyper.'/keyn.php';
                                 if(file_exists($keypers)){ $fk = file($keypers); $fn = file($keypern); $b = array_search($fp[$x],$fk);
                                     if($b > 1) { $fn[$b] = rtrim($fn[$b]);
-                                        if($opz) {
+                                        if($opz !== null) {
                                             if(is_array($valass)) { $valass = SYS::u($valass); $valok = false; $valstr = false; foreach($valass as $a) if(SYS::isNumber($a)) $valok[] = $a; else $valstr[] = $a;
                                                 if($valok || $valstr) { if($valok) { $es = Qdel::elimina($p, $valok, 1, $ora); if(is_array($es)) { $fn[$b] = $fn[$b] - $es[1]; if($es[0] == -1) Qdel::delete($fp, $fl, $x, $p, $pr, $keypery, $keyperl, $hashpos, $ora); } else return false; foreach($valok as $fx) Qdel::Qdbdel($key.'#'.$keyass, $opz, $fx, 1); }
                                                     if($valstr) { $pe = SYS::combina($key); foreach($valstr as $fx) { $fm = SYS::hashpos(Qhash($fx), $pe).'/index.php'; if(file_exists($fm)) $es = Qdel::elimina_adesso($fm, $p, $ora); else { $dirdel = SYS::combina($key,2).'/-0/'.Qhash($fx).'.php'; if(file_exists($dirdel)) $es = Qdel::elimina_adesso($dirdel, $p, $ora); } if($es) { if($es == -1) { Qdel::delete($fp, $fl, $x, $p, $pr, $keypery, $keyperl, $hashpos, $ora); $fn[$b] = 0; break; } else $fn[$b] = (int)$fn[$b] - 1; }}}
