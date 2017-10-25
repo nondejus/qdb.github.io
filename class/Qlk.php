@@ -39,6 +39,6 @@ class Qlk extends Qin
                     } return true;
                 }
             }
-        } return false; 
+        } return false;
     }
 }

@@ -4,7 +4,7 @@ namespace Quantico;
 
 class tt extends SYS // $val[3] = Tempo PARTENZA    $val[4] = Tempo ARRIVO     $val[5] = STATO ---> true = MAX:min | false = min:MAX
 {
-    protected static function crealista($keyperindex, $keyper, $keyval, $kn, $val, $num, $type){ $fk = file($keyperindex); $par = 2; $arr = count($fk)-1; $num[19] = $kn[2]; $fp = [];
+    protected static function trovatempo($keyperindex, $keyper, $keyval, $kn, $val, $num, $type){ $fk = file($keyperindex); $par = 2; $arr = count($fk)-1; $num[19] = $kn[2]; $fp = [];
         for($a=count($fk)-2; $a>1; $a--) { $k = explode('.', $fk[$a]); if($num[4] < $k[0]) { $a--; $arr = $a; } else { if($num[3] >= $k[0] && $num[3] <= $k[1]) $par = $a; if($num[4] >= $k[0] && $num[4] <= $k[1]) $arr = $a; if($num[3] > $k[1]) { $par = $a+1; break; }}}
         if($num[5]) { // ------------------------------------------------> $num[4] => $num[3]
             for($a=$arr; $a>=$par; $a--) { $keypos = "$keyper/$a.php"; 
