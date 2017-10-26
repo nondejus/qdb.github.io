@@ -12,11 +12,11 @@ class Qto extends Qout
         
         if(!strpos($o[0], '-')) { 
             if(count($t) == 1) $t = explode('-', date('d-m-Y', $ora)); 
-            if(isset($o[0])) { $v[0] = $o[0]; $v[3] = $v[0]; } 
-            if(isset($o[1])) { $v[1] = $o[1]; $v[4] = $v[1]; } 
-            if(isset($o[2])) { $v[2] = $o[2]; $v[5] = $v[2]; }
+            if(isset($o[0]) && is_numeric($o[0])) { $v[0] = $o[0]; $v[3] = $v[0]; } 
+            if(isset($o[1]) && is_numeric($o[1])) { $v[1] = $o[1]; $v[4] = $v[1]; } 
+            if(isset($o[2]) && is_numeric($o[2])) { $v[2] = $o[2]; $v[5] = $v[2]; }
         } 
-        if(isset($t[0]) && isset($t[1]) && isset($t[2])) { 
+        if(isset($t[0]) && isset($t[1]) && isset($t[2]) && is_numeric($t[0]) && is_numeric($t[1]) && is_numeric($t[2])) { 
             if(strlen($t[0]) > 0 && strlen($t[1]) > 0 && strlen($t[2]) == 4) { 
                 $val[0] = mktime($v[0], $v[1], $v[2], $t[1], $t[0], $t[2]); 
                 $val[1] = mktime($v[3], $v[4], $v[5], $t[1], $t[0], $t[2]); 
