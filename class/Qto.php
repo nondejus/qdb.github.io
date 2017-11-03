@@ -4,7 +4,7 @@ namespace Quantico;
 
 class Qto extends Qout
 {
-    protected static function ora($ora, $val, $v=false) {
+    private static function ora($ora, $val, $v=false) {
         
         $t = explode('-',$val); if($v) $val = $v;
         $o = explode('.',$val);
