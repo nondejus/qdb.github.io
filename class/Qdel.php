@@ -45,7 +45,9 @@ class Qdel extends SYS
                                 if($j > 1) { $fnn[$j] = rtrim($fnn[$j]); 
                                     if(strlen($fll[$a]) > 64) { // ---------------------------------------------------- @ Clonazione !!!  $fkk[$a] $fll[$a]
                                         require_once 'Qer.php'; $ok = Qer::clona($fkk[$a], $fll[$a], $fi, $msg, $ora); $f2 = $ok[1]; $ok = $ok[0];
-                                    } else { SYS::keyvalass($key, $valass, explode('.',rtrim($fkk[$a])), 1, 2); $Qlog = $hashpos.'/'.rtrim($fkk[$a]).'.php'; if(file_exists($Qlog)) a($Qlog,$ora."\n"); $fnn[$j] = (int)$fnn[$j] - 1; } if($fnn[$j] < 1) { $fss = SYS::cancella($fss, $j); $fnn = SYS::cancella($fnn, $j); } else $fnn[$j] = $fnn[$j]."\n"; 
+                                    } else { SYS::keyvalass($key, $valass, explode('.',rtrim($fkk[$a])), 1, 2);
+                                        $Qlog = $hashpos.'/'.rtrim($fkk[$a]).'.php'; if(file_exists($Qlog)) a($Qlog,$ora."\n"); $fnn[$j] = (int)$fnn[$j] - 1; 
+                                    } if($fnn[$j] < 1) { $fss = SYS::cancella($fss, $j); $fnn = SYS::cancella($fnn, $j); } else $fnn[$j] = $fnn[$j]."\n"; 
                                 }
                             } w($linkphp,$fss); w($linkpos,$fnn); 
                         } Qdel::directory($hashpos,0,$dirdel,$ora,$fi[2],$fkkdel,$flldel); $tot = Qdel::elimina($keyper, $fi[2]); if($tot == -1) { $tot = 0; if(!file_exists("$keyper/keyp.php")) Qdel::directory($keyper,1); else { unlink("$keyper/keys.php"); unlink("$keyper/keyn.php"); }} if($ok) { global $Qpostime; $keyper = $Qdatabase.$Qpostime; $f = rtrim($f2[0]); $op0 = substr($f, 0, 3); $op1 = substr($f, 3, $f[12]); $op2 = substr($f, 3 + $f[12]); $keyper .= '/'.$op0; Qdel::ix($keyper); $keyper .= '/'.$op1; Qdel::ix($keyper); $keyper .= '/'.$op2; $keyperindex = Qdel::ix($keyper); for($x=2; $x<count($fll); $x++) { if(strlen($fll[$x]) > 64) { $fkk = SYS::cancella($fkk,$x); $fll = SYS::cancella($fll,$x); $x--; }} w("$keyper/keys.php",$fkk); w("$keyper/link.php",$fll); a($keyperindex,$ora); }
