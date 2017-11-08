@@ -27,10 +27,10 @@ class Qmxf extends Qmix
         } else { 
             $keyval['K'][0] = $numkeyass[1]; 
             $ky[0] = $key; $x = 1; 
-        } 
+        }
         if(!isset($keyval[0])) return false; 
         
-        $dat = []; $si = false; 
+        $dat = []; $si = false;
         foreach($ky as $key) { $x--; $y = $keyval['K'][$x]; 
             if($key[0] == '#' || $key[0] == '@') { 
                 for($a=0; $a<$keyk; $a++) { 
@@ -56,7 +56,7 @@ class Qmxf extends Qmix
                         for($a=0; $a<$keyk; $a++) { $w = 0; 
                             if($opz) { 
                                 for($b=0; $b<$keyval["N.#$numkey[1].$a"]; $b++) { 
-                                    $val = Qout::Qdbout($numkey[1].' '.$key,$keyval["#$numkey[1].$a"][$b],$opz); 
+                                    $val = Qout::Qdbout("$numkey[1] $key",$keyval["#$numkey[1].$a"][$b],$opz); 
                                     $keyval["$y.$a"][$b] = $val[$key]; 
                                     $keyval["$y.t.$a"][$b] = $val["t.$key"]; 
                                     if($keyval["$y.$a"][$b] != '') $w++; 
@@ -64,7 +64,7 @@ class Qmxf extends Qmix
                                 $keyval["N.$y.$a"] = $w; 
                             } else { 
                                 for($b=0; $b<$keyval["N.#$numkey[1].$a"]; $b++) { 
-                                    $keyval["$y.$a"][$b] = Qout::Qdbout($numkey[1].' '.$key,$keyval["#$numkey[1].$a"][$b]); 
+                                    $keyval["$y.$a"][$b] = Qout::Qdbout("$numkey[1] $key",$keyval["#$numkey[1].$a"][$b]); 
                                     if($keyval["$y.$a"][$b] != '') $w++; 
                                 } 
                                 $keyval["N.$y.$a"] = $w; 
@@ -104,16 +104,16 @@ class Qmxf extends Qmix
                 unset($keyval["T.#$numkey[1].$a"]); 
             } 
             unset($keyval["N.#$numkey[1]"]); 
-        } 
+        }
+        
         if($dat) $keyval = array_merge($keyval,$dat); 
         $keyval['N'] = $keyk; 
         $keyval['T'] = $keyl; 
-        if($numkeyass[14]) $numkeyass[1] = $numkeyass[14]; else $numkeyass[18] = $ky; 
+        if($numkeyass[14]) $numkeyass[1] = $numkeyass[14]; else $numkeyass[18] = $ky;
+         
         if($keyval['N'] > 0) {
-            if($numkey[14]) $numkey[14] = false;
-            require_once 'Qfls.php'; $Qdb = new SYS; 
+            if($numkey[14]) $numkey[14] = false; $Qdb = new SYS; 
             return $Qdb->_flusso($numkeyass,$keyval,$keyval['T'],$keyval['N'],0,$numkey); 
-        } 
-        return false;
+        } return false;
     }
 }

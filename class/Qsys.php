@@ -16,11 +16,11 @@ class SYS extends DB
     private static function keyval($orapsw, $keyval, $val){ if($orapsw == substr($keyval,-12)) return substr($keyval,0,-12); else { require_once 'Qrec.php'; return Qrecupero($val); }}
     
     protected function orapos($ora) { $this->pospsw = mt_rand(0,255); if($this->pospsw < 16) $this->orapsw = $ora.'0'; else $this->orapsw = $ora; $this->orapsw .= dechex($this->pospsw); }
-    protected function _flusso($numkey, $keyval, $tot, $n, $opz=0, $numkeyass=0) { return Qfls::flusso($numkey, $keyval, $tot, $n, $opz, $numkeyass); }
-    protected function _out($keys=null, $valass=null, $opz=null, $type=0, $all=null) { return Qout::Qdbout($keys, $valass, $opz, $type, $all); }
-    protected function _ver($keys=null, $val=null, $valass=null, $opz=null) { return Qver::Qdbver($keys, $val, $valass, $opz); }
-    protected function _del($keys=null, $valass=null, $opz=null, $type=0) { return Qdel::Qdbdel($keys, $valass, $opz, $type); }
-    protected function _in($keys=null, $val=null, $valass=null, $opz=0) { return Qin::Qdbin($keys, $val, $valass, $opz); }
+    protected function _flusso($numkey, $keyval, $tot, $n, $opz=0, $numkeyass=0) { require_once 'Qfls.php'; return Qfls::flusso($numkey, $keyval, $tot, $n, $opz, $numkeyass); }
+    protected function _out($keys=null, $valass=null, $opz=null, $type=0, $all=null) { require_once 'Qout.php'; return Qout::Qdbout($keys, $valass, $opz, $type, $all); }
+    protected function _ver($keys=null, $val=null, $valass=null, $opz=null) { require_once 'Qver.php'; return Qver::Qdbver($keys, $val, $valass, $opz); }
+    protected function _del($keys=null, $valass=null, $opz=null, $type=0) { require_once 'Qdel.php'; return Qdel::Qdbdel($keys, $valass, $opz, $type); }
+    protected function _in($keys=null, $val=null, $valass=null, $opz=0) { require_once 'Qin.php'; return Qin::Qdbin($keys, $val, $valass, $opz); }
     
     protected static function c($per, $key) { $per .= '/.'.$key[0]; for($a=1,$u=count($key); $a<$u; $a++) $per .= '/'.$key[$a]; return $per; }
     protected static function u($val, $opz=false){ $val = array_values(array_unique(array_filter($val,'strlen'))); if($opz) { $ok = []; for($a=0,$u=count($val); $a<$u; $a++) { if($val[$a][0] == '_' || $val[$a][1] == '_'){ $ok[] = $val[$a]; unset($val[$a]); }} sort($val); $val = implode(',',array_merge($ok,$val)); } return $val; }

@@ -10,10 +10,11 @@ class Qfls extends Qout
         if(!isset($numkey[13])) $numkey[13] = null; 
         if(!isset($numkey[14])) $numkey[14] = null; 
         if(!isset($numkey[17])) $numkey[17] = null;
-         
+
         if(is_array($numkeyass)) { 
             if($numkeyass[14] || $numkeyass[17]) { 
-                if(!$opz) { $ok = false; $numkey[18][] = $numkeyass[1]; 
+                if(!$opz) { $ok = false; 
+                    if(is_array($numkey[18])) $numkey[18][] = $numkeyass[1]; else $numkey[18]= array($numkeyass[1]); 
                     for($a=0; $a<18; $a++) $numkey[$a] = $numkeyass[$a]; 
                     for($a=0; $a<$n; $a++) $keyval[$numkey[1]][$a] = $keyval[$a]; 
                     if(isset($keyval['t.0'])) { for($a=0; $a<$n; $a++) $keyval['t.'.$numkey[1]][$a] = $keyval[$a]; }
@@ -67,12 +68,12 @@ class Qfls extends Qout
             for($a=0, $u=count($av); $a<$u; $a++) { $kk[$numkey[1]][$a] = $av[$a]; $kk['N.'.$numkey[1]][$a] = $an[$a]; $n += $an[$a]; }
 
             if($numkey[17]) { 
-                if($numkey[18] && $ok) { 
-                    if($numkey[17] == 1) array_multisort($kk['N.'.$numkey[1]],SORT_DESC,SORT_NUMERIC,$kk[$numkey[1]]); 
-                    elseif($numkey[17] == 2) array_multisort($kk['N.'.$numkey[1]],SORT_ASC,SORT_NUMERIC,$kk[$numkey[1]]); 
-                } else { 
-                    if($numkey[17] == 1) array_multisort($kk[$numkey[1]],SORT_ASC,SORT_FLAG_CASE,$kk['N.'.$numkey[1]]); 
-                    elseif($numkey[17] == 2) array_multisort($kk[$numkey[1]],SORT_DESC,SORT_FLAG_CASE,$kk['N.'.$numkey[1]]); 
+                if($numkey[18] && $ok) { // ======================================================================================= !KEY+! , !KEY-!
+                    if($numkey[17] == 1) array_multisort($kk['N.'.$numkey[1]],SORT_ASC,SORT_NUMERIC,$kk[$numkey[1]]); // ========== +
+                    elseif($numkey[17] == 2) array_multisort($kk['N.'.$numkey[1]],SORT_DESC,SORT_NUMERIC,$kk[$numkey[1]]); // ===== -
+                } else { // ======================================================================================================= !KEY+  , !KEY-
+                    if($numkey[17] == 1) array_multisort($kk[$numkey[1]],SORT_ASC,SORT_FLAG_CASE,$kk['N.'.$numkey[1]]); // ======== +
+                    elseif($numkey[17] == 2) array_multisort($kk[$numkey[1]],SORT_DESC,SORT_FLAG_CASE,$kk['N.'.$numkey[1]]); // === -
                 }
             } 
             $kk['T.'.$numkey[1]] = $n; 
@@ -106,12 +107,12 @@ class Qfls extends Qout
                 if(isset($keyval['t.0']) || $numkey[0] == '@2') { $t = true; if($opz) $numkey[18][] = 't'; } for($a=0; $a<$n; $a++) $keyval['Q'][$a] = $a;
                 if(isset($keyval[$numkey[16]])) $si = $numkey[16]; else $si = $numkey[1];
                 
-                if($t && !$opz) { 
-                    if($numkey[17] == 1) array_multisort($keyval[$si],SORT_ASC,SORT_FLAG_CASE,$keyval['Q'],$keyval["t.$si"]); 
-                    elseif($numkey[17] == 2) array_multisort($keyval[$si],SORT_DESC,SORT_FLAG_CASE,$keyval['Q'],$keyval["t.$si"]); 
-                } else {
-                    if($numkey[17] == 1) array_multisort($keyval[$si],SORT_ASC,SORT_FLAG_CASE,$keyval['Q']); 
-                    elseif($numkey[17] == 2) array_multisort($keyval[$si],SORT_DESC,SORT_FLAG_CASE,$keyval['Q']); 
+                if($t && !$opz) { // ==================================================================================================== KEY+ , KEY- (tempo)
+                    if($numkey[17] == 1) array_multisort($keyval[$si],SORT_ASC,SORT_FLAG_CASE,$keyval['Q'],$keyval["t.$si"]); // ======== + 
+                    elseif($numkey[17] == 2) array_multisort($keyval[$si],SORT_DESC,SORT_FLAG_CASE,$keyval['Q'],$keyval["t.$si"]); // === - 
+                } else { // ============================================================================================================= KEY+ , KEY-
+                    if($numkey[17] == 1) array_multisort($keyval[$si],SORT_ASC,SORT_FLAG_CASE,$keyval['Q']); // ========================= +
+                    elseif($numkey[17] == 2) array_multisort($keyval[$si],SORT_DESC,SORT_FLAG_CASE,$keyval['Q']); // ==================== -
                 }
                  
                 if($numkey[0] != '@1' && $numkey[0] != '@2') { 
