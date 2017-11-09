@@ -105,7 +105,7 @@ class Qfls extends Qout
                     }
                 } 
                 if(isset($keyval['t.0']) || $numkey[0] == '@2') { $t = true; if($opz) $numkey[18][] = 't'; } for($a=0; $a<$n; $a++) $keyval['Q'][$a] = $a;
-                if(isset($keyval[$numkey[16]])) $si = $numkey[16]; else $si = $numkey[1];
+                if(isset($keyval[$numkey[16]])) $si = $numkey[16]; elseif(isset($keyval[$numkey[1]])) $si = $numkey[1]; else return false;
                 
                 if($t && !$opz) { // ==================================================================================================== KEY+ , KEY- (tempo)
                     if($numkey[17] == 1) array_multisort($keyval[$si],SORT_ASC,SORT_FLAG_CASE,$keyval['Q'],$keyval["t.$si"]); // ======== + 

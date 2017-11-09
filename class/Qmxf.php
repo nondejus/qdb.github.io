@@ -8,27 +8,16 @@ class Qmxf extends Qmix
     {
         $numkeyass[1] = SYS::sort($numkeyass[1]); $w = 0; $ky = [];
          
-        if(is_array($numkeyass[1])) { $ok = true; 
-            foreach($numkeyass[1] as $key) { $dati = Qout::analisi($key); 
+        if(is_array($numkeyass[1])) { 
+            foreach($numkeyass[1] as $key) { $ok = true; $dati = Qout::analisi($key); 
                 if($dati[1][0] == '#' || $dati[1][0] == '@') $k = explode(' ',substr($dati[1],1)); 
-                else { 
-                    if($dati[1][0] == '_') $k = explode(' ',substr($dati[1],1)); else $k = explode(' ',$dati[1]); 
-                    $ok = true; 
-                } 
-                foreach($k as $x) { $y = explode('.',$x); 
-                    foreach($y as $z) if(!in_array($z."\n",QKEYBASE)) { $ok = false; break; }
-                } 
-                if($ok) { 
-                    $keyval['K'][$w] = $dati[1]; 
-                    $ky[$w] = $key; $w++; 
-                } else Qerror(0,1,$dati[1]); 
-            } 
-            $ky = array_reverse($ky); $x = $w; 
+                else { if($dati[1][0] == '_') $k = explode(' ',substr($dati[1],1)); else $k = explode(' ',$dati[1]); $ok = true; } 
+                foreach($k as $x) { $y = explode('.',$x); foreach($y as $z) if(!in_array($z."\n",QKEYBASE)) { $ok = false; break; }} 
+                if($ok) { $keyval['K'][$w] = $dati[1]; $ky[$w] = $key; $w++; } else Qerror(0,1,$dati[1]); 
+            } $ky = array_reverse($ky); $x = $w;
         } else { 
-            $keyval['K'][0] = $numkeyass[1]; 
-            $ky[0] = $key; $x = 1; 
-        }
-        if(!isset($keyval[0])) return false; 
+            $keyval['K'][0] = $numkeyass[1]; $ky[0] = $key; $x = 1; 
+        } if(!isset($keyval[0])) return false; 
         
         $dat = []; $si = false;
         foreach($ky as $key) { $x--; $y = $keyval['K'][$x]; 
