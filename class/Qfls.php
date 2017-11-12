@@ -94,7 +94,7 @@ class Qfls extends Qout
                 } 
                 if(!isset($keyval[$numkey[16]])) return Qerror(2, 30, $a); 
             } 
-            if($numkey[17]) { $t = false; $x = -1; 
+            if($numkey[17]) { $t = false; $x = -1;
                 if($opz) { 
                     for($a=0; $a<$n; $a++) $keyval[$numkey[1]][$a] = $keyval[$a]; 
                     if(isset($keyval['-.0'])) $numkey[18] = array('-','p'); else $numkey[18] = []; 
@@ -103,9 +103,10 @@ class Qfls extends Qout
                         if($si) { if($numkey[17] == 1) $b .= '+'; else $b .= '-'; } $j = array_search($b,$numkey[18]); 
                         if($j !== false) unset($numkey[18][$j]); $numkey[18] = SYS::sort($numkey[18]); 
                     }
-                } 
-                if(isset($keyval['t.0']) || $numkey[0] == '@2') { $t = true; if($opz) $numkey[18][] = 't'; } for($a=0; $a<$n; $a++) $keyval['Q'][$a] = $a;
-                if(isset($keyval[$numkey[16]])) $si = $numkey[16]; elseif(isset($keyval[$numkey[1]])) $si = $numkey[1]; else return false;
+                }
+                
+                if(isset($keyval['t.0'])) { $t = true; if($opz) $numkey[18][] = 't'; } for($a=0; $a<$n; $a++) $keyval['Q'][$a] = $a;
+                if(isset($keyval[$numkey[16]])) $si = $numkey[16]; elseif(is_array($numkey[1])) return false; elseif(isset($keyval[$numkey[1]])) $si = $numkey[1]; else return false;
                 
                 if($t && !$opz) { // ==================================================================================================== KEY+ , KEY- (tempo)
                     if($numkey[17] == 1) array_multisort($keyval[$si],SORT_ASC,SORT_FLAG_CASE,$keyval['Q'],$keyval["t.$si"]); // ======== + 
@@ -115,9 +116,8 @@ class Qfls extends Qout
                     elseif($numkey[17] == 2) array_multisort($keyval[$si],SORT_DESC,SORT_FLAG_CASE,$keyval['Q']); // ==================== -
                 }
                  
-                if($numkey[0] != '@1' && $numkey[0] != '@2') { 
-                    foreach($keyval['Q'] as $a) { $x++; $kk[$x] = $keyval[$a]; if($t && !$opz) $kk["t.$x"] = $keyval["t.$a"]; }
-                } 
+                foreach($keyval['Q'] as $a) { $x++; $kk[$x] = $keyval[$a]; if($t && !$opz) $kk["t.$x"] = $keyval["t.$a"]; }
+                
                 if($opz) { 
                     foreach($numkey[18] as $k) { $x = -1; foreach($keyval['Q'] as $a) { $x++; $kk["$k.$x"] = $keyval["$k.$a"]; }}
                 } else { if(isset($keyval['K'])) $kk['K'] = SYS::u($keyval['K']); 

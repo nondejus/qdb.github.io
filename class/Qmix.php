@@ -13,7 +13,16 @@ class Qmix extends Qout
     protected static function valass($key, $keyass, $numkey, $numkeyass, $valass, $ora) { $keyper = SYS::combina($keyass, 2); if($keyass[0] == '#') $keypers = "$keyper/keyp.php"; else $keypers = "$keyper/keyc.php"; if(file_exists($keypers)){ $fp = file($keypers); $key = rtrim($key); if($keyass[0] == '#') $p = '.0'; else $p = '.1'; $keyper .= '/'.$key.$p; if($valass === _T1_ || $valass === _T2_) $o = 2; else $o = 1; $a = array_search($key."\n",$fp); 
         if($a > 1) { $fp = []; if($keyass[0] == '#') { $fx = SYS::leggi($keyper ,0 ,$numkeyass ,$o); for($x=2, $u=count($fx); $x<$u; $x++) { $n = $x-2; if($valass === _T1_ || $valass === _T2_) { $f = explode('|', rtrim($fx[$x])); $fp[$n] = $f[0]."\n"; $qt = SYS::tempo($valass,$f[1],$ora); if($qt !== null) $keyval["t.$n"] = $qt; } else $fp[$n] = $fx[$x]; }} else { $fx = SYS::leggi($keyper ,0 ,$numkeyass ,1 ,$o); for($x=2, $u=count($fx); $x<$u; $x++) { $f = explode('|', $fx[$x]); $n = $x-2; if($f[0][0] == '-') { $fp[$n] = substr($f[0], 12); $tempo = (int)substr($f[0], 2, 10); $keyval['-.'.$n] = base64_encode($fp[$n]); } else { $fp[$n] = $f[0]; $keyval['-.'.$n] = 0; $tempo = (int)substr($f[count($f)-1], 0, 10); } $keyval["p.$n"] = $f[1]; if($valass === _T1_) $keyval["t.$n"] = $tempo; elseif($valass === _T2_) $keyval["t.$n"] = $ora - $tempo; }} if($fp) { $vl = SYS::val($fp); foreach($vl as $val) $keyval[] = $val; unset($keyval['K']); $Qdb = new SYS; return $Qdb->_flusso($numkey,$keyval,(int)$fx[0],(int)$fx[1],1,$numkeyass); }}} return false;
     }
-    protected static function outmix($key, $keyass, $valass=null, $opz=null, $ora, $type, $at=null, $ac=null, $tot=0, $fpt=null, $ccc=null) { $ky = false; $num = false; $dati = false; $valok = false; $percorso = ''; if($type) { if(strpos($keyass, '#') > 0) { $ky = explode('#', $keyass, 2); $valok = $ky[0]; $numkey = Qout::analisi($ky[1]); if($numkey[9] || is_array($numkey[1])) return Qout::Qdbout($ky[0].' #'.$ky[1].$key,$valass,$opz); } else { $ccc = true; $ky = explode('@', $keyass, 2); $valok = $ky[0]; $numkey = Qout::analisi($ky[1]); if($numkey[9] || is_array($numkey[1])) return Qout::Qdbout($ky[0].' @'.$ky[1].$key,$valass,$opz); } if($key) { $numkeyass = Qout::analisi($key); if(!$numkeyass[9] && !is_array($numkeyass[1])) $numkeyass[1] = array($numkeyass[1]); } else { $numkeyass[1] = false; $numkeyass[9] = false; $numkeyass[13] = false; $numkeyass[14] = false; }} else { $numkey = Qout::analisi($keyass); if($key) { $numkeyass = Qout::analisi($key); if($numkeyass[14]) $num = array($numkeyass[14],$numkeyass[16],$numkeyass[17],$numkeyass[18]); } else { $numkeyass[1] = false; $numkeyass[9] = false; }} $keyval['K'] = [];
+    protected static function outmix($key, $keyass, $valass=null, $opz=null, $ora, $type, $at=null, $ac=null, $tot=0, $fpt=null, $ccc=null) { $ky = false; $num = false; $dati = false; $valok = false; $percorso = ''; 
+        if($type) { 
+            if(strpos($keyass, '#') > 0) { $ky = explode('#', $keyass, 2); $valok = $ky[0]; $numkey = Qout::analisi($ky[1]); if($numkey[9] || is_array($numkey[1])) return Qout::Qdbout($ky[0].' #'.$ky[1].$key,$valass,$opz); } else { $ccc = true; $ky = explode('@', $keyass, 2); $valok = $ky[0]; $numkey = Qout::analisi($ky[1]); if($numkey[9] || is_array($numkey[1])) return Qout::Qdbout($ky[0].' @'.$ky[1].$key,$valass,$opz); } 
+            if($key) { $numkeyass = Qout::analisi($key); if(!$numkeyass[9] && !is_array($numkeyass[1])) $numkeyass[1] = array($numkeyass[1]); } else { $numkeyass[1] = false; $numkeyass[9] = false; $numkeyass[13] = false; $numkeyass[14] = false; }
+        } else { $numkey = Qout::analisi($keyass); 
+            if($key) { $numkeyass = Qout::analisi($key); if($numkeyass[14]) $num = array($numkeyass[14],$numkeyass[16],$numkeyass[17],$numkeyass[18]); } else { $numkeyass[1] = false; $numkeyass[9] = false; }
+        } if(!isset($numkeyass[9])) return false;
+        
+        $keyval['K'] = [];
+        
         if($numkeyass[9] || $type > 1) { $numkeyass14 = $numkeyass[14]; if($at == 'Qver') $numkeyass[14] = $numkeyass[1]; else { $numkey[8] = '#'; $numkeyass[14] = ''; } $ok = 0; if($valass != null && $valass !== _T1_ && $valass !== _T2_){ if(is_array($ky)) { global $Qdatabase; $tmp = SYS::combina($numkey[1]); if($ccc) $tmp[] = '1'; else $tmp[] = '0'; $percorso = $Qdatabase.'/'.SYS::keyvalass($ky[0], $valass, $tmp); $valass = $opz; if($opz === _T1_ || $opz === _T2_) $ok = 2; else $ok = 1; } else return false; } else { if($type && !$ccc) { $percorso = Qmix::percorso($ok, $ky, $numkey, $valass, '.0'); $ok = $percorso[2]; $numkey = $percorso[1]; $percorso = $percorso[0]; } else { if($type == 3 && $ccc) { $percorso = Qmix::percorso($ok, $ky, $numkey, $valass, '.@.0'); $ok = $percorso[2]; $numkey = $percorso[1]; $percorso = $percorso[0]; }} if(is_array($numkeyass[13])){ foreach($numkeyass[13] as $y){ if($y[0] == '!'){ $numkey[8] = '#'; break; }}}} $y = $numkey;
             if($numkeyass[9] && $type < 3) { $numkey[7] = '#'; require_once 'Qnr.php'; $dati = Qnr::numerico($numkeyass,$numkey,$type,$ccc,$valok); if(!$dati) return false;
                 if(is_array($at) && $at) { $x = false; 
@@ -64,9 +73,8 @@ class Qmix extends Qout
                 if($ok) { 
                     if($ok == -1) $keyval = SYS::val(Qout::now($val)); else $keyval = $val; 
                     if($ok == 2 || $ok < 0) { $val = []; $e = array_keys($fx); foreach($e as $a) $val[] = $fp[$a]; $val = SYS::selezione($val,$y); }
-                } else $keyval = SYS::val(Qout::now($val)); $keyk = count($keyval);
-                 
-                if($valass === _T1_ || $valass === _T2_) $opz = $valass; 
+                } else $keyval = SYS::val(Qout::now($val)); $keyk = count($keyval); if($valass === _T1_ || $valass === _T2_) $opz = $valass;
+                
                 if($opz === _T1_ || $opz === _T2_) { for($a=0, $u=count($val); $a<$u; $a++) { $qt = SYS::tempo($opz,$val[$a],$ora); if($qt !== null) $keyval["t.$a"] = $qt; }} 
                 if(!is_array($numkeyass[1])) $numkeyass[1] = array($numkeyass[1]); if($numkeyass[13] != '') $numkeyass[1] = array_merge($numkeyass[1],$numkeyass[13]); $numkeyass[14] = $numkeyass14; 
                 if(!$ccc) $keyl = SYS::tot($percorso); else $keyl = count($at); 
@@ -86,7 +94,6 @@ class Qmix extends Qout
                 if(!is_array($numkeyass[1])) $numkeyass[1] = array($numkeyass[1]); 
                 if($numkeyass[13]) $numkeyass[1] = array_merge($numkeyass[1],$numkeyass[13]); 
                 if($num) { $numkeyass[14] = $num[0]; $numkeyass[16] = $num[1]; $numkeyass[17] = $num[2]; $numkeyass[18] = $num[3]; }
-                if($valass === _T1_ || $valass === _T2_) $opz = $valass; 
             }
         } else { if($at == 'Qver') return false;
             if(is_array($at) && $at) { $tmp = false;
@@ -104,23 +111,15 @@ class Qmix extends Qout
                 } else $keyval['N'] = count($keyval); 
                 if($tot) $keyval['T'] = $tot; else $keyval['T'] = SYS::tot(SYS::combina($numkey[1],2)); 
             } 
-            elseif($valass == null) $keyval = Qmix::keyval($keyass, $valass, $opz);
-            else { 
-                if($type || $valass === _T1_ || $valass === _T2_) {
-                    if(is_array($numkeyass[1])) $keyval = Qout::Qdbout($keyass, $valass, $opz);
-                    else {
-                        if(!$numkey[0] && !$numkey[3]) return Qmix::valopz($numkeyass[1], $keyass, $valass, $opz, $ora);
-                        $keyval = Qmix::keyval($keyass, $valass, $opz);
-                    } 
-                    if($valass === _T1_ || $valass === _T2_) $opz = $valass; 
-                } else return Qmix::valopz($numkeyass[1], $keyass, $valass, $opz, $ora); 
-            }
+            elseif($valass == null || $valass === _T1_ || $valass === _T2_) $keyval = Qmix::keyval($keyass, $valass, $opz);
+            elseif(!$type) return Qmix::valopz($numkeyass[1], $keyass, $valass, $opz, $ora);
+            else $keyval = Qout::Qdbout($keyass, $valass, $opz);
+
             if(!$numkeyass[1]) {
                 if($numkey[17]) { 
                     if($numkey[14]) $numkey[14] = false; $Qdb = new SYS;
                     return $Qdb->_flusso($numkey, $keyval, $keyval['T'], $keyval['N'], 1); 
-                }
-                return $keyval;
+                } return $keyval;
             }
             
             $keyk = $keyval['N']; 
@@ -128,7 +127,9 @@ class Qmix extends Qout
             unset($keyval['N']); 
             unset($keyval['T']); 
         }
-        if(!$numkeyass[1][0]) { $keyval['N'] = $keyk; $keyval['T'] = $keyl; return $keyval; } require_once 'Qmxf.php';
+        if(!$numkeyass[1][0]) { $keyval['N'] = $keyk; $keyval['T'] = $keyl; return $keyval; }
+        
+        if($valass === _T1_ || $valass === _T2_) $opz = $valass; require_once 'Qmxf.php';
         return Qmxf::mixflusso($keyval, $key, $keyk, $keyl, $numkey, $numkeyass, $dati, $ccc, $opz, $valass, $valok);
     }
 }
