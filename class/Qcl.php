@@ -36,7 +36,7 @@ class Qcl extends Qout
                 } else { $keyi = "$keyper/index.php"; if(file_exists($keyi)) { $mi = file($keyi); $val = SYS::val($mi[2]); if(is_numeric($keyass)) $keymsg = 0; else $keymsg = rtrim(QKEYBASE[$keyass]); $keyval['K'][$k] = $keymsg; $keyval[$keymsg] = $val;
                     $qt = SYS::tempo($opz,$mi[2],$ora); if($qt !== null) $keyval["t.$keymsg"] = $qt; $keyval['K'] = SYS::sort($keyval['K']); $keyval['N'] = $k + 1; $keyval['T'] = false; return $keyval; }} return false;
             } // ------------------------------------------------------------------------------------------------------ LEGGO la CLONAZIONE ------- FINE --------
-        } else { $per = SYS::combina($numkey[1]); $per[] = 1; $id = SYS::keyvalass($keyass, $valass, $per, 0, $type); if($opz === _T1_ || $opz === _T2_) $o = 2; else $o = 1; $fx = SYS::leggi($Qdatabase.'/'.$id ,0 ,$numkey ,$o);
+        } else { $per = SYS::combina($numkey[1]); $per[] = 1; $id = SYS::keyvalass($numkeyass[1], $valass, $per, 0, $type); if($opz === _T1_ || $opz === _T2_) $o = 2; else $o = 1; $fx = SYS::leggi($Qdatabase.'/'.$id ,0 ,$numkey ,$o);
             for($b=2; $b<$fx[1]+2; $b++) { $a = $b-2; $fx[$b] = rtrim($fx[$b]); if($opz === _T1_ || $opz === _T2_) { $type = explode('|', $fx[$b]); $keyval[$a] = $type[0]; $qt = SYS::tempo($opz,$type[1],$ora); if($qt !== null) $keyval["t.$a"] = $qt; } else $keyval[$a] = $fx[$b]; } if($fx[1]) { unset($keyval['K']); $Qdb = new SYS; return $Qdb->_flusso($numkey, $keyval, (int)$fx[0], (int)$fx[1], 2); }
         } return false;
     }

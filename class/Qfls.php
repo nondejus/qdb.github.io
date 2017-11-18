@@ -6,11 +6,12 @@ class Qfls extends Qout
 {
     protected static function flusso($numkey, $keyval, $tot, $n, $opz=0, $numkeyass=0)
     {
-        $ok = true; $si = false;
+        if(!isset($numkey[16])) return false;
         if(!isset($numkey[13])) $numkey[13] = null; 
         if(!isset($numkey[14])) $numkey[14] = null; 
         if(!isset($numkey[17])) $numkey[17] = null;
-
+        $ok = true; $si = false;
+        
         if(is_array($numkeyass)) { 
             if($numkeyass[14] || $numkeyass[17]) { 
                 if(!$opz) { $ok = false; 
@@ -82,7 +83,7 @@ class Qfls extends Qout
             if($kk['T'] > 0) return $kk;
         }
         else
-        { 
+        {   
             if($numkey[17] == '' && is_array($numkey[13])) { 
                 foreach($numkey[13] as $a) { $b = $a[strlen($a)-1]; 
                     if($b == '+') { $numkey[17] = 1; $numkey[16] = substr($a,0,-1); $j = array_search($a,$numkey[18]); 
@@ -94,9 +95,14 @@ class Qfls extends Qout
                 } 
                 if(!isset($keyval[$numkey[16]])) return Qerror(2, 30, $a); 
             } 
+            
             if($numkey[17]) { $t = false; $x = -1;
-                if($opz) { 
-                    for($a=0; $a<$n; $a++) $keyval[$numkey[1]][$a] = $keyval[$a]; 
+                if($opz) {
+                    if($numkey[1][0] == '@' && isset($keyval['p.0'])){
+                        for($a=0; $a<$n; $a++) $keyval[$numkey[1]][$a] = $keyval["p.$a"]; 
+                    } else {
+                        for($a=0; $a<$n; $a++) $keyval[$numkey[1]][$a] = $keyval[$a];
+                    }
                     if(isset($keyval['-.0'])) $numkey[18] = array('-','p'); else $numkey[18] = []; 
                 } else { 
                     if(is_array($numkey[18])) { $b = $numkey[16]; 
@@ -107,7 +113,7 @@ class Qfls extends Qout
                 
                 if(isset($keyval['t.0'])) { $t = true; if($opz) $numkey[18][] = 't'; } for($a=0; $a<$n; $a++) $keyval['Q'][$a] = $a;
                 if(isset($keyval[$numkey[16]])) $si = $numkey[16]; elseif(is_array($numkey[1])) return false; elseif(isset($keyval[$numkey[1]])) $si = $numkey[1]; else return false;
-                
+
                 if($t && !$opz) { // ==================================================================================================== KEY+ , KEY- (tempo)
                     if($numkey[17] == 1) array_multisort($keyval[$si],SORT_ASC,SORT_FLAG_CASE,$keyval['Q'],$keyval["t.$si"]); // ======== + 
                     elseif($numkey[17] == 2) array_multisort($keyval[$si],SORT_DESC,SORT_FLAG_CASE,$keyval['Q'],$keyval["t.$si"]); // === - 
