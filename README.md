@@ -22,7 +22,7 @@ Q\DB::out(); // ---------- extract data
 ```
 
 ## Requirements
-QuanticoDB requires Linux + PHP 5.4 or greater.
+QuanticoDB requires Linux + PHP 5.6 or greater.
 <br>
 <br>
 
