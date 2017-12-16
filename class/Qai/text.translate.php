@@ -27,7 +27,7 @@
  */
 namespace Quantico;
 
-class Qai extends Qout
+class Qai extends Qout // require
 {
     protected static function query($valass, $opz){ $val = false;
         foreach($valass as $provider) { $provider = strtolower($provider); $x = 4;

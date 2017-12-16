@@ -27,7 +27,7 @@ namespace Quantico;
 
 class Qai extends Qout
 {
-    protected static function query($valass, $opz){ require_once 'class/Qurl.php'; $val = false;
+    protected static function query($valass, $opz){ require_once 'Qurl.php'; $val = false;
         foreach($valass as $provider) { $provider = strtolower($provider);
             if($provider == 'ibm') { $data = array('source_type' => 'text','include_raw' => false); $val[$provider] = array();
                 if(isset($opz['to']) && $opz['to']) $data['accept_language'] = $opz['to'];

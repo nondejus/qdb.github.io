@@ -26,7 +26,7 @@ namespace Quantico;
 
 class Qai extends Qout
 {
-    protected static function query($valass, $opz){ require_once 'class/Qurl.php'; $val = false;
+    protected static function query($valass, $opz){ require_once 'Qurl.php'; $val = false;
         foreach($valass as $provider) { $provider = strtolower($provider);
             if($provider == 'google') { $val[$provider] = array();
                 if(!isset($opz['text']) || !$opz['text']) $val[$provider]['error'] = 'key <<< text >>> is required';
