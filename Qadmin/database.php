@@ -139,7 +139,7 @@
                 else if(msg == 5) $("#sic").html('<img src="images/Qdb0.jpg">');
             });}
         }
-        function carica(x) { vl = $('#cmd' + x).val(); com = vl.split('::'); com = com[1].substring(0,3); vl = vl.replace(/'/g,'#####1'); vl = vl.replace(/"/g,'#####2'); $('#gio').html('<img src="images/load.gif" style="float:right; margin-bottom:6px">');
+        function carica(x) { vl = $('#cmd' + x).val(); com = vl.split('::'); com = com[1].substring(0,3); vl = JSON.stringify(vl); $('#gio').html('<img src="images/load.gif" style="float:right; margin-bottom:6px">');
             $.post("keybase.php", { type: 11, val: vl, old: 1, pos: x }, function(msg){ if(msg == 'OK') { $('#rst').load('temp/risultato.php').show(); if(com == 'in(' || com == 'del' || com == 'ver') $('#gio').html('<a class="agg" href="javascript:aggiorna()"><?=$lng[13]?></a>'); else if(com == 'out') $('#gio').html('&emsp;<a class="agg" href="javascript:tabella()"><?=$lng[12]?></a>'); else if(com == 'tim' || com == 'dir') $('#gio').html(''); } else $('#gio').html(''); });
         }
         function cerca(x) { if(x) { sito = 'query.php?id='+dbcl; titolo = 'QUERY'; } else { sito = 'cerca.php?id='+dbcl; titolo = '<?=$lng[48]?>'; }
