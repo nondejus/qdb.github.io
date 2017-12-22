@@ -2,14 +2,16 @@
 
 namespace Quantico;
 
-define ('QFILESYNC', $Qdatabase.'/sync.php');
-define ('QKEYBASE', file($Qdatabase.'/key.php'));
-define('_DEL_','QuanticoDB => Deleted');
-define('_IN_', 'QuanticoDB => Insert');
-define('_T1_', 'QuanticoDB => Time -1');
-define('_T2_', 'QuanticoDB => Time -2');
-define('_T3_', 'QuanticoDB => Time -3');
-define('_1_',  'QuanticoDB => Present');
+define ('QFILESYNC' , $Qdatabase.'/sync.php');
+define ('QKEYBASE'  , file($Qdatabase.'/key.php'));
+define ('_DEL_'     , 'QuanticoDB => Deleted'); // --- ver
+define ('_IN_'      , 'QuanticoDB => Insert'); // ---- ver
+define ('_T1_'      , 'QuanticoDB => Time -1'); // --- ver , out
+define ('_T2_'      , 'QuanticoDB => Time -2'); // --- ver , out
+define ('_T3_'      , 'QuanticoDB => Time -3'); // --- ver , out
+define ('_ON_'      , 'QuanticoDB => Present'); // --- ver
+define ('_OFF_'     , null); // ---------------------- ver
+define ('_DIRECT_'  , 666); // ----------------------- in
 
 function r($per=false){ if($per && file_exists($per)){ $l = filesize($per); if($l){ $f = fopen($per,'r'); if($f){ $h = fread($f,$l); fclose($f); return $h; }}} return false; }
 function a($file=false, $val=false){ if($file && $val){ Qsync($file); if(is_array($val)) $val = implode('',$val); $f = fopen($file,'a+'); if($f){ fwrite($f,$val); fclose($f); return true; }} return false; }
@@ -50,5 +52,5 @@ function Qcheck(){ global $Qprotezione;
 
 $Qpassword = file( $Qdatabase.'/psw.php' );
 
-if($Qidkey){ @session_start(); $x = hash('ripemd256', substr($Qidkey,0,32)); $y = hash('sha512', substr($Qidkey,32)); if(isset($_SESSION[$x])) $z = Qdecrypt($_SESSION[$x],$y,$Qaes256iv); else { $z = file_get_contents($Qserver.'index.php?TOKEN='.hash('ripemd256',$Qidkey)); $z = Qdecrypt($z,$Qidkey,$Qaes256iv); $_SESSION[$x] = Qcrypt($z,$y,$Qaes256iv); } $Qpassword[2] = Qdecrypt($Qpassword[2],$z,$Qaes256iv); }
+//if($Qidkey){ @session_start(); $x = hash('ripemd256', substr($Qidkey,0,32)); $y = hash('sha512', substr($Qidkey,32)); if(isset($_SESSION[$x])) $z = Qdecrypt($_SESSION[$x],$y,$Qaes256iv); else { $z = file_get_contents($Qserver.'index.php?TOKEN='.hash('ripemd256',$Qidkey)); $z = Qdecrypt($z,$Qidkey,$Qaes256iv); $_SESSION[$x] = Qcrypt($z,$y,$Qaes256iv); } $Qpassword[2] = Qdecrypt($Qpassword[2],$z,$Qaes256iv); }
 $Qpassword = explode('.',rtrim($Qpassword[2])); if(count($Qpassword) != 258) { include_once 'Qerr.php'; return Qerror(5, 16); }
