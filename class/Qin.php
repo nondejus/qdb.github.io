@@ -28,7 +28,7 @@ class Qin extends Qdel
                 if(is_array($val)) { $posizione = Qin::Qdbin($key); $key = substr($key,1); if(Qin::Qdbin($key, $val, $posizione)) return $posizione; else return false; } $key = substr($key,1); $per = SYS::combina($key,2); if(!$per) return false; if($opz != 996) { if($val != null || $valass != null) Qerror(1,8,$key); } if($val == null) { $per .= '/id.php'; $id = (int)r($per); do $id++; while($Qdb->_ver($key,$id)); if($opz == 996) $posizione = Qin::Qdbin($key,$id,$valass,996); elseif($opz == 997) $posizione = Qin::Qdbin($key,$id,null,997); else { if(Qin::Qdbin($key,$id)) $posizione = $id; else $posizione = false; } if($posizione) { w($per,$id); return $posizione; } else return false; }
             } else {
                 if($key[0] == '@') { if($valass == null) return Qerror(1,9,$key); require_once 'Qml.php'; return Qml::dettagli($key, $val, $valass, $ora); } 
-                if(strpos($keys, '@') > 1) { $ky = explode('@',$keys,2); if(is_array($opz)) { $id = Qin::Qdbin($keys,$val,$valass); if($id) return Qin::Qdbin('@'.$ky[1],$id,$opz); else return false; } require_once 'Qml.php'; return Qml::modello($ky[1], $ky[0], $val, $valass, $ora, $tdb); } 
+                if(strpos($keys, '@') > 1) { $ky = explode('@',$keys,2); if(is_array($opz) && !empty($opz)) { $id = Qin::Qdbin($keys,$val,$valass); if($id) return Qin::Qdbin('@'.$ky[1],$id,$opz); else return false; } require_once 'Qml.php'; return Qml::modello($ky[1], $ky[0], $val, $valass, $ora, $tdb); } 
                 if(strpos($keys, '#') > 1) { if($val == null) return false; require_once 'Qlk.php'; return Qlk::multi($keys, $val, $valass, $opz, $ora, $tdb); }
             }
         } if($val == null) return Qerror(1,11,$key); global $Qpostime; $tmp = $Qdatabase.$Qpostime;
