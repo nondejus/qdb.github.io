@@ -7,7 +7,7 @@ class Qup extends Qin
     protected static function key($key, $val, $valass, $pr, $per, $keyper, $tmp, $ora){ $nhashpos = SYS::hashpos(Qhash($val),$per); if(!file_exists($nhashpos)) return false; $nhashposi = "$nhashpos/index.php"; $files = scandir($nhashpos);
         if(file_exists($nhashposi)) { $fi = file($nhashposi); $nhashposk = "$nhashpos/keys.php"; $nhashposl = "$nhashpos/link.php";
             if(Qin::Qdbin($key,$valass)) { global $Qdatabase; $npos = SYS::hashpos(Qhash($valass),$per); $nhashposi = "$npos/index.php"; $i = file($nhashposi);
-                if(count($files) > 5) { $files = array_slice($files,2,-3); for($b=0, $ub=count($files); $b<$ub; $b++) copy($nhashpos.'/'.$files[$b],$npos.'/'.$files[$b]); }
+                if(count($files) > 5) { $files = array_slice($files,2,-3); for($b=0, $ub=count($files); $b<$ub; $b++) Qcopy($nhashpos.'/'.$files[$b],$npos.'/'.$files[$b]); }
                 if(file_exists($nhashposk)) { $fk = file($nhashposk); $fl = file($nhashposl); $nhashposk = "$npos/keys.php"; $nhashposl = "$npos/link.php"; w($nhashposk,$fk); w($nhashposl,$fl);
                     for($b=2, $ub=count($fl); $b<$ub; $b++) {
                         if(strlen($fl[$b]) > 64) { $f = explode('/',$fl[$b]);
