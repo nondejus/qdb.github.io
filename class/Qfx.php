@@ -11,7 +11,8 @@ define ('_T2_'      , 'QuanticoDB => Time -2'); // --- ver , out
 define ('_T3_'      , 'QuanticoDB => Time -3'); // --- ver , out
 define ('_ON_'      , 'QuanticoDB => Present'); // --- ver
 define ('_OFF_'     , null); // ---------------------- ver
-define ('_DIRECT_'  , 666); // ----------------------- in
+define ('_CRYPT_'   , 777); // ----------------------- in ( solo numeri )
+define ('_DIRECT_'  , 666); // ----------------------- in ( # alfanumerico )
 
 function r($per=false){ if($per && file_exists($per)){ $l = filesize($per); if($l){ $f = fopen($per,'r'); if($f){ $h = fread($f,$l); fclose($f); return $h; }}} return false; }
 function a($file=false, $val=false){ if($file && $val){ Qsync($file); if(is_array($val)) $val = implode('',$val); $f = fopen($file,'a+'); if($f){ fwrite($f,$val); fclose($f); return true; }} return false; }
@@ -23,7 +24,7 @@ function Qdecrypt($str, $key, $iv=false){ if(!$iv) { global $Qaes256iv; $iv = $Q
 function Qerror($type, $id, $val=null, $valass=null, $key=null, $keyass=null){ include_once 'Qerr.php'; return Qerr($type, $id, $val, $valass, $key, $keyass); }
 function Qiv($str, $key){ global $Qaes256iv; return substr(openssl_encrypt(md5((string)$str), 'aes-256-ctr', $key, OPENSSL_RAW_DATA, $Qaes256iv), 0, 16); }
 function Qhash($val){ global $Qpassword; return hash('ripemd256', $Qpassword[256].$val.$Qpassword[257]); }
-function Qcopy($src, $dst){ if(file_exists($src) && (time()-filemtime($src)) > 0) copy($src, $dst); }
+function Qcopy($src, $dst){ if(file_exists($src)) copy($src, $dst); }
 function Qcheck(){
 
     // ******************************************
