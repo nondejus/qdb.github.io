@@ -5,6 +5,9 @@
     if(isset($_POST['pos'])) $pos = $_POST['pos'];
     if(isset($_POST['val'])) $val = $_POST['val'];
     
+    $lkb = strpos($val, '"\''); if($lkb !== false) exit('<h1>-:|:- Prohibited -:|:-</h1>');
+    $lkb = strpos($val, '\'"'); if($lkb !== false) exit('<h1>-:|:- Prohibited -:|:-</h1>');
+    
     require_once 'cookie.php'; $Qkeybase = file("$Qdatabase/key.php"); $cestino = file("$Qdatabase/trash.php"); $lkb = count($Qkeybase); $msg='';
     
     function keypos($key){ global $Qkeybase; $x = explode('#',$key); $y = '';
@@ -14,11 +17,11 @@
     function keybase($key=false){ global $dirschema; if($key) { global $Qdatabase; $Qkeybase = file("$Qdatabase/key.php"); Qw("$dirschema/key.php", $key, true); } else { global $Qkeybase; $key = file("$dirschema/key.php"); }
         for($a=2, $ua=count($key); $a<$ua; $a++) { $y = rtrim($key[$a]); if($y) { $x = explode(' ',$y); for($b=0, $ub=count($x); $b<$ub; $b++) { if(isset($Qkeybase[$x[$b]])) $msg[$a-2][$b] = rtrim($Qkeybase[$x[$b]]); else $msg[$a-2][$b] = ''; }} else $msg[$a-2] = array(); } Qsync('*'); return json_encode($msg); 
     }
-    function keycheck($key){ global $Qkeybase; global $cestino; global $lkb; $lun = strlen($key); if($lun < 2 or $lun > 14) return 2; // ---------------------- KEY troppo corta o troppo lunga
+    function keycheck($key){ global $Qkeybase; global $cestino; global $lkb; $lun = strlen($key); if($lun < 2 or $lun > 14) return 2; // --------------------- KEY troppo corta o troppo lunga
         if(is_numeric($key) and strpos('.', $key) !== false) return 3; // ------------------------------------------------------------------------------------ KEY con caratteri non consentiti
         if(strpos('1234567890-_#@$.', $key[0]) !== false) return 11; // -------------------------------------------------------------------------------------- KEY con caratteri non consentiti
         for($a=1; $a<$lun; $a++) if(strpos('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-_', $key[$a]) === false) return 3; // ------------- KEY con caratteri non consentiti
-        for($a=2; $a<$lkb; $a++) if($key == rtrim($Qkeybase[$a]) or $key == rtrim($cestino[$a])) return 4; return false; // ----------------------------------- KEY esiste già
+        for($a=2; $a<$lkb; $a++) if($key == rtrim($Qkeybase[$a]) or $key == rtrim($cestino[$a])) return 4; return false; // ---------------------------------- KEY esiste già
     }
     if($type == 1){ // --------------------------------------------------------------------------------------------------------------------------------------- JSON ---> Costruzione del menu ( KEY Base - 7 parti )
         exit(keybase());
@@ -41,7 +44,7 @@
     } elseif($type == 8){ if($val == rtrim($cestino[$old])) { $Qkeybase[$old] = $cestino[$old]; $cestino[$old] = "\n"; Qw("$Qdatabase/key.php", $Qkeybase, true); Qw("$Qdatabase/trash.php", $cestino, true); $key = file("$dirschema/key.php"); $key[2] = rtrim($key[2]); if($key[2]) $key[2] .= ' '.$old."\n"; else $key[2] = $old."\n"; exit(keybase($key)); } else exit('10');
     } elseif($type == 9){ $key = file("$dirschema/key.php"); $pos++; $x = explode(' ',rtrim($key[$pos])); $tmp = $x[$val]; $x[$val] = $x[$old]; $x[$old] = $tmp; $key[$pos] = ''; $y = count($x)-1; for($a=0; $a<$y; $a++) $key[$pos] .= $x[$a].' '; $key[$pos] .= $x[$y]."\n"; exit(keybase($key));
     } elseif($type == 10){ $key = file("$dirschema/key.php"); $val++; $old++; $pos--; $x = explode(' ',rtrim($key[$val])); $key[$old] = rtrim($key[$old]); if($key[$old]) $key[$old] .= ' '.$x[$pos]."\n"; else $key[$old] = $x[$pos]."\n"; $x = Qcancella($x,$pos); $y = count($x)-1; if($y > 0) { $key[$val] = ''; for($a=0; $a<$y; $a++) $key[$val] .= $x[$a].' '; $key[$val] .= $x[$y]."\n"; } else $key[$val] = "\n"; exit(keybase($key));
-    } elseif($type == 11){ $val = htmlspecialchars(json_decode($val)); $fp = file("$dirschema/command.php"); $fp[$pos] = $val."\n"; $val = str_replace('Q\\','Quantico\\',$val); $str = '<?php require "../../Quantico'.$tmp.'.php"; $val = '.$val.'; echo "<pre>"; print_r($val); echo "</pre>"; ?>'; $cmd = '<?php $val = '.$val.'; ?>'; Qw('temp/risultato.php', $str); Qw('temp/valore.php', $cmd); Qw("$dirschema/command.php", $fp, true); Qsync('*'); exit('OK');
+    } elseif($type == 11){ $val = json_decode($val); $fp = file("$dirschema/command.php"); $fp[$pos] = $val."\n"; $val = str_replace('Q\\','Quantico\\',$val); $str = '<?php require "../../Quantico'.$tmp.'.php"; $val = '.$val.'; echo "<pre>"; print_r($val); echo "</pre>"; ?>'; $cmd = '<?php $val = '.$val.'; ?>'; Qw('temp/risultato.php', $str); Qw('temp/valore.php', $cmd); Qw("$dirschema/command.php", $fp, true); Qsync('*'); exit('OK');
     } elseif($type == 12){ $keyc = "'".str_replace(" ", "','", rtrim($pos))."'"; $str = '<?php require "../../Quantico'.$tmp.'.php"; $val = Quantico\DB::out(\''.$old.'\',array('.$keyc.'),\''.$val.'\'); echo "<pre>"; print_r($val); echo "</pre>"; ?>'; Qw('temp/risultato.php', $str); exit('1');
     } elseif($type == 13){ $k = explode('|',substr($pos,0,-1)); $v = explode(' ',rtrim($val)); $str = '<?php require "../../Quantico'.$tmp.'.php"; $val = Quantico\DB::out(\''.$old.'\',array('; $b = -1; foreach($k as $a) { $b++; if(strpos($a, ',')) { $a = "'".str_replace(",", "','", $a)."'"; $str .= "'$v[$b]' => array($a),"; } else $str .= "'$v[$b]' => '$a'"; } $str .= ')); echo "<pre>"; print_r($val); echo "</pre>"; ?>'; Qw('temp/risultato.php', $str); exit('1');
     } elseif($type == 14){ if($val) { if($val == 7) $val = 4; else $val = 7; $fp = file('config.php'); $fp[5] = $val."\n"; Qw('config.php',$fp); } $val = array(); $fp = file("$dirschema/command.php"); $val['create'] = date('d M Y',substr(rtrim($fp[1]),-10)); for($a=2, $u=count($fp); $a<$u; $a++) $val['command'][] = rtrim($fp[$a]); exit(json_encode($val));

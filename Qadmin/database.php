@@ -54,7 +54,7 @@
         function ai(x) { if(x == 'Account') i = "?id=<?=rawurlencode($_GET['id'])?>"; else i = '';
             $lb.launch({ url: "ai.php" + i, options: "width:480 height:700 navTop:true titleTop:true", title: "<h2 align='center'>A.I.&nbsp; " + x + "</h2>" });
         }
-        function pls() { $('#rst').html(''); }
+        function pls(x='') { $('#rst').html(x); }
         function login() { location.href = 'login.php'; }
         function refresh() { location.href = $(location).attr('href'); }
         function rimuovi() { for(var a=1; a<=nkey; a++) $("#tab" + a).remove(); }
@@ -139,8 +139,8 @@
                 else if(msg == 5) $("#sic").html('<img src="images/Qdb0.jpg">');
             });}
         }
-        function carica(x) { vl = $('#cmd' + x).val(); com = vl.split('::'); com = com[1].substring(0,3); vl = JSON.stringify(vl); $('#gio').html('<img src="images/load.gif" style="float:right; margin-bottom:6px">');
-            $.post("keybase.php", { type: 11, val: vl, old: 1, pos: x }, function(msg){ if(msg == 'OK') { $('#rst').load('temp/risultato.php').show(); if(com == 'in(' || com == 'del' || com == 'ver') $('#gio').html('<a class="agg" href="javascript:aggiorna()"><?=$lng[13]?></a>'); else if(com == 'out') $('#gio').html('&emsp;<a class="agg" href="javascript:tabella()"><?=$lng[12]?></a>'); else if(com == 'tim' || com == 'dir') $('#gio').html(''); } else $('#gio').html(''); });
+        function carica(x) { vl = $('#cmd' + x).val(); com = vl.split('::'); com = com[1].substring(0,3); vl = JSON.stringify(vl); pls(); $('#gio').html('<img src="images/load.gif" style="float:right; margin-bottom:6px">');
+            $.post("keybase.php", { type: 11, val: vl, old: 1, pos: x }, function(msg){ if(msg == 'OK') { $('#rst').load('temp/risultato.php').show(); if(com == 'in(' || com == 'del' || com == 'ver') $('#gio').html('<a class="agg" href="javascript:aggiorna()"><?=$lng[13]?></a>'); else if(com == 'out') $('#gio').html('&emsp;<a class="agg" href="javascript:tabella()"><?=$lng[12]?></a>'); else if(com == 'tim' || com == 'dir') $('#gio').html(''); } else { $('#gio').html(''); pls(msg); }});
         }
         function cerca(x) { if(x) { sito = 'query.php?id='+dbcl; titolo = 'QUERY'; } else { sito = 'cerca.php?id='+dbcl; titolo = '<?=$lng[48]?>'; }
             $lb.launch({ url: sito, options: "afterEnd:aggiorna width:820 navTop:true titleTop:true", title: "<h3 align='center'>" + titolo + "</h3>" })
