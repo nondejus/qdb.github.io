@@ -20,7 +20,7 @@
         for($a=1; $a<$lun; $a++) if(strpos('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-_', $key[$a]) === false) return 3; // ------------- KEY con caratteri non consentiti
         for($a=2; $a<$lkb; $a++) if($key == rtrim($Qkeybase[$a]) or $key == rtrim($cestino[$a])) return 4; return false; // ---------------------------------- KEY esiste già
     }
-    function prohibited($val){ $commands = ['eval','system','decode','chmod','chown','chgrp','readfile','unlink','fopen','file_'];
+    function prohibited($val){ $commands = ['eval','system','copy','chmod','chown','chgrp','base64','decode','unlink','readfile','fopen','file_get_','file_put_'];
         foreach($commands as $command) if(strpos($val, $command) !== false) exit('<h1>-:|:- Prohibited -:|:-</h1>');
     }
     if($type == 1){ // --------------------------------------------------------------------------------------------------------------------------------------- JSON ---> Costruzione del menu ( KEY Base - 7 parti )
