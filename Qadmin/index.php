@@ -1,7 +1,7 @@
 <?php
 
     function creation($dir){ if(file_exists($dir)){ $fx = file($dir); if(count($fx) > 10) return true; }
-        if(file_put_contents($dir, "<?php\ndate_default_timezone_set(\"Europe/London\"); setlocale(LC_ALL,\"en_GB.utf8\");\n".'$Qsito = '."'https://www.quanticodb.com/';\n".'$Qprotezione = "<?php header(\'Location: $Qsito\'); exit; ?>\n<html><head><META HTTP-EQUIV=REFRESH CONTENT=\'0; URL=$Qsito\'><script type=\'text/javascript\'>location.href = \'$Qsito\';</script></head></html>\n";'."\n?>")){
+        if(file_put_contents($dir, "<?php\ndate_default_timezone_set(\"Europe/London\"); setlocale(LC_ALL,\"en_GB.utf8\");\n".'$Qsito = '."'https://quanticodb.com/';\n".'$Qprotezione = "<?php header(\'Location: $Qsito\'); exit; ?>\n<html><head><META HTTP-EQUIV=REFRESH CONTENT=\'0; URL=$Qsito\'><script type=\'text/javascript\'>location.href = \'$Qsito\';</script></head></html>\n";'."\n?>")){
             $fx = file('../Quantico.php'); $fx[2] = "namespace Quantico; require_once '$dir'; if(".'$Qmaintenance'.") return array('maintenance' => ".'$Qmaintenance'."); ini_set('display_errors', 1); error_reporting(E_ALL); /* ini_set & error_reporting (can remove) */ mb_internal_encoding('UTF-8'); mb_http_output('UTF-8'); require_once 'class/Qsys.php'; require_once 'class/Qfx.php';\n"; 
             file_put_contents('../Quantico.php', $fx); return true;
         } return false;
@@ -81,13 +81,15 @@
 		<?php if(!is_writable('./schema/1.php')) { echo "$td $error"; $ok++; } else echo "$td $success"; ?>
 	</tr>
     <tr>
-		<td class="wd330 ht36 brt">../../QDB/&nbsp; <font color="silver">create (minimum permissions: 644)</td>
+		<td class="wd330 ht36 brt">../../QDB/&nbsp; <font color="silver">create (obbligatory permits: 6777)</td>
         <?php
             
-            $x = explode('/', __DIR__); $u=count($x)-1; $dir = $x[0]; for($a=1, $n=count($x)-3; $a<$n; $a++){ if(is_dir("$dir/QDB")) break; else $dir .= '/'.$x[$a]; } $tmp = $dir;
+            $x = explode('/', __DIR__); $u=count($x)-1; $dir = $x[0]; 
+            for($a=1, $n=count($x)-3; $a<$n; $a++){ if(is_dir("$dir/QDB")) break; else $dir .= '/'.$x[$a]; } $tmp = $dir;
             for($b=$a, $n=count($x)-1; $b<$n; $b++){ if(is_dir("$tmp/QDB")) { $dir = $tmp; $a = $b; break; } else $tmp .= '/'.$x[$b]; } $dir .= '/QDB/';
-            if(is_dir($dir)) echo "$td $success"; else { if(mkdir($dir)) echo "$td $success"; else { echo "$td $error"; $esiste = false; $ok++; }}
-        
+            if(is_dir($dir)){ $perm = substr(sprintf("%o",fileperms($dir)),-4); if($perm > 6776) echo "$td $success"; else { echo "$td $error"; $esiste = false; $ok++; }}
+            else { if(mkdir($dir, 6777)) echo "$td $success"; else { echo "$td $error"; $esiste = false; $ok++; }}
+            
         ?>
 	</tr>
 	<tr>

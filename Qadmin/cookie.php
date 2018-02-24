@@ -2,13 +2,17 @@
 
     if(!isset($_COOKIE['Qdb#admin'])) { header('location: login.php'); exit; } 
     
-    require_once 'dirqdb.php'; if(!file_exists($dirqdb.'Qconfig.php')) exit;
+    require_once 'dirqdb.php';
+    
+    if(!file_exists($dirqdb.'Qconfig.php')) exit;
+    if(!file_exists($dirqdb.'Qsession.php')) exit;
+    
     require_once $dirqdb.'Qconfig.php';
     
     if($Qckadm != $_COOKIE['Qdb#admin'])
     {
-        if(strpos($_SERVER['PHP_SELF'], 'database.php'))
-            exit('<center><font face="Verdana" size="7"><br><b>REFRESH this page!</b></font></center>');
+        if(!strpos($_SERVER['PHP_SELF'], 'database.php')) exit('NOT Authorized!');
+        exit('<center><font face="Verdana" size="7"><br><b>REFRESH this page!</b></font></center>');
     }
     
     $dbtype = file('config.php'); $dirschema = 'schema'; $tmp = '';

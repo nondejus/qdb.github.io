@@ -14,8 +14,8 @@ class Qup extends Qin
                             if($f[0] == 0) { $r3 = $Qdatabase.'/'.rtrim($fl[$b]).'/keyp.php'; $f1 = file($r3); $g = explode('.',$f1[2]); $z = count($g)-1; $npos = $Qdatabase.'/'.$g[0].'/'; for($x=1; $x<$z; $x++) $npos .= $g[$x].'/'; $npos .= $pr.$f[0]; $r4 = $npos.'/v'.rtrim($g[$z]).'.php';
                                 if(file_exists(($r4))) { $f4 = file($r4); $j = array_search($fi[2],$f4);
                                     if($j > 1) { global $Qprotezione; $r5 = $npos.'/'.rtrim($g[$z]).'.php'; $f5 = file($r5); $f4 = SYS::cancella($f4,$j); $f5 = SYS::cancella($f5,$j); w($r4,$f4); w($r5,$f5); 
-                                        $f6 = Qdel::scrivi($npos,$ora,"\n",0,$i[2],0,0,1); $z = $f[1].'.'; for($a=2, $u=count($f)-2; $a<$u; $a++) $z .= $f[$a].'.'; file_put_contents($r3,$Qprotezione.$z.$f6."\n");
-                                        $npos .= '/in.php'; $g = r($npos); $g = explode('.',$g); $g[1]--; $g[2]--; file_put_contents($npos,$g[0].'.'.$g[1].'.'.$g[2].'.'.rtrim($g[3])."\n");
+                                        $f6 = Qdel::scrivi($npos,$ora,"\n",0,$i[2],0,0,1); $z = $f[1].'.'; for($a=2, $u=count($f)-2; $a<$u; $a++) $z .= $f[$a].'.'; SYS::fpc($r3,$Qprotezione.$z.$f6."\n");
+                                        $npos .= '/in.php'; $g = r($npos); $g = explode('.',$g); $g[1]--; $g[2]--; SYS::fpc($npos,$g[0].'.'.$g[1].'.'.$g[2].'.'.rtrim($g[3])."\n");
                                     }
                                 }
                             } elseif($f[0] == 1) { $f1 = file($Qdatabase.'/'.rtrim($fl[$b]).'/keyc.php'); $f2[0] = $fi[2];
