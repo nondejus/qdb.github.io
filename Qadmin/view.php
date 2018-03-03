@@ -1,6 +1,6 @@
 <?php
 
-    if(isset($_GET['k'])) $k = $_GET['k']; else exit;
+    if(isset($_GET['k'])) $k = $_GET['k']; else exit; // alert
     if(isset($_GET['i'])) $i = $_GET['i']; else $i = 0;
     
     require_once 'cookie.php'; 
@@ -62,13 +62,7 @@
             if(y == 0) { $.msgBox({ title: "QuanticoDB", content: "<?=$lng[10]?>", buttons: [{ value: "<?=$lng[11]?>" }, { value: "<?=$lng[12]?>" }],
                 success: function (result) { if(result == "<?=$lng[11]?>") { z = x.substring(1); u = z.split('-'); k = sjout('k',z); kv = sjout('k',u[0]); kc = <?="'$ke[0] '"?>; ks = ''; s = 'k'; if(u.length > 3) { for(a=0; a<(u.length-2); a++) { s = s + u[a] + '-'; }; s = s.substring(0,s.length-1); ks = $("#" + s).text(); ks = $.trim(ks); s = 's'; for(a=0; a<(u.length-1); a++) { s = s + u[a] + '-'; }; s = s.substring(0,s.length-1); s = $("#" + s).text(); }; if(ks == '') { kc = kc + k; } else { kc = ks + ' ' + k; kv = s; }; $.post('keyview.php', { type: 3, key: kc, val: 0, pos: kv }, function(msg){ if(msg == 'OK') { $("#t" + u[0]).remove(); $("#m" + z).html(''); dettagli('v' + u[0],kv); } else error(); });}}});}
             else if(y == 1) { z = x.substring(1); w = "'" + x + "'"; if($("#qsx").length) { $("#" + x).html(''); } else { $("#" + x).append(' <input class="ykc" id="d' + z + '" type="text"> <a href="javascript:modifica(' + w + ',2)"><img id="qsx" src="images/s_on.bmp" border="0" width="7" height="8" title="<?=$lng[7]?>"></a> <a href="javascript:modifica(' + w + ',0)"><img src="images/x_off.bmp" border="0" title="<?=$lng[8]?>"></a>'); }}
-            else if(y == 2) { z = x.substring(1); u = z.split('-'); k = sjout('k',z); kv = sjout('k',u[0]); kc = <?="'$ke[0] '"?>; kd = $("#d" + z).val(); ks = ''; s = 'k'; 
-                if(u.length > 3) { 
-                    for(a=0; a<(u.length-2); a++) { s = s + u[a] + '-'; }; s = s.substring(0,s.length-1); ks = $("#" + s).text(); ks = $.trim(ks); s = 's'; 
-                    for(a=0; a<(u.length-1); a++) { s = s + u[a] + '-'; }; s = s.substring(0,s.length-1); s = $("#" + s).text(); }; 
-                    if(ks == '') { kc = kc + k; } else { kc = ks + ' ' + k; kv = s; }; 
-                    if(kd != '') { 
-                        $.post('keyview.php', { type: 2, key: kc, val: kd, pos: kv }, function(msg){ alert(msg); if(msg == 'OK') { $("#v" + z).html(''); $("#kv" + z).html(kd); } else error(); });} else { $("#v" + z).html(''); }}
+            else if(y == 2) { z = x.substring(1); u = z.split('-'); k = sjout('k',z); kv = sjout('k',u[0]); kc = <?="'$ke[0] '"?>; kd = $("#d" + z).val(); ks = ''; s = 'k'; if(u.length > 3) { for(a=0; a<(u.length-2); a++) { s = s + u[a] + '-'; }; s = s.substring(0,s.length-1); ks = $("#" + s).text(); ks = $.trim(ks); s = 's'; for(a=0; a<(u.length-1); a++) { s = s + u[a] + '-'; }; s = s.substring(0,s.length-1); s = $("#" + s).text(); }; if(ks == '') { kc = kc + k; } else { kc = ks + ' ' + k; kv = s; }; if(kd != '') { $.post('keyview.php', { type: 2, key: kc, val: kd, pos: kv }, function(msg){ if(msg == 'OK') { $("#v" + z).html(''); $("#kv" + z).html(kd); } else error(); });} else { $("#v" + z).html(''); }}
             else if(y == 3) { z = x.substring(1); if($("#d" + z).length) { kd = $("#d" + z).val(); if(kd != '') { kv = sjout('k',z); kc = <?="'$ke[0]'"?>; $.post('keyview.php', { type: 2, key: kc, val: kv, pos: kd }, function(msg){ if(msg == 'OK') { $("#m" + z).html(''); $("#k" + z).html(kd); } else error(); }); }} else { $('#m' + z).html('').html(' <input class="ykc" id="d' + z + '" type="text"> <a href="javascript:modifica(' + w + ',3)"><img id="e' + z + '" src="images/s_on.bmp" border="0" width="7" height="8" title="<?=$lng[7]?>"></a> <a href="javascript:modifica(' + w + ',4)"><img src="images/x_off.bmp" border="0" title="<?=$lng[8]?>"></a> <a href="javascript:modifica(' + w + ',5)"><img src="images/ru_on.bmp" border="0" title="<?=$lng[9]?>"></a>'); }}  
             else if(y == 4) { $.msgBox({ title: "QuanticoDB", content: "<?=$lng[13]?>", buttons: [{ value: "<?=$lng[11]?>" }, { value: "<?=$lng[12]?>" }], 
                 success: function (result) { if(result == "<?=$lng[11]?>") { z = x.substring(1); kv = sjout('k',z); kc = <?="'$ke[0]'"?>; $.post('keyview.php', { type: 3, key: kc, val: 0, pos: kv }, function(msg){ if(msg == 'OK') { $("#m" + z).html(''); $("#v" + z).html(''); dettagli('v' + z,kv); } else error(); });}}});}
